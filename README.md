@@ -1,2 +1,2 @@
 # TuduManayer
-A ver simple todo list application
+A very simple todo list application
