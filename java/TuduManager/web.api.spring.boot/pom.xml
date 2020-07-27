@@ -13,6 +13,7 @@
 
     <properties>
         <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+        <spring.boot.maven.plugin>1.2.7.RELEASE</spring.boot.maven.plugin>
         <junit.version>4.13</junit.version>
         <assertj.version>3.16.1</assertj.version>
         <mockito.version>3.3.3</mockito.version>
@@ -83,6 +84,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.maven.plugin}</version>
             </plugin>
 
         </plugins>
