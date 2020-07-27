@@ -25,6 +25,9 @@ export function SearchTodoService(http){
         if(response.statusCode === HttpStatusCode.internalServerError){
             return {statusCode: response.statusCode};
         }
+        if(response.statusCode === HttpStatusCode.notFound){
+            return {statusCode: response.statusCode};
+        }
         throw 'not implemented';
     }
 }

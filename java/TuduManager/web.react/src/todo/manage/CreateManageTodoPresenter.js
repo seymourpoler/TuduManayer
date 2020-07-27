@@ -34,6 +34,10 @@ export function createManageTodoPresenter(view, searchService = createSearchTodo
             view.showInternalServerError();
             return;
         }
+        if(response.statusCode === HttpStatusCode.notFound){
+            view.showNotFound();
+            return;
+        }
         throw 'not implemented';
     }
 

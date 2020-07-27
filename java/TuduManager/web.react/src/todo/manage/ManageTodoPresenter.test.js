@@ -102,5 +102,16 @@ describe('Manage Todo Presenter', () =>{
 
             expect(view.showInternalServerError).toHaveBeenCalled();
         });
+
+        it('shows error message if is not found', async () => {
+            const  someId = 3;
+            http.delete = () => {
+                return {statusCode: HttpStatusCode.notFound};
+            }
+
+            await presenter.deleteTodo(someId);
+
+            expect(view.showNotFound).toHaveBeenCalled();
+        });
     });
 });

@@ -74,9 +74,12 @@ export class ManageTodoView extends React.Component {
         this.setState({errorMessage: ''});
     }
 
-
     showInternalServerError = () => {
         this.setState({ errorMessage: ErrorMessages.InternalServerError });
+    }
+
+    showNotFound = () => {
+        throw 'not implemented';
     }
 
     showTodos = (todos) => {
