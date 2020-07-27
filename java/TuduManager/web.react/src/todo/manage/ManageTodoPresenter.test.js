@@ -113,5 +113,16 @@ describe('Manage Todo Presenter', () =>{
 
             expect(view.showNotFound).toHaveBeenCalled();
         });
+
+        it('shows deleted message', async () => {
+            const  someId = 3;
+            http.delete = () => {
+                return {statusCode: HttpStatusCode.ok};
+            }
+
+            await presenter.deleteTodo(someId);
+
+            expect(view.showDeleted).toHaveBeenCalled();
+        });
     });
 });

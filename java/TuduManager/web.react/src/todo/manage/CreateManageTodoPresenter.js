@@ -38,7 +38,7 @@ export function createManageTodoPresenter(view, searchService = createSearchTodo
             view.showNotFound();
             return;
         }
-        throw 'not implemented';
+        view.showDeleted();
     }
 
     return self;
