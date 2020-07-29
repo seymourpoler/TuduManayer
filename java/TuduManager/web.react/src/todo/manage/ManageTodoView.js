@@ -78,7 +78,7 @@ export class ManageTodoView extends React.Component {
     }
 
     showNotFound = () => {
-        throw 'not implemented';
+        this.setState({errorMessage: 'todo not found'});
     }
 
     showTodos = (todos) => {
