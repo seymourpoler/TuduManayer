@@ -5,7 +5,7 @@ import { spyAllMethodsOf } from '../../Testing';
 import { Http, createHttp } from '../../Http';
 import { HttpStatusCode } from '../../HttpStatusCode';
 
-describe('Manage Todo Presenter', () =>{
+describe('Manage Todo Presenter', () => {
     let view, service, presenter, http;
 
      beforeEach(() => {
@@ -57,6 +57,68 @@ describe('Manage Todo Presenter', () =>{
             expect(view.hideSpinner).toHaveBeenCalled();
             expect(view.showTodos).toHaveBeenCalledWith(todos);
         });
+
+        describe('when todos are loaded', () => {
+            beforeEach(async () => {
+                const todos = [{id:1, title: 'a title'}];
+                const searchText = 't';
+                http.get = () => {
+                    return { statusCode: HttpStatusCode.ok, body: todos };
+                };
+                await presenter.search(searchText);
+            });
+
+            describe('when delete is requested', () => {
+                it('cleans messages', () => {
+                    const someId = 3;
+
+                    presenter.deleteTodo(someId);
+
+                    expect(view.cleanMessages).toHaveBeenCalled();
+                });
+
+                it('shows spinner', () => {
+                    const someId = 3;
+
+                    presenter.deleteTodo(someId);
+
+                    expect(view.showSpinner).toHaveBeenCalled();
+                });
+
+                it('shows error if there is an internal server error', async () => {
+                    const  someId = 3;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.internalServerError };
+                    }
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.showInternalServerError).toHaveBeenCalled();
+                });
+
+                it('shows error message if is not found', async () => {
+                    const  someId = 3;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.notFound };
+                    }
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.showNotFound).toHaveBeenCalled();
+                });
+
+                it('shows deleted message', async () => {
+                    const  someId = 3;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.ok };
+                    }
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.showDeleted).toHaveBeenCalled();
+                });
+            });
+        });
     });
 
     describe('when edit is requested', () => {
@@ -74,57 +136,6 @@ describe('Manage Todo Presenter', () =>{
             presenter.createNewTodo();
 
             expect(view.redirectToCreateNewTodo).toHaveBeenCalled();
-        });
-    });
-
-    describe('when delete is requested', () => {
-        it('cleans messages', () => {
-            const someId = 3;
-
-            presenter.deleteTodo(someId);
-
-            expect(view.cleanMessages).toHaveBeenCalled();
-        });
-
-        it('shows spinner', () => {
-            const someId = 3;
-
-            presenter.deleteTodo(someId);
-
-            expect(view.showSpinner).toHaveBeenCalled();
-        });
-
-        it('shows error if there is an internal server error', async () => {
-            const  someId = 3;
-            http.delete = () => {
-                return { statusCode: HttpStatusCode.internalServerError };
-            }
-
-            await presenter.deleteTodo(someId);
-
-            expect(view.showInternalServerError).toHaveBeenCalled();
-        });
-
-        it('shows error message if is not found', async () => {
-            const  someId = 3;
-            http.delete = () => {
-                return { statusCode: HttpStatusCode.notFound };
-            }
-
-            await presenter.deleteTodo(someId);
-
-            expect(view.showNotFound).toHaveBeenCalled();
-        });
-
-        it('shows deleted message', async () => {
-            const  someId = 3;
-            http.delete = () => {
-                return { statusCode: HttpStatusCode.ok };
-            }
-
-            await presenter.deleteTodo(someId);
-
-            expect(view.showDeleted).toHaveBeenCalled();
         });
     });
 });
