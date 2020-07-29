@@ -33,7 +33,6 @@ export class ManageTodoView extends React.Component {
             }}> delete </button>)
     }
 
-
     render(){
         return (
                 <div>
