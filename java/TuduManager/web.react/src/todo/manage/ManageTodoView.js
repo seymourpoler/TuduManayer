@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from '../../Spinner';
-import { createManageTodoPresenter } from './CreateManageTodoPresenter';
+import { createManageTodoPresenter } from './createManageTodoPresenter';
 import { ErrorMessages } from '../../ErrorMessages';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 

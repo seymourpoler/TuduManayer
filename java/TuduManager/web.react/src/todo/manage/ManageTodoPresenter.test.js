@@ -1,6 +1,6 @@
 import { createManageTodoView } from './ManageTodoView';
 import { ManageTodoService, createManageTodoService } from './ManageTodoService';
-import { createManageTodoPresenter } from './CreateManageTodoPresenter';
+import { createManageTodoPresenter } from './createManageTodoPresenter';
 import { spyAllMethodsOf } from '../../Testing';
 import { Http, createHttp } from '../../Http';
 import { HttpStatusCode } from '../../HttpStatusCode';
