@@ -85,6 +85,16 @@ describe('Manage Todo Presenter', () => {
                     expect(view.showSpinner).toHaveBeenCalled();
                 });
 
+                it('hides spinner', async () => {
+                    const someId = 3;
+                    http.delete = () => {
+                        return {statusCode: HttpStatusCode.notFound}};
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.hideSpinner).toHaveBeenCalled();
+                });
+
                 it('shows error if there is an internal server error', async () => {
                     const  someId = 3;
                     http.delete = () => {

@@ -32,6 +32,8 @@ export function createManageTodoPresenter(view, manageTodoService = createManage
         view.showSpinner();
 
         const response = await manageTodoService.delete(todoId);
+        view.hideSpinner();
+
         if(response.statusCode === HttpStatusCode.internalServerError){
             view.showInternalServerError();
             return;
