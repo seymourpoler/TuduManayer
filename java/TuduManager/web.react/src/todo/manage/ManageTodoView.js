@@ -82,10 +82,6 @@ export class ManageTodoView extends React.Component {
         throw 'not implemented';
     }
 
-    showDeleted = () => {
-        throw 'not implemented';
-    }
-
     showTodos = (todos) => {
         this.setState({ todos });
     }

@@ -42,7 +42,6 @@ export function createManageTodoPresenter(view, searchService = createSearchTodo
         }
 
         todos = todos.filter(x => x.id !== todoId);
-        view.showDeleted();
         view.showTodos(todos);
     }
 
