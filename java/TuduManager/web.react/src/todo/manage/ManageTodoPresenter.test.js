@@ -1,5 +1,5 @@
 import { createManageTodoView } from './ManageTodoView';
-import { SearchTodoService, createSearchTodoService } from './SearchTodoService';
+import { ManageTodoService, createManageTodoService } from './ManageTodoService';
 import { createManageTodoPresenter } from './CreateManageTodoPresenter';
 import { spyAllMethodsOf } from '../../Testing';
 import { Http, createHttp } from '../../Http';
@@ -13,7 +13,7 @@ describe('Manage Todo Presenter', () => {
         spyAllMethodsOf(http);
         view = createManageTodoView();
         spyAllMethodsOf(view);
-        service = new SearchTodoService(http);
+        service = new ManageTodoService(http);
         presenter = new createManageTodoPresenter(view, service);
      });
 

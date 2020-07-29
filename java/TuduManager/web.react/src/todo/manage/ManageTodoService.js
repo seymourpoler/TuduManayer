@@ -1,7 +1,7 @@
 import { createHttp } from '../../Http';
 import { HttpStatusCode } from '../../HttpStatusCode';
 
-export function SearchTodoService(http){
+export function ManageTodoService(http){
     let self = this;
 
     self.search = async (text) => {
@@ -35,7 +35,7 @@ export function SearchTodoService(http){
 }
 
 
-export function createSearchTodoService(){
+export function createManageTodoService(){
 	const http = createHttp();
-    return new SearchTodoService(http);
+    return new ManageTodoService(http);
 }

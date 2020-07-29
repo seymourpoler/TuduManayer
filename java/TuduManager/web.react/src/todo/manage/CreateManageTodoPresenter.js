@@ -1,14 +1,14 @@
-import { createSearchTodoService } from './SearchTodoService';
+import { createManageTodoService } from './ManageTodoService';
 import { HttpStatusCode } from '../../HttpStatusCode';
 
-export function createManageTodoPresenter(view, searchService = createSearchTodoService()) {
+export function createManageTodoPresenter(view, manageTodoService = createManageTodoService()) {
     let self = {};
     let todos = [];
 
     self.search = async (textSearch) => {
         view.cleanMessages();
         view.showSpinner();
-        const result = await searchService.search(textSearch);
+        const result = await manageTodoService.search(textSearch);
         view.hideSpinner();
 
         if(result.statusCode === HttpStatusCode.internalServerError){
@@ -31,7 +31,7 @@ export function createManageTodoPresenter(view, searchService = createSearchTodo
         view.cleanMessages();
         view.showSpinner();
 
-        const response = await searchService.delete(todoId);
+        const response = await manageTodoService.delete(todoId);
         if(response.statusCode === HttpStatusCode.internalServerError){
             view.showInternalServerError();
             return;
