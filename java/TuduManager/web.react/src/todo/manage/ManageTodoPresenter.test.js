@@ -97,7 +97,7 @@ describe('Manage Todo Presenter', () =>{
         it('shows error if there is an internal server error', async () => {
             const  someId = 3;
             http.delete = () => {
-                return {statusCode: HttpStatusCode.internalServerError};
+                return { statusCode: HttpStatusCode.internalServerError };
             }
 
             await presenter.deleteTodo(someId);
@@ -108,7 +108,7 @@ describe('Manage Todo Presenter', () =>{
         it('shows error message if is not found', async () => {
             const  someId = 3;
             http.delete = () => {
-                return {statusCode: HttpStatusCode.notFound};
+                return { statusCode: HttpStatusCode.notFound };
             }
 
             await presenter.deleteTodo(someId);
@@ -119,7 +119,7 @@ describe('Manage Todo Presenter', () =>{
         it('shows deleted message', async () => {
             const  someId = 3;
             http.delete = () => {
-                return {statusCode: HttpStatusCode.ok};
+                return { statusCode: HttpStatusCode.ok };
             }
 
             await presenter.deleteTodo(someId);
