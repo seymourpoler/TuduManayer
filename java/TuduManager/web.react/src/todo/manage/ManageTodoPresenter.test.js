@@ -117,6 +117,17 @@ describe('Manage Todo Presenter', () => {
 
                     expect(view.showDeleted).toHaveBeenCalled();
                 });
+
+                it('shows todos without deleted todo', async () =>{
+                    const todoId = 1;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.ok };
+                    }
+
+                    await presenter.deleteTodo(todoId);
+
+                    expect(view.showTodos).toHaveBeenCalledWith([]);
+                });
             });
         });
     });

@@ -30,6 +30,17 @@ export function Http(){
         return await buildResultFrom(response);
     }
 
+    self.delete = async (url) => {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        });
+        return { statusCode: response.status }
+    }
+
     async function buildResultFrom(response){
         const body = await buildBody(response);
         return {

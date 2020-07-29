@@ -3,6 +3,7 @@ import { HttpStatusCode } from '../../HttpStatusCode';
 
 export function createManageTodoPresenter(view, searchService = createSearchTodoService()) {
     let self = {};
+    let todos = [];
 
     self.search = async (textSearch) => {
         view.cleanMessages();
@@ -14,6 +15,7 @@ export function createManageTodoPresenter(view, searchService = createSearchTodo
             view.showInternalServerError();
             return;
         }
+        todos = result.todos;
         view.showTodos(result.todos);
     }
 
@@ -38,7 +40,10 @@ export function createManageTodoPresenter(view, searchService = createSearchTodo
             view.showNotFound();
             return;
         }
+
+        todos = todos.filter(x => x.id !== todoId);
         view.showDeleted();
+        view.showTodos(todos);
     }
 
     return self;
