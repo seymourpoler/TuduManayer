@@ -3,16 +3,13 @@ package net.seymourpoler.tudumanager.web.api.spring.boot.todo.delete;
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
 import net.seymourpoler.tudumanager.domain.todo.delete.IDeleteTodoService;
-import net.seymourpoler.tudumanager.web.api.spring.boot.todo.create.HttpTodoCreationRequest;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
