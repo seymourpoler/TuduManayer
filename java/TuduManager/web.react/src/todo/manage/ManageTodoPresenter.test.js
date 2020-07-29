@@ -21,6 +21,7 @@ describe('Manage Todo Presenter', () =>{
         it('cleans all messages', async () => {
             const searchText = 'tonight';
             http.get = () => { return { statusCode: HttpStatusCode.internalServerError }; };
+
             await presenter.search(searchText);
 
             expect(view.cleanMessages).toHaveBeenCalled();
@@ -29,6 +30,7 @@ describe('Manage Todo Presenter', () =>{
         it('shows spinner', async () => {
             const searchText = 'tonight';
             http.get = () => { return { statusCode: HttpStatusCode.internalServerError }; };
+
             await presenter.search(searchText);
 
             expect(view.showSpinner).toHaveBeenCalled();
@@ -59,11 +61,11 @@ describe('Manage Todo Presenter', () =>{
 
     describe('when edit is requested', () => {
         it('redirects to edit todo', () => {
-            const todoId = 2;
+            const someId = 2;
 
-            presenter.editTodo(todoId);
+            presenter.editTodo(someId);
 
-            expect(view.redirectToEditTodo).toHaveBeenCalledWith(todoId);
+            expect(view.redirectToEditTodo).toHaveBeenCalledWith(someId);
         });
     });
 
