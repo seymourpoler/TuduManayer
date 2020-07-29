@@ -1,8 +1,8 @@
 import { createManageTodoView } from './ManageTodoView';
-import { ManageTodoService, createManageTodoService } from './ManageTodoService';
+import { createManageTodoService } from './ManageTodoService';
 import { createManageTodoPresenter } from './createManageTodoPresenter';
 import { spyAllMethodsOf } from '../../Testing';
-import { Http, createHttp } from '../../Http';
+import { createHttp } from '../../Http';
 import { HttpStatusCode } from '../../HttpStatusCode';
 
 describe('Manage Todo Presenter', () => {
@@ -13,8 +13,8 @@ describe('Manage Todo Presenter', () => {
         spyAllMethodsOf(http);
         view = createManageTodoView();
         spyAllMethodsOf(view);
-        service = new ManageTodoService(http);
-        presenter = new createManageTodoPresenter(view, service);
+        service = createManageTodoService(http);
+        presenter = createManageTodoPresenter(view, service);
      });
 
     describe('when search is requested', () => {
