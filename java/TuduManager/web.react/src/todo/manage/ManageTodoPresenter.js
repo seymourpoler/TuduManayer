@@ -1,7 +1,7 @@
 import { createManageTodoService } from './ManageTodoService';
 import { HttpStatusCode } from '../../HttpStatusCode';
 
-export function createManageTodoPresenter(view, manageTodoService = createManageTodoService()) {
+export function manageTodoPresenter(view, manageTodoService = createManageTodoService()) {
     let self = {};
     let todos = [];
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from '../../Spinner';
-import { createManageTodoPresenter } from './createManageTodoPresenter';
+import { manageTodoPresenter } from './ManageTodoPresenter';
 import { ErrorMessages } from '../../ErrorMessages';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
@@ -17,7 +17,7 @@ export class ManageTodoView extends React.Component {
         }
     }
 
-    presenter = createManageTodoPresenter(this);
+    presenter = manageTodoPresenter(this);
 
     btnEditTodo = (cell, row, enumObject, rowIndex) => {
         return (<button type="button"
