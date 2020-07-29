@@ -35,4 +35,15 @@ public class DeleteTodoControllerShould {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
+
+    @Test
+    public void return_ok_when_todo_is_deleted(){
+        var executionResult = ServiceExecutionResult.ok();
+        final Integer someId = 23;
+        when(service.delete(someId)).thenReturn(executionResult);
+
+        var response = controller.delete(someId);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 }
