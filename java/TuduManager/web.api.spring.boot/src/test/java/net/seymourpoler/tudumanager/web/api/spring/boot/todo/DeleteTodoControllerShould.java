@@ -1,4 +1,4 @@
-package net.seymourpoler.tudumanager.web.api.spring.boot.todo.delete;
+package net.seymourpoler.tudumanager.web.api.spring.boot.todo;
 
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
