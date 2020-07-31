@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DeleteTodoController {
-
     private final IDeleteTodoService deleteTodoService;
 
     public DeleteTodoController(IDeleteTodoService deleteTodoService) {
@@ -16,6 +15,10 @@ public class DeleteTodoController {
     }
 
     public ResponseEntity delete(@RequestParam("todoId") Integer todoId){
+        var executionResult = deleteTodoService.delete(todoId);
+        if(executionResult.isOk()) {
+            return new ResponseEntity(HttpStatus.OK);
+        }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }
