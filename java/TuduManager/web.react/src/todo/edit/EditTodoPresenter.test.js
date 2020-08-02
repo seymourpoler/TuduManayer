@@ -30,6 +30,17 @@ describe('EditTodoPresenter', () => {
             expect(view.cleanMessages).toHaveBeenCalled();
         });
 
+        it('hides spinner', async () => {
+            const someId = 1;
+            http.get = () => {
+                return { statusCode: HttpStatusCode.internalServerError };
+            };
+
+            await presenter.load(someId);
+
+            expect(view.hideSpinner).toHaveBeenCalled();
+        });
+
         it('shows an error if there is an internal server error', async () => {
             const todoId = 1;
             http.get = () => {
@@ -44,7 +55,7 @@ describe('EditTodoPresenter', () => {
         it('shows error if is not found', async () => {
             const todoId = 1;
             http.get = () => {
-                return { statusCode: HttpStatusCode.notFound, };
+                return { statusCode: HttpStatusCode.notFound };
             };
 
             await presenter.load(todoId);
