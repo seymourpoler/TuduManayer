@@ -10,8 +10,8 @@ export function EditTodoService(http){
         if(response.statusCode === HttpStatusCode.internalServerError){
             return  {statusCode: HttpStatusCode.internalServerError};
         }
-        if(response.statusCode === HttpStatusCode.badRequest){
-            return  {statusCode: HttpStatusCode.badRequest};
+        if(response.statusCode === HttpStatusCode.notFound){
+            return  {statusCode: HttpStatusCode.notFound};
         }
         throw 'not implemented';
     }

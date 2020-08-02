@@ -41,10 +41,10 @@ describe('EditTodoPresenter', () => {
             expect(view.showInternalServerError).toHaveBeenCalled();
         });
 
-        it('shows error if there is an error', async () => {
+        it('shows error if is not found', async () => {
             const todoId = 1;
             http.get = () => {
-                return { statusCode: HttpStatusCode.badRequest, };
+                return { statusCode: HttpStatusCode.notFound, };
             };
 
             await presenter.load(todoId);

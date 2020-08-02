@@ -12,7 +12,7 @@ export function EditTodoPresenter(view, service){
             view.showInternalServerError();
             return;
         }
-        if(response.statusCode === HttpStatusCode.badRequest){
+        if(response.statusCode === HttpStatusCode.notFound){
             view.showNotFound();
             return;
         }
