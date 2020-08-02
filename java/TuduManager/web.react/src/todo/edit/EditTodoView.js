@@ -53,6 +53,10 @@ export class EditTodoView extends React.Component {
         this.setState({showSpinner: false});
     }
 
+    showTodo = (todo) => {
+        throw 'not implemented';
+    }
+
     showInternalServerError = () => {
         this.setState({errorMessage: 'There is an internal server error.'})
     }

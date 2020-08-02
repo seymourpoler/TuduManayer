@@ -62,6 +62,18 @@ describe('EditTodoPresenter', () => {
 
             expect(view.showNotFound).toHaveBeenCalled();
         });
+
+        it('shows todo', async () => {
+            const todoId = 1;
+            const todo = {};
+            http.get = () => {
+                return { statusCode: HttpStatusCode.ok, body: todo };
+            };
+
+            await presenter.load(todoId);
+
+            expect(view.showTodo).toHaveBeenCalledWith(todo);
+        });
     });
 
     describe('when update todo is requested', () => {

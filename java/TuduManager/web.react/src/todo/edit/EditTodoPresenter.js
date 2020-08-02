@@ -17,7 +17,7 @@ export function EditTodoPresenter(view, service){
             view.showNotFound();
             return;
         }
-        throw 'not implemented';
+        view.showTodo(response.todo);
     }
 
     self.update = async function(todo) {

@@ -13,7 +13,10 @@ export function EditTodoService(http){
         if(response.statusCode === HttpStatusCode.notFound){
             return  {statusCode: HttpStatusCode.notFound};
         }
-        throw 'not implemented';
+        return {
+            statusCode: HttpStatusCode.ok,
+            todo: response.body
+        }
     }
 
     self.update = async function(todo) {
