@@ -7,16 +7,13 @@ export function EditTodoService(http){
 
     self.find = async function(todoId){
         const response = await http.get(url + '/' + todoId);
-        if(response.statusCode === HttpStatusCode.internalServerError){
-            return  {statusCode: HttpStatusCode.internalServerError};
+        if(response.statusCode === HttpStatusCode.ok){
+            return {
+                statusCode: HttpStatusCode.ok,
+                todo: response.body
+            };
         }
-        if(response.statusCode === HttpStatusCode.notFound){
-            return  {statusCode: HttpStatusCode.notFound};
-        }
-        return {
-            statusCode: HttpStatusCode.ok,
-            todo: response.body
-        }
+        return  { statusCode: response.statusCode };
     }
 
     self.update = async function(todo) {
