@@ -23,7 +23,7 @@ public class FindTodoController {
         if(!todoMaybe.isPresent()){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        throw new RuntimeException();
+        return ResponseEntity.ok(todoMaybe.get());
 
     }
 }

@@ -1,6 +1,8 @@
 package net.seymourpoler.tudumanager.web.api.spring.boot.todo;
 
 import net.seymourpoler.tudumanager.domain.todo.find.IFindTodoService;
+import net.seymourpoler.tudumanager.domain.todo.find.models.Todo;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -31,5 +33,18 @@ public class FindTodoControllerShould {
         var response = controller.find(someId);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+    @Test
+    public void
+    return_todo(){
+        var someId = 2;
+        var todo = new Todo();
+        when(findTodoService.find(someId)).thenReturn(Optional.of(todo));
+
+        var response = controller.find(someId);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        AssertionsForClassTypes.assertThat(response.getBody()).isEqualTo(todo);
     }
 }
