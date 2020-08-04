@@ -9,7 +9,9 @@ public class FindTodoService implements IFindTodoService{
     private final IExistTodoRepository existTodoRepository;
     private final IFindTodoRepository findTodoRepository;
 
-    public FindTodoService(IExistTodoRepository existTodoRepository, IFindTodoRepository findTodoRepository) {
+    public FindTodoService(
+            IExistTodoRepository existTodoRepository,
+            IFindTodoRepository findTodoRepository) {
         this.existTodoRepository = existTodoRepository;
         this.findTodoRepository = findTodoRepository;
     }
