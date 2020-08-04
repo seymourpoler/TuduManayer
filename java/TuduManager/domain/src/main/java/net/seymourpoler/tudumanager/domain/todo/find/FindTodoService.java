@@ -19,6 +19,7 @@ public class FindTodoService implements IFindTodoService{
         if(!existTodoRepository.exist(todoId)){
             return Optional.empty();
         }
-        throw new RuntimeException();
+        var todo = findTodoRepository.find(todoId);
+        return Optional.of(todo);
     }
 }

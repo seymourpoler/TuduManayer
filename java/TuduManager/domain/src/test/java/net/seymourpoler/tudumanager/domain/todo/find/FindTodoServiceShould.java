@@ -1,6 +1,7 @@
 package net.seymourpoler.tudumanager.domain.todo.find;
 
 import net.seymourpoler.tudumanager.domain.todo.delete.IExistTodoRepository;
+import net.seymourpoler.tudumanager.domain.todo.find.models.Todo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,5 +32,18 @@ public class FindTodoServiceShould {
         var result = findTodoService.find(someId);
 
         assertThat(result).isEqualTo(Optional.empty());
+    }
+
+    @Test
+    public void
+    return_maybe_todo(){
+        final Integer someId = 4;
+        when(existTodoRepository.exist(someId)).thenReturn(true);
+        var todo = new Todo();
+        when(findTodoRepository.find(someId)).thenReturn(todo);
+
+        var result = findTodoService.find(someId);
+
+        assertThat(result).isEqualTo(Optional.of(todo));
     }
 }
