@@ -16,11 +16,11 @@ public class DeleteTodoRepository implements IDeleteTodoRepository {
 
     @Override
     public void delete(Integer todoId) {
-        final String sql = "DELETE public.todos WHERE Id = :todoId";
+        final String sql = "DELETE FROM public.todos WHERE id = :id";
         try (var connection = dataBaseConnectionFactory.create()) {
             connection
                     .createQuery(sql)
-                    .addParameter("todoId", todoId)
+                    .addParameter("id", todoId)
                     .executeUpdate();
         }
     }
