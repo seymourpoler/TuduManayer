@@ -20,10 +20,8 @@ public class FindTodoController {
     @GetMapping("/api/todos/{todoId}")
     public ResponseEntity find(@PathVariable Integer todoId){
         var todoMaybe = findTodoService.find(todoId);
-        if(!todoMaybe.isPresent()){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(todoMaybe.get());
-
+        return todoMaybe
+                .map(todo -> ResponseEntity.ok(todo))
+                .orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
 }
