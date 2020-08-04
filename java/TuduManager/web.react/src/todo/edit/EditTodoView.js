@@ -22,19 +22,20 @@ export class EditTodoView extends React.Component {
 
     componentDidMount() {
         this.setState({id: this.props.match.params.todoId });
+        this.presenter.load(this.props.match.params.todoId);
     }
 
     render(){
         return (<div>
-                <Spinner show={this.state.showSpinner} />
-                <p>Title: <input type='text' id='title' onChange={this.onTitleChangedHandler} /></p>
-                <p id='titleErrorMessage'>{this.state.titleErrorMessage}</p>
-                <p>Description: <input type='text' id='description' onChange={this.onDescriptionChangedHandler} /></p>
-                <button id='save' onClick={this.onSaveClickedHandler}>Save</button>
-                <button id='cancel' onClick={this.onCancelClickedHandler}>Cancel</button>
-                <p id='errorMessage'>{this.state.errorMessage}</p>
-                <p id='message'>{this.state.message}</p>
-            </div>);
+            <Spinner show={this.state.showSpinner} />
+            <p>Title: <input type='text' id='title' onChange={this.onTitleChangedHandler} value={this.state.title} /></p>
+            <p id='titleErrorMessage'>{this.state.titleErrorMessage}</p>
+            <p>Description: <input type='text' id='description' onChange={this.onDescriptionChangedHandler} value={this.state.description} /></p>
+            <button id='save' onClick={this.onSaveClickedHandler}>Save</button>
+            <button id='cancel' onClick={this.onCancelClickedHandler}>Cancel</button>
+            <p id='errorMessage'>{this.state.errorMessage}</p>
+            <p id='message'>{this.state.message}</p>
+        </div>);
     }
 
     cleanMessages = () => {
@@ -54,7 +55,8 @@ export class EditTodoView extends React.Component {
     }
 
     showTodo = (todo) => {
-        throw 'not implemented';
+        this.setState({title: todo.title});
+        this.setState({description: todo.description});
     }
 
     showInternalServerError = () => {
@@ -62,7 +64,7 @@ export class EditTodoView extends React.Component {
     }
 
     showNotFound = () => {
-        throw 'not implemented';
+        this.setState({errorMessage: 'todo not found'});
     }
 
     showErrors = (errors) => {
@@ -83,7 +85,6 @@ export class EditTodoView extends React.Component {
 
     onDescriptionChangedHandler = (event) => {
         this.setState({ description: event.target.value });
-        this.setState({ description: event.target.value });
     }
 
     onSaveClickedHandler = (event) => {
@@ -91,7 +92,7 @@ export class EditTodoView extends React.Component {
             id: this.state.id,
             title: this.state.title,
             description: this.state.description
-        })
+        });
     }
 
     onCancelClickedHandler = (event) => {

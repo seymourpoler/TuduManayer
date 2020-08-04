@@ -16,14 +16,14 @@ public class ExistTodoRepository implements IExistTodoRepository {
 
     @Override
     public Boolean exist(Integer todoId) {
-        final String sql = "SELECT COUNT(1) public.todos WHERE Id = :todoId";
+        final String sql = "SELECT COUNT(1) from public.todos WHERE id = :id";
 
         try (var connection = dataBaseConnectionFactory.create()) {
             var scalar = connection
                     .createQuery(sql)
-                    .addParameter("todoId", todoId)
+                    .addParameter("id", todoId)
                     .executeScalar();
-            return ((scalar != null) && ((Integer)scalar > 0));
+            return ((scalar != null) && (((Long)scalar).intValue() > 0));
         }
     }
 }
