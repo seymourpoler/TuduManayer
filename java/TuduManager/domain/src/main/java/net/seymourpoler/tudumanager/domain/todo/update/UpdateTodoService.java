@@ -18,7 +18,7 @@ public class UpdateTodoService implements  IUpdateTodoService{
             var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("id", ErrorCodes.NotFound));
             return ServiceExecutionResult.of(errors);
         }
-        if(request.title() == null){
+        if(request.title() == null || request.title() == ""){
             var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("title", ErrorCodes.Required));
             return ServiceExecutionResult.of(errors);
         }

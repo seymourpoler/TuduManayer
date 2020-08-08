@@ -46,4 +46,18 @@ public class UpdateTodoServiceShould {
         assertThat(result.errors().stream().findFirst().get().errorCode).isEqualTo(ErrorCodes.Required);
         assertThat(result.errors().stream().findFirst().get().fieldId).isEqualTo("title");
     }
+
+    @Test
+    public void
+    return_error_when_title_is_string_empty(){
+        final Integer someId = 3;
+        when(existTodoRepository.exist(someId)).thenReturn(true);
+        var request = new TodoUpdatingRequest(someId, "", "description");
+
+        var result = updateTodoService.update(request);
+
+        assertThat(result.isOk()).isFalse();
+        assertThat(result.errors().stream().findFirst().get().errorCode).isEqualTo(ErrorCodes.Required);
+        assertThat(result.errors().stream().findFirst().get().fieldId).isEqualTo("title");
+    }
 }
