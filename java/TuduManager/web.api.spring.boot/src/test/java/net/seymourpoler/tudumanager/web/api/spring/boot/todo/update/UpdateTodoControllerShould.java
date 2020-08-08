@@ -37,4 +37,18 @@ public class UpdateTodoControllerShould {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
+
+    @Test
+    public void
+    return_bad_request_when_there_is_an_error(){
+        var request = new HttpTodoUpdatingRequest();
+        var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("email", ErrorCodes.Required));
+        var errorResult = ServiceExecutionResult.of(errors);
+        when(updateTodoService.update(any())).thenReturn(errorResult);
+
+        var response = controller.update(request);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(response.getBody()).isEqualTo(errors);
+    }
 }

@@ -25,6 +25,7 @@ public class UpdateTodoController {
             if(executionResult.errors().stream().findFirst().get().errorCode == ErrorCodes.NotFound){
                 return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
+            return new ResponseEntity(executionResult.errors(), HttpStatus.BAD_REQUEST);
         }
 
         throw new RuntimeException();
