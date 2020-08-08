@@ -2,22 +2,29 @@ package net.seymourpoler.tudumanager.domain.todo.update;
 
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.todo.delete.IExistTodoRepository;
+import net.seymourpoler.tudumanager.domain.todo.update.models.Todo;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UpdateTodoServiceShould {
 
     IExistTodoRepository existTodoRepository;
+    IFindTodoRepository findTodoRepository;
+    IUpdateTodoRepository updateTodoRepository;
     IUpdateTodoService updateTodoService;
 
     @Before
     public void setUp(){
         existTodoRepository = mock(IExistTodoRepository.class);
-        updateTodoService = new UpdateTodoService(existTodoRepository);
+        findTodoRepository = mock(IFindTodoRepository.class);
+        updateTodoRepository = mock(IUpdateTodoRepository.class);
+        updateTodoService = new UpdateTodoService(existTodoRepository, findTodoRepository, updateTodoRepository);
     }
 
     @Test
@@ -90,10 +97,30 @@ public class UpdateTodoServiceShould {
     }
 
     private String generateStringWithRandomCharacters(Integer numberOfCharacters){
-        var result = new StringBuilder();
-        for (var position=0; position<numberOfCharacters; position++){
-            result.append("q");
+        final int letter_a = 97;
+        final int letter_z = 122;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(numberOfCharacters);
+        for (int i = 0; i < numberOfCharacters; i++) {
+            int randomLimitedInt = letter_a + (int)(random.nextFloat() * (letter_z - letter_a + 1));
+            buffer.append((char) randomLimitedInt);
         }
-        return result.toString();
+        return buffer.toString();
+    }
+
+    @Test
+    public void update_todo(){
+        final Integer someId = 3;
+        when(existTodoRepository.exist(someId)).thenReturn(true);
+        var todo = new Todo(someId, "title", "");
+        when(findTodoRepository.find(someId)).thenReturn(todo);
+        var argumentCaptor = ArgumentCaptor.forClass(Todo.class);
+        final String description = "description";
+        var request = new TodoUpdatingRequest(someId, "title", description);
+
+        var result = updateTodoService.update(request);
+
+        verify(updateTodoRepository).update(argumentCaptor.capture());
+        assertThat(argumentCaptor.getValue().description).isEqualTo(description);
     }
 }

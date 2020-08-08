@@ -8,8 +8,16 @@ import java.util.List;
 
 public class UpdateTodoService implements  IUpdateTodoService{
     private final IExistTodoRepository existTodoRepository;
-    public UpdateTodoService(IExistTodoRepository existTodoRepository) {
+    private final IFindTodoRepository findTodoRepository;
+    private final IUpdateTodoRepository updateTodoRepository;
+
+    public UpdateTodoService(
+            IExistTodoRepository existTodoRepository,
+            IFindTodoRepository findTodoRepository,
+            IUpdateTodoRepository updateTodoRepository) {
         this.existTodoRepository = existTodoRepository;
+        this.findTodoRepository = findTodoRepository;
+        this.updateTodoRepository = updateTodoRepository;
     }
 
     @Override
@@ -27,6 +35,11 @@ public class UpdateTodoService implements  IUpdateTodoService{
             var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("title", ErrorCodes.InvalidLength));
             return ServiceExecutionResult.of(errors);
         }
-        throw new RuntimeException();
+
+        var todo = findTodoRepository.find(request.id());
+        todo.update(request.title(), request.description());
+        updateTodoRepository.update(todo);
+
+        return ServiceExecutionResult.ok();
     }
 }
