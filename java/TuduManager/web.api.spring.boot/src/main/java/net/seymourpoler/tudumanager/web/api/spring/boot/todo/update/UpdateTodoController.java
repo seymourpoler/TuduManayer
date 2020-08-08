@@ -21,14 +21,12 @@ public class UpdateTodoController {
                 httoTodoUpdatingRequest.title,
                 httoTodoUpdatingRequest.description);
         var executionResult = updateTodoService.update(todoUpdatingRequest);
-        if(!executionResult.isOk()){
-            if(executionResult.errors().stream().findFirst().get().errorCode == ErrorCodes.NotFound){
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity(executionResult.errors(), HttpStatus.BAD_REQUEST);
+        if(executionResult.isOk()){
+            return new ResponseEntity(HttpStatus.OK);    
         }
-        return new ResponseEntity(HttpStatus.OK);
+        if(executionResult.errors().stream().findFirst().get().errorCode == ErrorCodes.NotFound){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(executionResult.errors(), HttpStatus.BAD_REQUEST);
     }
-
-
 }
