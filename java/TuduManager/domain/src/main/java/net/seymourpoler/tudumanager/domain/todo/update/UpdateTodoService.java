@@ -15,7 +15,11 @@ public class UpdateTodoService implements  IUpdateTodoService{
     @Override
     public ServiceExecutionResult update(TodoUpdatingRequest request) {
         if(!existTodoRepository.exist(request.id())){
-            var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("email", ErrorCodes.NotFound));
+            var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("id", ErrorCodes.NotFound));
+            return ServiceExecutionResult.of(errors);
+        }
+        if(request.title() == null){
+            var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("title", ErrorCodes.Required));
             return ServiceExecutionResult.of(errors);
         }
         throw new RuntimeException();
