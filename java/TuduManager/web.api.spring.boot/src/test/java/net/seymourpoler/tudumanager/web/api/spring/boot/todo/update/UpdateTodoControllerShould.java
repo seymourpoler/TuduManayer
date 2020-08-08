@@ -3,7 +3,6 @@ package net.seymourpoler.tudumanager.web.api.spring.boot.todo.update;
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
 import net.seymourpoler.tudumanager.domain.todo.update.IUpdateTodoService;
-import net.seymourpoler.tudumanager.domain.todo.update.TodoUpdatingRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -50,5 +49,17 @@ public class UpdateTodoControllerShould {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isEqualTo(errors);
+    }
+
+    @Test
+    public void
+    return_updated_todo(){
+        var request = new HttpTodoUpdatingRequest();
+        var okResult = ServiceExecutionResult.ok();
+        when(updateTodoService.update(any())).thenReturn(okResult);
+
+        var response = controller.update(request);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }

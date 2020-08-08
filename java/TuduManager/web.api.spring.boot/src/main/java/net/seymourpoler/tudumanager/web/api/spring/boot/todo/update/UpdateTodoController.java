@@ -27,8 +27,7 @@ public class UpdateTodoController {
             }
             return new ResponseEntity(executionResult.errors(), HttpStatus.BAD_REQUEST);
         }
-
-        throw new RuntimeException();
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 
