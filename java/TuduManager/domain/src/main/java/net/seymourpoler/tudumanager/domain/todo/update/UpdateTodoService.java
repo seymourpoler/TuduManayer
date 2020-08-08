@@ -22,6 +22,11 @@ public class UpdateTodoService implements  IUpdateTodoService{
             var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("title", ErrorCodes.Required));
             return ServiceExecutionResult.of(errors);
         }
+        final Integer maximumNumberOfCharacters = 250;
+        if(request.title().length() > maximumNumberOfCharacters){
+            var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("title", ErrorCodes.InvalidLength));
+            return ServiceExecutionResult.of(errors);
+        }
         throw new RuntimeException();
     }
 }

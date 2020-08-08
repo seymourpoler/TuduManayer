@@ -74,4 +74,26 @@ public class UpdateTodoServiceShould {
         assertThat(result.errors().stream().findFirst().get().errorCode).isEqualTo(ErrorCodes.Required);
         assertThat(result.errors().stream().findFirst().get().fieldId).isEqualTo("title");
     }
+
+    @Test
+    public void
+    return_error_when_title_has_invalid_characters_length(){
+        final Integer someId = 3;
+        when(existTodoRepository.exist(someId)).thenReturn(true);
+        var request = new TodoUpdatingRequest(someId, generateStringWithRandomCharacters(500), "description");
+
+        var result = updateTodoService.update(request);
+
+        assertThat(result.isOk()).isFalse();
+        assertThat(result.errors().stream().findFirst().get().errorCode).isEqualTo(ErrorCodes.InvalidLength);
+        assertThat(result.errors().stream().findFirst().get().fieldId).isEqualTo("title");
+    }
+
+    private String generateStringWithRandomCharacters(Integer numberOfCharacters){
+        var result = new StringBuilder();
+        for (var position=0; position<numberOfCharacters; position++){
+            result.append("q");
+        }
+        return result.toString();
+    }
 }
