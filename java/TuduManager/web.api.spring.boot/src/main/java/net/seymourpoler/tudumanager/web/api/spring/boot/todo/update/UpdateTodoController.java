@@ -1,6 +1,9 @@
 package net.seymourpoler.tudumanager.web.api.spring.boot.todo.update;
 
+import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.todo.update.IUpdateTodoService;
+import net.seymourpoler.tudumanager.domain.todo.update.TodoUpdatingRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +15,20 @@ public class UpdateTodoController {
         this.updateTodoService = updateTodoService;
     }
 
-    public ResponseEntity update(HttpTodoUpdatingRequest request){
+    public ResponseEntity update(HttpTodoUpdatingRequest httoTodoUpdatingRequest){
+        var todoUpdatingRequest = new TodoUpdatingRequest(
+                httoTodoUpdatingRequest.id,
+                httoTodoUpdatingRequest.title,
+                httoTodoUpdatingRequest.description);
+        var executionResult = updateTodoService.update(todoUpdatingRequest);
+        if(!executionResult.isOk()){
+            if(executionResult.errors().stream().findFirst().get().errorCode == ErrorCodes.NotFound){
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
+        }
+
         throw new RuntimeException();
     }
+
+
 }

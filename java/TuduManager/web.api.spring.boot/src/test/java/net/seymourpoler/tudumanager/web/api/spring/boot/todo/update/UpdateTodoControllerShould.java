@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -27,10 +28,10 @@ public class UpdateTodoControllerShould {
     @Test
     public void
     return_not_found_when_is_not_found(){
-        var request = new TodoUpdatingRequest(1, "title", "description");
+        var request = new HttpTodoUpdatingRequest();
         var errors = List.of(new net.seymourpoler.tudumanager.domain.Error("email", ErrorCodes.NotFound));
         var errorResult = ServiceExecutionResult.of(errors);
-        when(updateTodoService.update(request)).thenReturn(errorResult);
+        when(updateTodoService.update(any())).thenReturn(errorResult);
 
         var response = controller.update(request);
 
