@@ -1,5 +1,8 @@
 package net.seymourpoler.tudumanager.domain.todo.update.models;
 
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Todo {
@@ -11,6 +14,13 @@ public class Todo {
     public String description(){return description; }
     public LocalDateTime updatedDate;
     public LocalDateTime updatedDate(){ return updatedDate; }
+
+    public Todo(Integer id, String title, String description, LocalDateTime updatedDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.updatedDate = updatedDate;
+    }
 
     public Todo(Integer id, String title, String description) {
         this.id = id;
