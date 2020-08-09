@@ -3,6 +3,7 @@ package net.seymourpoler.tudumanager.web.api.spring.boot.todo.update;
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.todo.update.IUpdateTodoService;
 import net.seymourpoler.tudumanager.domain.todo.update.TodoUpdatingRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpdateTodoController {
     private IUpdateTodoService updateTodoService;
 
+    @Autowired
     public UpdateTodoController(IUpdateTodoService updateTodoService) {
         this.updateTodoService = updateTodoService;
     }
