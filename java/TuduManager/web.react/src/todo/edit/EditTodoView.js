@@ -68,7 +68,7 @@ export class EditTodoView extends React.Component {
     }
 
     showErrors = (errors) => {
-        throw 'not implemented';
+        this.setState({errorMessage: 'there are some errors'});
     }
 
     showUpdatedTodoMessage = () => {

@@ -15,14 +15,14 @@ import static org.mockito.Mockito.*;
 public class UpdateTodoServiceShould {
 
     IExistTodoRepository existTodoRepository;
-    IFindTodoRepository findTodoRepository;
+    IFindTodoByIdRepository findTodoRepository;
     IUpdateTodoRepository updateTodoRepository;
     IUpdateTodoService updateTodoService;
 
     @Before
     public void setUp(){
         existTodoRepository = mock(IExistTodoRepository.class);
-        findTodoRepository = mock(IFindTodoRepository.class);
+        findTodoRepository = mock(IFindTodoByIdRepository.class);
         updateTodoRepository = mock(IUpdateTodoRepository.class);
         updateTodoService = new UpdateTodoService(existTodoRepository, findTodoRepository, updateTodoRepository);
     }

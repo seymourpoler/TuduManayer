@@ -3,17 +3,21 @@ package net.seymourpoler.tudumanager.domain.todo.update;
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
 import net.seymourpoler.tudumanager.domain.todo.delete.IExistTodoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UpdateTodoService implements  IUpdateTodoService{
     private final IExistTodoRepository existTodoRepository;
-    private final IFindTodoRepository findTodoRepository;
+    private final IFindTodoByIdRepository findTodoRepository;
     private final IUpdateTodoRepository updateTodoRepository;
 
+    @Autowired
     public UpdateTodoService(
             IExistTodoRepository existTodoRepository,
-            IFindTodoRepository findTodoRepository,
+            IFindTodoByIdRepository findTodoRepository,
             IUpdateTodoRepository updateTodoRepository) {
         this.existTodoRepository = existTodoRepository;
         this.findTodoRepository = findTodoRepository;

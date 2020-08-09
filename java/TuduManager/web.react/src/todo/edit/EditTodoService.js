@@ -17,7 +17,7 @@ export function EditTodoService(http){
     }
 
     self.update = async function(todo) {
-        const response = await http.put(url, JSON.stringify(todo));
+        const response = await http.put(url, todo);
         if(response.statusCode === HttpStatusCode.badRequest){
             return {
                 statusCode: response.statusCode,

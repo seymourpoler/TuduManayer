@@ -1,17 +1,17 @@
 package net.seymourpoler.tudumanager.repository.postgres.sql2o.todo.update;
 
-import net.seymourpoler.tudumanager.domain.todo.update.IFindTodoRepository;
+import net.seymourpoler.tudumanager.domain.todo.update.IFindTodoByIdRepository;
 import net.seymourpoler.tudumanager.domain.todo.update.models.Todo;
 import net.seymourpoler.tudumanager.repository.postgres.sql2o.DataBaseConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FindTodoRepository implements IFindTodoRepository {
+public class FindTodoByIdRepository implements IFindTodoByIdRepository {
     private final DataBaseConnectionFactory dataBaseConnectionFactory;
 
     @Autowired
-    public FindTodoRepository(DataBaseConnectionFactory dataBaseConnectionFactory) {
+    public FindTodoByIdRepository(DataBaseConnectionFactory dataBaseConnectionFactory) {
         this.dataBaseConnectionFactory = dataBaseConnectionFactory;
     }
 
