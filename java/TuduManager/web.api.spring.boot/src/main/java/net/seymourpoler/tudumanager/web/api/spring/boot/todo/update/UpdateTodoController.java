@@ -17,11 +17,11 @@ public class UpdateTodoController {
         this.updateTodoService = updateTodoService;
     }
 
-    public ResponseEntity update(HttpTodoUpdatingRequest httoTodoUpdatingRequest){
+    public ResponseEntity update(HttpTodoUpdatingRequest httpTodoUpdatingRequest){
         var todoUpdatingRequest = new TodoUpdatingRequest(
-                httoTodoUpdatingRequest.id,
-                httoTodoUpdatingRequest.title,
-                httoTodoUpdatingRequest.description);
+                httpTodoUpdatingRequest.id,
+                httpTodoUpdatingRequest.title,
+                httpTodoUpdatingRequest.description);
         var executionResult = updateTodoService.update(todoUpdatingRequest);
         if(executionResult.isOk()){
             return new ResponseEntity(HttpStatus.OK);    
