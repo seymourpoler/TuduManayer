@@ -3,10 +3,14 @@ package net.seymourpoler.tudumanager.repository.postgres.sql2o.todo.update;
 import net.seymourpoler.tudumanager.domain.todo.update.IUpdateTodoRepository;
 import net.seymourpoler.tudumanager.domain.todo.update.models.Todo;
 import net.seymourpoler.tudumanager.repository.postgres.sql2o.DataBaseConnectionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UpdateTodoRepository implements IUpdateTodoRepository {
     private final DataBaseConnectionFactory dataBaseConnectionFactory;
 
+    @Autowired
     public UpdateTodoRepository(DataBaseConnectionFactory dataBaseConnectionFactory) {
         this.dataBaseConnectionFactory = dataBaseConnectionFactory;
     }
