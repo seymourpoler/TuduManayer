@@ -19,3 +19,15 @@
 /home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.csproj.CopyComplete
 /home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.dll
 /home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.pdb
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.dll
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.pdb
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/bin/Debug/netcoreapp3.1/TuduManayer.web.api.deps.json
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/bin/Debug/netcoreapp3.1/TuduManayer.web.api.dll
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/bin/Debug/netcoreapp3.1/TuduManayer.web.api.pdb
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/bin/Debug/netcoreapp3.1/TuduManayer.Domain.dll
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/bin/Debug/netcoreapp3.1/TuduManayer.Domain.pdb
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.csprojAssemblyReference.cache
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.AssemblyInfoInputs.cache
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.AssemblyInfo.cs
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.csproj.CoreCompileInputs.cache
+/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.web.api/obj/Debug/netcoreapp3.1/TuduManayer.web.api.csproj.CopyComplete

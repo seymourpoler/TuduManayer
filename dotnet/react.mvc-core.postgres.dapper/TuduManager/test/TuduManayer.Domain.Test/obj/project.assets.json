@@ -1900,6 +1900,7 @@
       "path": "microsoft.csharp/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6093,21 +6094,17 @@
     ]
   },
   "packageFolders": {
-    "/home/seymourpoler/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/home/seymourpoler/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test/TuduManayer.Domain.Test.csproj",
+      "projectUniqueName": "/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test/TuduManayer.Domain.Test.csproj",
       "projectName": "TuduManayer.Domain.Test",
-      "projectPath": "/home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test/TuduManayer.Domain.Test.csproj",
+      "projectPath": "/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test/TuduManayer.Domain.Test.csproj",
       "packagesPath": "/home/seymourpoler/.nuget/packages/",
-      "outputPath": "/home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test/obj/",
+      "outputPath": "/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "/home/seymourpoler/.nuget/NuGet/NuGet.Config"
       ],
@@ -6120,8 +6117,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.Domain/TuduManayer.Domain.csproj": {
-              "projectPath": "/home/seymourpoler/Documents/code/GitHub/PetProjects/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.Domain/TuduManayer.Domain.csproj"
+            "/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.Domain/TuduManayer.Domain.csproj": {
+              "projectPath": "/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.Domain/TuduManayer.Domain.csproj"
             }
           }
         }
@@ -6152,8 +6149,6 @@
             "version": "[2.4.1, )"
           },
           "xunit.runner.visualstudio": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.4.2, )"
           }
@@ -6173,7 +6168,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
       }
     }
   }
