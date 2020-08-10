@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuduManayer.web.api.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuduManayer.Domain.Test", "test\TuduManayer.Domain.Test\TuduManayer.Domain.Test.csproj", "{C0E3D596-642C-4894-911C-14D190FFB73E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuduManayer.Repository.Postgres.EntityFramework", "src\TuduManayer.Repository.Postgres.EntityFramework\TuduManayer.Repository.Postgres.EntityFramework.csproj", "{C2DC7EB0-D304-4925-AF9A-72299ACD6F63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{F3C36D21-CEB3-46B4-9E4A-E9B4B85711FD} = {B650C1B9-A5F1-4214-AEB4-C7EBECE1771B}
 		{2E973C26-BC32-4D7D-8644-E3B0E474AC6A} = {B5BD3C24-946A-4DDF-97CC-49DB6CC166FE}
 		{C0E3D596-642C-4894-911C-14D190FFB73E} = {B5BD3C24-946A-4DDF-97CC-49DB6CC166FE}
+		{C2DC7EB0-D304-4925-AF9A-72299ACD6F63} = {B650C1B9-A5F1-4214-AEB4-C7EBECE1771B}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9F967D26-C0EF-4A24-B8E8-492BA6D91BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +50,9 @@ Global
 		{C0E3D596-642C-4894-911C-14D190FFB73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0E3D596-642C-4894-911C-14D190FFB73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0E3D596-642C-4894-911C-14D190FFB73E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2DC7EB0-D304-4925-AF9A-72299ACD6F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DC7EB0-D304-4925-AF9A-72299ACD6F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DC7EB0-D304-4925-AF9A-72299ACD6F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DC7EB0-D304-4925-AF9A-72299ACD6F63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
