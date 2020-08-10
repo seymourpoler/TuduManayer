@@ -1,61 +1,151 @@
-import { createManageTodoView } from "./ManageTodoView";
-import { ManageTodoPresenter } from "./ManageTodoPresenter";
-import { ManageTodoService } from './ManageTodoService'
-import { spyAllMethodsOf } from "../../Testing";
-import { createHttp } from "../../Http";
+import { createManageTodoView } from './ManageTodoView';
+import { createManageTodoService } from './ManageTodoService';
+import { manageTodoPresenter } from './ManageTodoPresenter';
+import { spyAllMethodsOf } from '../../Testing';
+import { createHttp } from '../../Http';
 import { HttpStatusCode } from '../../HttpStatusCode';
 
-describe('Manage Todo Presenter', function() {
-    let view, presenter, service, http;
-    
-    beforeEach(function() {
-        view = createManageTodoView();
-        spyAllMethodsOf(view);
+describe('Manage Todo Presenter', () => {
+    let view, service, presenter, http;
+
+     beforeEach(() => {
         http = createHttp();
         spyAllMethodsOf(http);
-        service = new ManageTodoService(http);
-        presenter = new ManageTodoPresenter(view, service);
-    });
-    
-    describe('when search is requested', function() {
-        it('cleans messages', function() {
-            const searchText = 'text'
-            
-            presenter.search(searchText);
-            
+        view = createManageTodoView();
+        spyAllMethodsOf(view);
+        service = createManageTodoService(http);
+        presenter = manageTodoPresenter(view, service);
+     });
+
+    describe('when search is requested', () => {
+        it('cleans all messages', async () => {
+            const searchText = 'tonight';
+            http.get = () => { return { statusCode: HttpStatusCode.internalServerError }; };
+
+            await presenter.search(searchText);
+
             expect(view.cleanMessages).toHaveBeenCalled();
         });
 
-        it('show spinner', function() {
-            const searchText = 'text'
+        it('shows spinner', async () => {
+            const searchText = 'tonight';
+            http.get = () => { return { statusCode: HttpStatusCode.internalServerError }; };
 
-            presenter.search(searchText);
+            await presenter.search(searchText);
 
             expect(view.showSpinner).toHaveBeenCalled();
         });
-        
+
         it('shows error if there is an internal server error', async () => {
-            const searchText = 'text'
-            http.get = () => {
-                return {statusCode: HttpStatusCode.internalServerError};
-                
-            };
-            
+            const searchText = 'tonight';
+            http.get = () => { return { statusCode: HttpStatusCode.internalServerError }; };
+
             await presenter.search(searchText);
 
-            expect(view.showInternalServerErrorMessage).toHaveBeenCalled();
+            expect(view.showInternalServerError).toHaveBeenCalled();
         });
 
         it('shows todos', async () => {
-            const searchText = 'text'
-            const todos = [];
+            const todos = [{id:1, title: 'a title'}, {id:2, title: 'another title'}];
+            const searchText = 'tonight';
             http.get = () => {
                 return { statusCode: HttpStatusCode.ok, body: todos };
             };
 
             await presenter.search(searchText);
 
-            expect(view.show).toHaveBeenCalledWith(todos);
+            expect(view.hideSpinner).toHaveBeenCalled();
+            expect(view.showTodos).toHaveBeenCalledWith(todos);
+        });
+
+        describe('when todos are loaded', () => {
+            beforeEach(async () => {
+                const todos = [{id:1, title: 'a title'}];
+                const searchText = 't';
+                http.get = () => {
+                    return { statusCode: HttpStatusCode.ok, body: todos };
+                };
+                await presenter.search(searchText);
+            });
+
+            describe('when delete is requested', () => {
+                it('cleans messages', () => {
+                    const someId = 3;
+
+                    presenter.deleteTodo(someId);
+
+                    expect(view.cleanMessages).toHaveBeenCalled();
+                });
+
+                it('shows spinner', () => {
+                    const someId = 3;
+
+                    presenter.deleteTodo(someId);
+
+                    expect(view.showSpinner).toHaveBeenCalled();
+                });
+
+                it('hides spinner', async () => {
+                    const someId = 3;
+                    http.delete = () => {
+                        return {statusCode: HttpStatusCode.notFound}};
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.hideSpinner).toHaveBeenCalled();
+                });
+
+                it('shows error if there is an internal server error', async () => {
+                    const  someId = 3;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.internalServerError };
+                    }
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.showInternalServerError).toHaveBeenCalled();
+                });
+
+                it('shows error message if is not found', async () => {
+                    const  someId = 3;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.notFound };
+                    }
+
+                    await presenter.deleteTodo(someId);
+
+                    expect(view.showNotFound).toHaveBeenCalled();
+                });
+
+                it('shows todos without deleted todo', async () =>{
+                    const todoId = 1;
+                    http.delete = () => {
+                        return { statusCode: HttpStatusCode.ok };
+                    }
+
+                    await presenter.deleteTodo(todoId);
+
+                    expect(view.showTodos).toHaveBeenCalledWith([]);
+                });
+            });
+        });
+    });
+
+    describe('when edit is requested', () => {
+        it('redirects to edit todo', () => {
+            const someId = 2;
+
+            presenter.editTodo(someId);
+
+            expect(view.redirectToEditTodo).toHaveBeenCalledWith(someId);
+        });
+    });
+
+    describe('when creation a new todo is requested', () => {
+        it('redirects to a creation of a new todo', () => {
+            presenter.createNewTodo();
+
+            expect(view.redirectToCreateNewTodo).toHaveBeenCalled();
         });
     });
 });

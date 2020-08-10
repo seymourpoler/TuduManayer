@@ -1,22 +1,51 @@
 import { createManageTodoService } from './ManageTodoService';
-import { HttpStatusCode } from "../../HttpStatusCode";
+import { HttpStatusCode } from '../../HttpStatusCode';
 
-export function ManageTodoPresenter(view, service){
-    let self = this;
-    
-    self.search = async (searchText) => {
+export function manageTodoPresenter(view, manageTodoService = createManageTodoService()) {
+    let self = {};
+    let todos = [];
+
+    self.search = async (textSearch) => {
         view.cleanMessages();
         view.showSpinner();
-        const response = await service.search(searchText);
-        if(response.statusCode === HttpStatusCode.internalServerError){
-            view.showInternalServerErrorMessage();
+        const result = await manageTodoService.search(textSearch);
+        view.hideSpinner();
+
+        if(result.statusCode === HttpStatusCode.internalServerError){
+            view.showInternalServerError();
             return;
         }
-        view.show(response.todos);       
-    };
-} 
+        todos = result.todos;
+        view.showTodos(result.todos);
+    }
 
-export function createManageTodoPresenter(view){
-    const service = createManageTodoService();
-    return new ManageTodoPresenter(view, service);
+    self.createNewTodo = () => {
+        view.redirectToCreateNewTodo();
+    }
+
+    self.editTodo = (todoId) => {
+        view.redirectToEditTodo(todoId);
+    }
+
+    self.deleteTodo = async function(todoId) {
+        view.cleanMessages();
+        view.showSpinner();
+
+        const response = await manageTodoService.delete(todoId);
+        view.hideSpinner();
+
+        if(response.statusCode === HttpStatusCode.internalServerError){
+            view.showInternalServerError();
+            return;
+        }
+        if(response.statusCode === HttpStatusCode.notFound){
+            view.showNotFound();
+            return;
+        }
+
+        todos = todos.filter(x => x.id !== todoId);
+        view.showTodos(todos);
+    }
+
+    return self;
 }
