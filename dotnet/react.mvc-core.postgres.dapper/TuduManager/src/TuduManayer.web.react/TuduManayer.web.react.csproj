@@ -21,6 +21,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\test\TuduManayer.Domain.Test\TuduManayer.Domain.Test.csproj" />
+      <ProjectReference Include="..\TuduManayer.Repository.Postgres.EntityFramework\TuduManayer.Repository.Postgres.EntityFramework.csproj" />
       <ProjectReference Include="..\TuduManayer.web.api\TuduManayer.web.api.csproj" />
     </ItemGroup>
 

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TuduManayer.Domain.Todo.Search;
+using TuduManayer.Repository.Postgres.EntityFramework;
 
 namespace TuduManayer.web.react
 {
@@ -24,6 +26,11 @@ namespace TuduManayer.web.react
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
+
+            services.AddTransient<Configuration>();
+            services.AddTransient<DataBaseContextFactory>();
+            services.AddTransient<ISearchTodoService, SearchTodoService>();
+            services.AddTransient<ISearchTodoRepository, SearchTodoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
