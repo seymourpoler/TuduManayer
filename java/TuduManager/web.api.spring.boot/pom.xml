@@ -14,7 +14,7 @@
     <properties>
         <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
         <spring.boot.maven.plugin>1.2.7.RELEASE</spring.boot.maven.plugin>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <assertj.version>3.16.1</assertj.version>
         <mockito.version>3.3.3</mockito.version>
     </properties>
