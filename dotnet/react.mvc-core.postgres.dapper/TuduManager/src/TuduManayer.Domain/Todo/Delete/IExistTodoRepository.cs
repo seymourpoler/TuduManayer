@@ -1,6 +1,6 @@
-namespace TuduManayer.Domain.Test.Todo.Delete
+namespace TuduManayer.Domain.Todo.Delete
 {
-    internal interface IExistTodoRepository
+    public interface IExistTodoRepository
     {
         bool Exist(int todoId);
     }
