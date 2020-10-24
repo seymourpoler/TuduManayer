@@ -30,9 +30,9 @@ namespace TuduManayer.web.api.Test.Todo.Search
                 .Setup(x => x.Search(searchText))
                 .Returns(todos);
 
-            var response = controller.Search(searchText)  as OkObjectResult;
+            var response = controller.Search(searchText) as OkObjectResult;
             
-            response.StatusCode.Value.ShouldBe<int>((int)HttpStatusCode.OK);
+            response.StatusCode.Value.ShouldBe((int)HttpStatusCode.OK);
             response.Value.ShouldBeOfType<Domain.Todo.Search.Models.Todo[]>();
         }
     }

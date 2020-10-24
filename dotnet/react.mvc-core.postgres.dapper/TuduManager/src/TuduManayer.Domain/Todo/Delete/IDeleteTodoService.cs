@@ -1,4 +1,7 @@
-$HEADER$namespace $NAMESPACE$
+namespace TuduManayer.Domain.Todo.Delete
 {
-  public interface $INTERFACE$ {$END$}
+    public interface IDeleteTodoService
+    {
+        ServiceExecutionResult Delete(int todoId);
+    }
 }
