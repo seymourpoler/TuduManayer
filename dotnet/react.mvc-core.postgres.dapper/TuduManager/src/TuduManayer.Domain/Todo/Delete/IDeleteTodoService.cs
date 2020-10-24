@@ -8,19 +8,23 @@ namespace TuduManayer.Domain.Todo.Delete
     public class DeleteTodoService : IDeleteTodoService
     {
         private readonly IExistTodoRepository existTodoRepository;
+        private readonly IDeleteTodoRepository deleteRepository;
 
-        public DeleteTodoService(IExistTodoRepository existTodoRepository)
+        public DeleteTodoService(IExistTodoRepository existTodoRepository, IDeleteTodoRepository deleteRepository)
         {
             this.existTodoRepository = existTodoRepository;
+            this.deleteRepository = deleteRepository;
         }
 
         public ServiceExecutionResult Delete(int todoId)
         {
-            if (existTodoRepository.Exist(todoId))
+            if (!existTodoRepository.Exist(todoId))
             {
-                throw new System.NotImplementedException();   
+                return ServiceExecutionResult.WithErrors();
             }
-            return ServiceExecutionResult.WithErrors();
+            
+            deleteRepository.Delete(todoId);
+            return ServiceExecutionResult.WithSucess();
         }
     }
 }
