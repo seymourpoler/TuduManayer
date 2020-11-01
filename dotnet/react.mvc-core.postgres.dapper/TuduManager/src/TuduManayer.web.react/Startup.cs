@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TuduManayer.Domain.Todo.Delete;
 using TuduManayer.Domain.Todo.Search;
 using TuduManayer.Repository.Postgres.EntityFramework;
 
@@ -31,6 +31,7 @@ namespace TuduManayer.web.react
             services.AddTransient<DataBaseContextFactory>();
             services.AddTransient<ISearchTodoService, SearchTodoService>();
             services.AddTransient<ISearchTodoRepository, SearchTodoRepository>();
+            services.AddTransient<IDeleteTodoRepository, DeleteTodoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
