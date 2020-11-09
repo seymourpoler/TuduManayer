@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -26,7 +27,7 @@ namespace TuduManayer.web.api.Test.Todo.Delete
             const int someTodoId = 4;
             service
                 .Setup(x => x.Delete(someTodoId))
-                .Returns(ServiceExecutionResult.WithErrors());
+                .Returns(ServiceExecutionResult.WithErrors(new List<Error>{Error.With("title", ErrorCodes.Required)}));
 
             var response = controller.Delete(someTodoId) as NotFoundResult;
             

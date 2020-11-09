@@ -1,24 +1,33 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace TuduManayer.Domain
 {
     public class ServiceExecutionResult
     {
-        private bool result;
+        private List<Error> errors;
 
-        private ServiceExecutionResult(bool result)
+        private ServiceExecutionResult()
         {
-            this.result = result;
+            errors = new List<Error>();
+        }
+        
+        private ServiceExecutionResult(List<Error> errors)
+        {
+            this.errors = errors;
         }
 
-        public bool IsOk => result;
+        public bool IsOk => !errors.Any();
+        public IReadOnlyCollection<Error> Errors => errors.AsReadOnly();
 
-        public static ServiceExecutionResult WithErrors()
+        public static ServiceExecutionResult WithErrors(List<Error> errors)
         {
-            return new ServiceExecutionResult(false);
+            return new ServiceExecutionResult(errors);
         }
 
         public static ServiceExecutionResult WithSucess()
         {
-            return new ServiceExecutionResult(true);
+            return new ServiceExecutionResult();
         }
     }
 }

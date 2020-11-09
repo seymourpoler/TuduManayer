@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TuduManayer.Domain.Todo.Delete
 {
     public interface IDeleteTodoService
@@ -20,7 +22,7 @@ namespace TuduManayer.Domain.Todo.Delete
         {
             if (!existTodoRepository.Exist(todoId))
             {
-                return ServiceExecutionResult.WithErrors();
+                return ServiceExecutionResult.WithErrors(new List<Error>{Error.With(nameof(todoId), ErrorCodes.NotFound)});
             }
             
             deleteRepository.Delete(todoId);
