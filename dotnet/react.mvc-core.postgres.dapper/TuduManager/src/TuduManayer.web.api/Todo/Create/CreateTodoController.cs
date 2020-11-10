@@ -18,8 +18,9 @@ namespace TuduManayer.web.api.Todo.Create
         {
             var args = new TodoCreationArgs(todoCreationRequest.Title, todoCreationRequest.Description);
             var response = createTodoService.Create(args);
-            if(response.IsOk){
-                throw new NotImplementedException();
+            if(response.IsOk)
+            {
+                return Ok();
             }
 
             return BadRequest(response.Errors);
