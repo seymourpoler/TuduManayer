@@ -24,7 +24,7 @@ namespace TuduManayer.Domain.Todo.Create
     {
         public ServiceExecutionResult Create(TodoCreationArgs todoCreationArgs)
         {
-            if (todoCreationArgs.Title is null || todoCreationArgs.Title == String.Empty)
+            if (string.IsNullOrWhiteSpace(todoCreationArgs.Title))
             {
                 return ServiceExecutionResult.WithErrors(new List<Error>
                     {Error.With(nameof(todoCreationArgs.Title), ErrorCodes.Required)});
