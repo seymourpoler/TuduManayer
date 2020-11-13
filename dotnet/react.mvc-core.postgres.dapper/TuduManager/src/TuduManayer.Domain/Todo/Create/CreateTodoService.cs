@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace TuduManayer.Domain.Todo.Create
@@ -23,7 +24,7 @@ namespace TuduManayer.Domain.Todo.Create
     {
         public ServiceExecutionResult Create(TodoCreationArgs todoCreationArgs)
         {
-            if (todoCreationArgs.Title is null)
+            if (todoCreationArgs.Title is null || todoCreationArgs.Title == String.Empty)
             {
                 return ServiceExecutionResult.WithErrors(new List<Error>
                     {Error.With(nameof(todoCreationArgs.Title), ErrorCodes.Required)});
