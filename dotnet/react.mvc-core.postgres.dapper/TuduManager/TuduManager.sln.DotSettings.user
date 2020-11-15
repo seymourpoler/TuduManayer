@@ -4,8 +4,11 @@
     &lt;TestId&gt;xUnit::C0E3D596-642C-4894-911C-14D190FFB73E::.NETCoreApp,Version=v3.1::TuduManayer.Domain.Test.Todo.Search.SearchTodoServiceShould&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=42182576_002Dc0cb_002D424e_002D8575_002De2d3104f2cb4/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="All tests from Solution" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
-  &lt;Solution /&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=42182576_002Dc0cb_002D424e_002D8575_002De2d3104f2cb4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;Project Location="/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.Domain.Test" Presentation="&amp;lt;test&amp;gt;\&amp;lt;TuduManayer.Domain.Test&amp;gt;" /&gt;
+    &lt;Project Location="/home/seymourpoler/Documents/code/GitHub/TuduManayer/dotnet/react.mvc-core.postgres.dapper/TuduManager/test/TuduManayer.web.api.Test" Presentation="&amp;lt;test&amp;gt;\&amp;lt;TuduManayer.web.api.Test&amp;gt;" /&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>
