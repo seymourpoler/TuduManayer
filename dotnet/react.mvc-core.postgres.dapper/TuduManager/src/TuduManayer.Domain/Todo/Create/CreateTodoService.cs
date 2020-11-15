@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace TuduManayer.Domain.Todo.Create
 {
     public interface ICreateTodoService
@@ -21,6 +24,11 @@ namespace TuduManayer.Domain.Todo.Create
     {
         public ServiceExecutionResult Create(TodoCreationArgs todoCreationArgs)
         {
+            if (string.IsNullOrWhiteSpace(todoCreationArgs.Title))
+            {
+                return ServiceExecutionResult.WithErrors(new List<Error>
+                    {Error.With(nameof(todoCreationArgs.Title), ErrorCodes.Required)});
+            }
             throw new System.NotImplementedException();
         }
     }
