@@ -158,8 +158,8 @@ $RECYCLE.BIN/
 dotnet\react.mvc-core.postgres.dapper\TuduManager\.idea\
 dotnet/react.mvc-core.postgres.dapper/TuduManager/.idea/
 
-dotnet\react.mvc-core.postgres.dapper\TuduManager\*.user
-dotnet/react.mvc-core.postgres.dapper/TuduManager/*.user
+dotnet\react.mvc-core.postgres.dapper\TuduManager\TuduManager.sln.DotSettings.user
+dotnet/react.mvc-core.postgres.dapper/TuduManager/TuduManager.sln.DotSettings.user
 
 dotnet\react.mvc-core.postgres.dapper\TuduManager\src\TuduManayer.Domain\bin\
 dotnet/react.mvc-core.postgres.dapper/TuduManager/src/TuduManayer.Domain/bin/
