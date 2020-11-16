@@ -1,7 +1,7 @@
-using System.Net;
-using Moq;
 using MyTested.AspNetCore.Mvc;
 using TuduManayer.web.api.Todo.Create;
+using TuduManayer.web.api.Todo.Delete;
+using TuduManayer.web.api.Todo.Search;
 using Xunit;
 
 namespace TuduManayer.web.api.Test.Todo
@@ -14,10 +14,34 @@ namespace TuduManayer.web.api.Test.Todo
             MyMvc
                 .Routing()
                 .ShouldMap(request => request
-                    .WithMethod(WebRequestMethods.Http.Post)
+                    .WithMethod(HttpMethod.Post)
                     .WithLocation("/api/todos"))
-                .To<CreateTodoController>(x => 
-                    x.Create(It.IsAny<TodoCreationRequest>()));
+                .To<CreateTodoController>(x =>
+                    x.Create(With.Any<TodoCreationRequest>()));
+        }
+
+        [Fact]
+        public void MapToDeleteTodo()
+        {
+            MyMvc
+                .Routing()
+                .ShouldMap(request => request
+                    .WithMethod(HttpMethod.Delete)
+                    .WithLocation("/api/todos/1"))
+                .To<DeleteTodoController>(x =>
+                    x.Delete(1));
+        }
+
+        [Fact]
+        public void MapToSearchTodo()
+        {
+            MyMvc
+                .Routing()
+                .ShouldMap(request => request
+                    .WithMethod(HttpMethod.Get)
+                    .WithLocation("/api/todos?searchText=aaa"))
+                .To<SearchTodoController>(x =>
+                    x.Search("aaa"));
         }
     }
 }

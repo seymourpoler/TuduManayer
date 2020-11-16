@@ -30,8 +30,10 @@ namespace TuduManayer.web.react
 
             services.AddTransient<Configuration>();
             services.AddTransient<DataBaseContextFactory>();
+            services.AddTransient<IExistTodoRepository, ExistTodoRepository>();
             services.AddTransient<ISearchTodoService, SearchTodoService>();
             services.AddTransient<ISearchTodoRepository, SearchTodoRepository>();
+            services.AddTransient<IDeleteTodoService, DeleteTodoService>();
             services.AddTransient<IDeleteTodoRepository, DeleteTodoRepository>();
             services.AddTransient<ICreateTodoService, CreateTodoService>();
         }

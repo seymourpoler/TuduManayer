@@ -12,7 +12,7 @@ namespace TuduManayer.web.api.Todo.Delete
             this.service = service;
         }
 
-        [HttpDelete("/api/todos")]
+        [HttpDelete("/api/todos/{todoId}")]
         public IActionResult Delete(int todoId)
         {
             var resultExecution = service.Delete(todoId);
