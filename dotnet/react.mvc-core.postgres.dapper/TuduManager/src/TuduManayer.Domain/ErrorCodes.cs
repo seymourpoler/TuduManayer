@@ -2,6 +2,8 @@ namespace TuduManayer.Domain
 {
     public enum ErrorCodes
     {
-        Required, NotFound
+        Required, 
+        NotFound,
+        InvalidLength
     }
 }

@@ -18,7 +18,7 @@ namespace TuduManayer.Domain
         }
 
         public bool IsOk => !errors.Any();
-        public IReadOnlyCollection<Error> Errors => errors.AsReadOnly();
+        public IReadOnlyList<Error> Errors => errors.AsReadOnly();
 
         public static ServiceExecutionResult WithErrors(List<Error> errors)
         {
