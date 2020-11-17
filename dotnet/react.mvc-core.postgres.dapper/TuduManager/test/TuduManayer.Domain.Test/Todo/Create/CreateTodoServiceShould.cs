@@ -1,4 +1,5 @@
 using System.Linq;
+using Moq;
 using Shouldly;
 using TuduManayer.Domain.Todo.Create;
 using Xunit;
@@ -10,10 +11,12 @@ namespace TuduManayer.Domain.Test.Todo.Create
     {
         private int MoreThanMaximumNumberOfCharacters = CreateTodoService.MaximumNumberOfCharacters + 1;
         private ICreateTodoService service;
+        private Mock<ISaveTodoRepository> repository;
         
         public CreateTodoServiceShould()
         {
-            service = new CreateTodoService();
+            repository = new Mock<ISaveTodoRepository>();
+            service = new CreateTodoService(repository.Object);
         }
 
         [Fact]
@@ -91,6 +94,18 @@ namespace TuduManayer.Domain.Test.Todo.Create
             result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
             result.Errors.Second().FieldId.ShouldBe(nameof(args.Description));
             result.Errors.Second().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
+        }
+
+        [Fact]
+        public void create_todo()
+        {
+            const string title = "some title";
+            var args = new TodoCreationArgs(title: title, description: "some description");
+            
+            var result = service.Create(args);
+
+            result.IsOk.ShouldBeTrue();
+            repository.Verify(x => x.Save(It.Is<Domain.Todo.Create.Models.Todo>(y => y.Title == title)));
         }
     }
 }

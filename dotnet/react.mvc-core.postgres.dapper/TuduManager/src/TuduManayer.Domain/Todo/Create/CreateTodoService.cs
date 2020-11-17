@@ -23,7 +23,14 @@ namespace TuduManayer.Domain.Todo.Create
     public class CreateTodoService : ICreateTodoService
     {
         public static int MaximumNumberOfCharacters = 255;
+
+        private readonly ISaveTodoRepository repository;
         
+        public CreateTodoService(ISaveTodoRepository saveTodoRepository)
+        {
+            repository = saveTodoRepository;
+        }
+
         public ServiceExecutionResult Create(TodoCreationArgs todoCreationArgs)
         {
             if (string.IsNullOrWhiteSpace(todoCreationArgs.Title))
@@ -41,7 +48,10 @@ namespace TuduManayer.Domain.Todo.Create
                 return ServiceExecutionResult.WithErrors(errors);
             }
             
-            throw new NotImplementedException();
+            var todo = new Create.Models.Todo(todoCreationArgs.Title, todoCreationArgs.Description);
+            repository.Save(todo);
+            
+            return ServiceExecutionResult.WithSucess();
         }
     }
 }
