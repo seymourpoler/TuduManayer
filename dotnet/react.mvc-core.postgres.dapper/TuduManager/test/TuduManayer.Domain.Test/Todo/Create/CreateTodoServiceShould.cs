@@ -8,9 +8,9 @@ namespace TuduManayer.Domain.Test.Todo.Create
 {
     public class CreateTodoServiceShould
     {
+        private int MoreThanMaximumNumberOfCharacters = CreateTodoService.MaximumNumberOfCharacters + 1;
         private ICreateTodoService service;
-
-
+        
         public CreateTodoServiceShould()
         {
             service = new CreateTodoService();
@@ -55,7 +55,7 @@ namespace TuduManayer.Domain.Test.Todo.Create
         [Fact]
         public void return_error_when_title_has_more_characters()
         {
-            var title = StringGenerator.Generate(257);
+            var title = StringGenerator.Generate(MoreThanMaximumNumberOfCharacters);
             var args = new TodoCreationArgs(title: title, description: "description");
             
             var result = service.Create(args);
@@ -68,7 +68,7 @@ namespace TuduManayer.Domain.Test.Todo.Create
         [Fact]
         public void return_error_when_description_has_more_characters()
         {
-            var description = StringGenerator.Generate(257);
+            var description = StringGenerator.Generate(MoreThanMaximumNumberOfCharacters);
             var args = new TodoCreationArgs(title: "a title", description: description);
             
             var result = service.Create(args);
@@ -81,7 +81,7 @@ namespace TuduManayer.Domain.Test.Todo.Create
         [Fact]
         public void return_error_when_title_and_description_has_more_characters()
         {
-            var invalidLengthText = StringGenerator.Generate(257);
+            var invalidLengthText = StringGenerator.Generate(MoreThanMaximumNumberOfCharacters);
             var args = new TodoCreationArgs(title: invalidLengthText, description: invalidLengthText);
             
             var result = service.Create(args);
