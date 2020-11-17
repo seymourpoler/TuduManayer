@@ -2,6 +2,7 @@ using MyTested.AspNetCore.Mvc;
 using TuduManayer.web.api.Todo.Create;
 using TuduManayer.web.api.Todo.Delete;
 using TuduManayer.web.api.Todo.Search;
+using TuduManayer.web.api.Todo.Update;
 using Xunit;
 
 namespace TuduManayer.web.api.Test.Todo
@@ -42,6 +43,17 @@ namespace TuduManayer.web.api.Test.Todo
                     .WithLocation("/api/todos?searchText=aaa"))
                 .To<SearchTodoController>(x =>
                     x.Search("aaa"));
+        }
+
+        [Fact]
+        public void MapToUpdateTodo()
+        {
+            MyMvc
+                .Routing()
+                .ShouldMap(request => request
+                    .WithMethod(HttpMethod.Put)
+                    .WithLocation("/api/todos"))
+                .To<UpdateTodoController>(x => x.Update(With.Any<TodoUpdatingRequest>()));
         }
     }
 }
