@@ -14,7 +14,7 @@ namespace TuduManayer.Repository.Postgres.EntityFramework
         public void Save(Domain.Todo.Create.Models.Todo todo)
         {
             using var dbContext = contextFactory.Create();
-            var entity = new TuduManayer.Repository.Postgres.EntityFramework.Todo
+            var entity = new Todo
             {
                 title = todo.Title,
                 description = todo.Description
