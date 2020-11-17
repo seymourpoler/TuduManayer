@@ -87,14 +87,8 @@ namespace TuduManayer.Domain.Test.Todo.Create
             result.IsOk.ShouldBeFalse();
             result.Errors.First().FieldId.ShouldBe(nameof(args.Title));
             result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
-            result.Errors[1].FieldId.ShouldBe(nameof(args.Description));
-            result.Errors[1].ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
-        }
-
-        [Fact]
-        public void return_error_when_title_has_more_than_maximum_number_of_characters()
-        {
-            
+            result.Errors.Second().FieldId.ShouldBe(nameof(args.Description));
+            result.Errors.Second().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
         }
     }
 }
