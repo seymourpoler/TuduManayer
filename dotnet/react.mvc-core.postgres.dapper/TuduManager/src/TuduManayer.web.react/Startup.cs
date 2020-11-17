@@ -36,6 +36,7 @@ namespace TuduManayer.web.react
             services.AddTransient<IDeleteTodoService, DeleteTodoService>();
             services.AddTransient<IDeleteTodoRepository, DeleteTodoRepository>();
             services.AddTransient<ICreateTodoService, CreateTodoService>();
+            services.AddTransient<ISaveTodoRepository, SaveTodoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
