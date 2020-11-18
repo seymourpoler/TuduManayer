@@ -27,5 +27,21 @@ namespace TuduManayer.web.api.Test.Todo.Update
             
             response.StatusCode.ShouldBe((int)HttpStatusCode.BadRequest);
         }
+
+        [Fact]
+        public void return_ok()
+        {
+            const int someId = 1;
+            var service = new Mock<IUpdateTodoService>();
+            service
+                .Setup(x => x.Update(It.Is<TodoUpdatingArgs>(y => y.Id == someId)))
+                .Returns(ServiceExecutionResult.WithSucess());
+            var controller = new UpdateTodoController(service.Object);
+            var request = new TodoUpdatingRequest{Id = someId, Title = "some title", Description = "some description"};
+            
+            var response = controller.Update(request) as OkResult;
+            
+            response.StatusCode.ShouldBe((int)HttpStatusCode.OK);
+        }
     }
 }

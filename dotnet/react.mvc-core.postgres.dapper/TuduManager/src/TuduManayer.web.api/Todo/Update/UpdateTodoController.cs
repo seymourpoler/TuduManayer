@@ -18,7 +18,7 @@ namespace TuduManayer.web.api.Todo.Update
         public IActionResult Update(TodoUpdatingRequest todoUpdatingRequest)
         {
             var updateResult = UpdateTodo(todoUpdatingRequest);
-            if (updateResult.IsOk) throw new NotImplementedException();
+            if (updateResult.IsOk) return Ok();
 
             return BadRequest(updateResult.Errors);
         }
