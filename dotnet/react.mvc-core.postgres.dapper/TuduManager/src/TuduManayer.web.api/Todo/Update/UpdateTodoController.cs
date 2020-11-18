@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TuduManayer.Domain;
 using TuduManayer.Domain.Todo;
 
@@ -29,7 +28,7 @@ namespace TuduManayer.web.api.Todo.Update
                 todoUpdatingRequest.Id,
                 todoUpdatingRequest.Title,
                 todoUpdatingRequest.Description);
-            return  updateTodoService.Update(args);
+            return updateTodoService.Update(args);
         }
     }
 }
