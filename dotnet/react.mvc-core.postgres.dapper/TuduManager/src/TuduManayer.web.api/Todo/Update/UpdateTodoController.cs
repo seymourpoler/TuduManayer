@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Security.Cryptography;
 using Microsoft.AspNetCore.Mvc;
+using TuduManayer.Domain;
 using TuduManayer.Domain.Todo;
 
 namespace TuduManayer.web.api.Todo.Update
@@ -17,18 +17,19 @@ namespace TuduManayer.web.api.Todo.Update
         [HttpPut("/api/todos")]
         public IActionResult Update(TodoUpdatingRequest todoUpdatingRequest)
         {
-            var args = new TodoUpdatingArgs(
-                id: todoUpdatingRequest.Id,
-                title: todoUpdatingRequest.Title,
-                description: todoUpdatingRequest.Description);
-            var updateResult = updateTodoService.Update(args);
-            if (updateResult.IsOk)
-            {
-                throw new NotImplementedException(); 
-            }
+            var updateResult = UpdateTodo(todoUpdatingRequest);
+            if (updateResult.IsOk) throw new NotImplementedException();
 
             return BadRequest(updateResult.Errors);
+        }
 
+        private ServiceExecutionResult UpdateTodo(TodoUpdatingRequest todoUpdatingRequest)
+        {
+            var args = new TodoUpdatingArgs(
+                todoUpdatingRequest.Id,
+                todoUpdatingRequest.Title,
+                todoUpdatingRequest.Description);
+            return  updateTodoService.Update(args);
         }
     }
 }
