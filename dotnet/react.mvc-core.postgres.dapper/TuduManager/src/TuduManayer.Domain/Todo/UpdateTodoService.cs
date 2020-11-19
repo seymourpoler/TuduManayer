@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TuduManayer.Domain.Todo
 {
@@ -25,7 +26,7 @@ namespace TuduManayer.Domain.Todo
     {
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
-            if (todoUpdatingArgs.Title is null)
+            if (todoUpdatingArgs.Title is null || todoUpdatingArgs.Title == string.Empty )
             {
                 return ServiceExecutionResult.WithErrors(new List<Error> {Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required)});
             }
