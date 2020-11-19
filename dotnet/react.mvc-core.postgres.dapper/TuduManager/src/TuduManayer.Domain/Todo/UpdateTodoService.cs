@@ -1,4 +1,6 @@
-﻿namespace TuduManayer.Domain.Todo
+﻿using System.Collections.Generic;
+
+namespace TuduManayer.Domain.Todo
 {
     public interface IUpdateTodoService
     {
@@ -23,6 +25,10 @@
     {
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
+            if (todoUpdatingArgs.Title is null)
+            {
+                return ServiceExecutionResult.WithErrors(new List<Error> {Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required)});
+            }
             throw new System.NotImplementedException();
         }
     }
