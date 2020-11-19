@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Shouldly;
+using TuduManayer.Domain.Test.Todo.Create;
 using TuduManayer.Domain.Todo;
 using Xunit;
 
@@ -44,6 +45,21 @@ namespace TuduManayer.Domain.Test.Todo.Update
             result.IsOk.ShouldBeFalse();
             result.Errors.First().FieldId.ShouldBe(nameof(args.Title));
             result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.Required);
+        }
+
+
+        [Fact]
+        public void return_error_whe_title_has_more_characters_than_the_maximum_allowed()
+        {
+            var title = StringGenerator.Generate(256);
+            var service = new UpdateTodoService();
+            var args = new TodoUpdatingArgs(id:1, title: title, description: "a description");
+
+            var result = service.Update(args);
+            
+            result.IsOk.ShouldBeFalse();
+            result.Errors.First().FieldId.ShouldBe(nameof(args.Title));
+            result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
         }
     }
 }
