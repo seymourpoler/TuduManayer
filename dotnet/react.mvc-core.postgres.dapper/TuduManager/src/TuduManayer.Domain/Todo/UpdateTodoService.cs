@@ -26,6 +26,7 @@ namespace TuduManayer.Domain.Todo
     {
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
+            
             if (string.IsNullOrWhiteSpace(todoUpdatingArgs.Title))
                 return ServiceExecutionResult.WithErrors(new List<Error>
                     {Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required)});
@@ -33,6 +34,12 @@ namespace TuduManayer.Domain.Todo
             {
                 return ServiceExecutionResult.WithErrors(new List<Error>
                     {Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.InvalidLength)});
+            }
+            
+            if (todoUpdatingArgs.Description.Length > 255)
+            {
+                return ServiceExecutionResult.WithErrors(new List<Error>
+                    {Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength)});
             }
                 throw new NotImplementedException();
         }
