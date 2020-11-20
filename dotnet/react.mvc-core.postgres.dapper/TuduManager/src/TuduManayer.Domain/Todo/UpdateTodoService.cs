@@ -24,19 +24,21 @@ namespace TuduManayer.Domain.Todo
 
     public class UpdateTodoService : IUpdateTodoService
     {
+        public static int MaximumNumberOfCharacters = 255;
+        
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
             var errors = new List<Error>();
             if (string.IsNullOrWhiteSpace(todoUpdatingArgs.Title))
                 errors.Add(
                     Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required));
-            else if (todoUpdatingArgs.Title.Length > 255)
+            else if (todoUpdatingArgs.Title.Length > MaximumNumberOfCharacters)
             {
                 errors.Add(
                     Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.InvalidLength));
             }
             
-            if (!string.IsNullOrEmpty(todoUpdatingArgs.Description) && todoUpdatingArgs.Description.Length > 255)
+            if (!string.IsNullOrEmpty(todoUpdatingArgs.Description) && todoUpdatingArgs.Description.Length > MaximumNumberOfCharacters)
             {
                 errors.Add(
                     Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength));
