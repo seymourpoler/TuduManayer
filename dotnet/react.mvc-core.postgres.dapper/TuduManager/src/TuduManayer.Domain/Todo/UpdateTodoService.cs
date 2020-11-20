@@ -30,13 +30,13 @@ namespace TuduManayer.Domain.Todo
             if (string.IsNullOrWhiteSpace(todoUpdatingArgs.Title))
                 errors.Add(
                     Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required));
-            if (todoUpdatingArgs.Title.Length > 255)
+            else if (todoUpdatingArgs.Title.Length > 255)
             {
                 errors.Add(
-                    Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required));
+                    Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.InvalidLength));
             }
             
-            if (todoUpdatingArgs.Description.Length > 255)
+            if (!string.IsNullOrEmpty(todoUpdatingArgs.Description) && todoUpdatingArgs.Description.Length > 255)
             {
                 errors.Add(
                     Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength));

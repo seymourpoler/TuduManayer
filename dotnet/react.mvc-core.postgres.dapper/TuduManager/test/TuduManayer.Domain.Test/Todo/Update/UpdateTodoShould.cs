@@ -53,7 +53,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         {
             var title = StringGenerator.Generate(256);
             var service = new UpdateTodoService();
-            var args = new TodoUpdatingArgs(id:1, title: title, description: "a description");
+            var args = new TodoUpdatingArgs(id:1, title: title, description: null);
 
             var result = service.Update(args);
             

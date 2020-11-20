@@ -3,7 +3,6 @@ using Moq;
 using Shouldly;
 using TuduManayer.Domain.Todo.Create;
 using Xunit;
-using TuduManayer.Domain.Test.Todo.Create;
 
 namespace TuduManayer.Domain.Test.Todo.Create
 {
