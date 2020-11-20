@@ -33,12 +33,12 @@ namespace TuduManayer.Domain.Todo.Create
 
         public ServiceExecutionResult Create(TodoCreationArgs todoCreationArgs)
         {
-            if (string.IsNullOrWhiteSpace(todoCreationArgs.Title))
-                return ServiceExecutionResult.WithErrors(new List<Error>
-                    {Error.With(nameof(todoCreationArgs.Title), ErrorCodes.Required)});
-
             var errors = new List<Error>();
-            if (todoCreationArgs.Title.Length > MaximumNumberOfCharacters)
+            if (string.IsNullOrWhiteSpace(todoCreationArgs.Title))
+            {
+                errors.Add(Error.With(nameof(todoCreationArgs.Title), ErrorCodes.Required));
+            }
+            else if (todoCreationArgs.Title.Length > MaximumNumberOfCharacters)
                 errors.Add(Error.With(nameof(todoCreationArgs.Title), ErrorCodes.InvalidLength));
 
             if (!string.IsNullOrWhiteSpace(todoCreationArgs.Description) && todoCreationArgs.Description.Length > MaximumNumberOfCharacters)

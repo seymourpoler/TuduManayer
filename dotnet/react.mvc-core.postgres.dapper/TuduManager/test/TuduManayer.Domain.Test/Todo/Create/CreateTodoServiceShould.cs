@@ -81,16 +81,16 @@ namespace TuduManayer.Domain.Test.Todo.Create
         }
         
         [Fact]
-        public void return_error_when_title_and_description_has_more_characters()
+        public void return_error_when_title_is_string_empty_and_description_has_more_characters()
         {
             var invalidLengthText = StringGenerator.Generate(MoreThanMaximumNumberOfCharacters);
-            var args = new TodoCreationArgs(title: invalidLengthText, description: invalidLengthText);
+            var args = new TodoCreationArgs(title: string.Empty, description: invalidLengthText);
             
             var result = service.Create(args);
 
             result.IsOk.ShouldBeFalse();
             result.Errors.First().FieldId.ShouldBe(nameof(args.Title));
-            result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
+            result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.Required);
             result.Errors.Second().FieldId.ShouldBe(nameof(args.Description));
             result.Errors.Second().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
         }
