@@ -87,7 +87,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
             
             result.IsOk.ShouldBeFalse();
             result.Errors.First().FieldId.ShouldBe(nameof(args.Title));
-            result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
+            result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.Required);
             result.Errors.Second().FieldId.ShouldBe(nameof(args.Description));
             result.Errors.Second().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
         }

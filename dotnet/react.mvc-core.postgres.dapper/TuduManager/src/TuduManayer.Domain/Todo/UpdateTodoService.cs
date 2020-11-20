@@ -26,21 +26,22 @@ namespace TuduManayer.Domain.Todo
     {
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
-            
+            var errors = new List<Error>();
             if (string.IsNullOrWhiteSpace(todoUpdatingArgs.Title))
-                return ServiceExecutionResult.WithErrors(new List<Error>
-                    {Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required)});
+                errors.Add(
+                    Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required));
             if (todoUpdatingArgs.Title.Length > 255)
             {
-                return ServiceExecutionResult.WithErrors(new List<Error>
-                    {Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.InvalidLength)});
+                errors.Add(
+                    Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required));
             }
             
             if (todoUpdatingArgs.Description.Length > 255)
             {
-                return ServiceExecutionResult.WithErrors(new List<Error>
-                    {Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength)});
+                errors.Add(
+                    Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength));
             }
+            return ServiceExecutionResult.WithErrors(errors);
                 throw new NotImplementedException();
         }
     }
