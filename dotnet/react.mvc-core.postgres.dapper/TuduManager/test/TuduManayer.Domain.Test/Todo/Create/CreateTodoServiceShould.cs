@@ -59,7 +59,7 @@ namespace TuduManayer.Domain.Test.Todo.Create
         public void return_error_when_title_has_more_characters()
         {
             var title = StringGenerator.Generate(MoreThanMaximumNumberOfCharacters);
-            var args = new TodoCreationArgs(title: title, description: "description");
+            var args = new TodoCreationArgs(title: title, description: null);
             
             var result = service.Create(args);
 

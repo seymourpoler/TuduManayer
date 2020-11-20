@@ -41,7 +41,7 @@ namespace TuduManayer.Domain.Todo.Create
             if (todoCreationArgs.Title.Length > MaximumNumberOfCharacters)
                 errors.Add(Error.With(nameof(todoCreationArgs.Title), ErrorCodes.InvalidLength));
 
-            if (todoCreationArgs.Description.Length > MaximumNumberOfCharacters)
+            if (!string.IsNullOrWhiteSpace(todoCreationArgs.Description) && todoCreationArgs.Description.Length > MaximumNumberOfCharacters)
                 errors.Add(Error.With(nameof(todoCreationArgs.Description), ErrorCodes.InvalidLength));
 
             if (errors.IsNotEmpty()){
