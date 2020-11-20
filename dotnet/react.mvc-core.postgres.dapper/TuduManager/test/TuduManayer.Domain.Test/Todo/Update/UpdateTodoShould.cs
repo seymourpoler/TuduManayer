@@ -9,10 +9,16 @@ namespace TuduManayer.Domain.Test.Todo.Update
 {
     public class UpdateTodoShould
     {
+        private IUpdateTodoService service;
+        
+        public UpdateTodoShould()
+        {
+            service = new UpdateTodoService();
+        }
+
         [Fact]
         public void return_error_when_title_is_null()
         {
-            var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: null, description: "a description");
 
             var result = service.Update(args);
@@ -25,7 +31,6 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_title_is_string_empty()
         {
-            var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: string.Empty, description: "a description");
 
             var result = service.Update(args);
@@ -38,7 +43,6 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_title_is_white_space()
         {
-            var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: "  ", description: "a description");
 
             var result = service.Update(args);
@@ -52,7 +56,6 @@ namespace TuduManayer.Domain.Test.Todo.Update
         public void return_error_when_title_has_more_characters_than_the_maximum_allowed()
         {
             var title = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
-            var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: title, description: null);
 
             var result = service.Update(args);
@@ -66,7 +69,6 @@ namespace TuduManayer.Domain.Test.Todo.Update
         public void return_error_when_description_has_more_characters_than_the_maximum_allowed()
         {
             var description = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
-            var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: "a title", description: description);
 
             var result = service.Update(args);
@@ -80,7 +82,6 @@ namespace TuduManayer.Domain.Test.Todo.Update
         public void return_error_when_title_is_string_empty_and_description_has_more_characters_than_the_maximum_allowed()
         {
             var description = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
-            var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: string.Empty, description: description);
 
             var result = service.Update(args);
