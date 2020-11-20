@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Shouldly;
 using TuduManayer.Domain.Test.Todo.Create;
 using TuduManayer.Domain.Todo;
@@ -96,7 +95,12 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_todo_is_not_found()
         {
+            var args = new TodoUpdatingArgs(id:1, title: "a title", description: string.Empty);
+
+            var result = service.Update(args);
             
+            result.IsOk.ShouldBeFalse();
+            Assert.True(false, "not implemented");
         }
     }
 }
