@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TuduManayer.Domain.Test.Todo.Create
+namespace TuduManayer.Domain.Test.Todo
 {
     public static class IReadOnlyListExtensions
     {

@@ -51,7 +51,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_title_has_more_characters_than_the_maximum_allowed()
         {
-            var title = StringGenerator.Generate(256);
+            var title = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
             var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: title, description: null);
 
@@ -65,7 +65,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_description_has_more_characters_than_the_maximum_allowed()
         {
-            var description = StringGenerator.Generate(256);
+            var description = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
             var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: "a title", description: description);
 
@@ -79,7 +79,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact] 
         public void return_error_when_title_is_string_empty_and_description_has_more_characters_than_the_maximum_allowed()
         {
-            var description = StringGenerator.Generate(256);
+            var description = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
             var service = new UpdateTodoService();
             var args = new TodoUpdatingArgs(id:1, title: string.Empty, description: description);
 
@@ -90,6 +90,12 @@ namespace TuduManayer.Domain.Test.Todo.Update
             result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.Required);
             result.Errors.Second().FieldId.ShouldBe(nameof(args.Description));
             result.Errors.Second().ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
+        }
+
+        [Fact]
+        public void return_error_when_todo_is_not_found()
+        {
+            
         }
     }
 }
