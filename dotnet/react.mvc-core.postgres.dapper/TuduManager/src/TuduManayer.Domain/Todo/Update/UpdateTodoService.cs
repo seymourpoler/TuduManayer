@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TuduManayer.Domain.Todo.Delete;
 
-namespace TuduManayer.Domain.Todo
+namespace TuduManayer.Domain.Todo.Update
 {
     public interface IUpdateTodoService
     {

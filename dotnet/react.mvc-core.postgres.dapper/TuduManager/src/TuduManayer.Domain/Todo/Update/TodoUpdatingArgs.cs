@@ -1,4 +1,4 @@
-namespace TuduManayer.Domain.Todo
+namespace TuduManayer.Domain.Todo.Update
 {
     public class TodoUpdatingArgs
     {

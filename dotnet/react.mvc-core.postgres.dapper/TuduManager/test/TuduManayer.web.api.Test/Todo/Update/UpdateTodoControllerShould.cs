@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Shouldly;
 using TuduManayer.Domain;
-using TuduManayer.Domain.Todo;
+using TuduManayer.Domain.Todo.Update;
 using TuduManayer.web.api.Todo.Update;
 using Xunit;
 
