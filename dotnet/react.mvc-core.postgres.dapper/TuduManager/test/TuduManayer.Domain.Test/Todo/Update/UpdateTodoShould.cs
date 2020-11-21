@@ -1,18 +1,22 @@
 ﻿using System.Linq;
+using Moq;
 using Shouldly;
 using TuduManayer.Domain.Test.Todo.Create;
 using TuduManayer.Domain.Todo;
+using TuduManayer.Domain.Todo.Delete;
 using Xunit;
 
 namespace TuduManayer.Domain.Test.Todo.Update
 {
     public class UpdateTodoShould
     {
+        private Mock<IExistTodoRepository> existTodoRepository; 
         private IUpdateTodoService service;
         
         public UpdateTodoShould()
         {
-            service = new UpdateTodoService();
+            existTodoRepository = new Mock<IExistTodoRepository>();
+            service = new UpdateTodoService(existTodoRepository.Object);
         }
 
         [Fact]
@@ -95,12 +99,17 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_todo_is_not_found()
         {
-            var args = new TodoUpdatingArgs(id:1, title: "a title", description: string.Empty);
+            const int someTodoId = 3;
+            existTodoRepository
+                .Setup(x => x.Exist(someTodoId))
+                .Returns(true);
+            var args = new TodoUpdatingArgs(id:someTodoId, title: "a title", description: string.Empty);
 
             var result = service.Update(args);
             
             result.IsOk.ShouldBeFalse();
-            Assert.True(false, "not implemented");
+            result.Errors.First().FieldId.ShouldBe(nameof(args.Id));
+            result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.NotFound);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TuduManayer.Domain.Todo.Delete;
 
 namespace TuduManayer.Domain.Todo
 {
@@ -26,6 +27,13 @@ namespace TuduManayer.Domain.Todo
     {
         public static int MaximumNumberOfCharacters = 255;
         
+        private readonly IExistTodoRepository existTodoRepository;
+        
+        public UpdateTodoService(IExistTodoRepository existTodoRepository)
+        {
+            this.existTodoRepository = existTodoRepository;
+        }
+
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
             var errors = new List<Error>();
@@ -43,7 +51,17 @@ namespace TuduManayer.Domain.Todo
                 errors.Add(
                     Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength));
             }
-            return ServiceExecutionResult.WithErrors(errors);
+
+            if (errors.IsNotEmpty())
+            {
+                return ServiceExecutionResult.WithErrors(errors);
+            }
+
+            if (existTodoRepository.Exist(todoUpdatingArgs.Id))
+            {
+                return ServiceExecutionResult.WithErrors(new List<Error> {
+                        Error.With(nameof(todoUpdatingArgs.Id), ErrorCodes.NotFound)});
+            }
                 throw new NotImplementedException();
         }
     }
