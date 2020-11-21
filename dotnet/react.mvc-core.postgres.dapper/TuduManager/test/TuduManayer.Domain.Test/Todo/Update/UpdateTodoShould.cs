@@ -102,7 +102,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
             const int someTodoId = 3;
             existTodoRepository
                 .Setup(x => x.Exist(someTodoId))
-                .Returns(true);
+                .Returns(false);
             var args = new TodoUpdatingArgs(id:someTodoId, title: "a title", description: string.Empty);
 
             var result = service.Update(args);

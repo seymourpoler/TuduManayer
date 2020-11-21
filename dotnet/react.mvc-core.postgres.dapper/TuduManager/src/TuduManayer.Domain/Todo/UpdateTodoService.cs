@@ -57,12 +57,17 @@ namespace TuduManayer.Domain.Todo
                 return ServiceExecutionResult.WithErrors(errors);
             }
 
-            if (existTodoRepository.Exist(todoUpdatingArgs.Id))
+            if (IsNotExistTodo(todoUpdatingArgs.Id))
             {
                 return ServiceExecutionResult.WithErrors(new List<Error> {
                         Error.With(nameof(todoUpdatingArgs.Id), ErrorCodes.NotFound)});
             }
-                throw new NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        private bool IsNotExistTodo(int todoId)
+        {
+            return !existTodoRepository.Exist(todoId);
         }
     }
 }
