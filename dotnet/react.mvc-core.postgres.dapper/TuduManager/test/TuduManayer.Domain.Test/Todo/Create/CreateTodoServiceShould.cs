@@ -2,20 +2,21 @@ using System.Linq;
 using Moq;
 using Shouldly;
 using TuduManayer.Domain.Todo.Create;
+using TuduManayer.Domain.Todo.Validation;
 using Xunit;
 
 namespace TuduManayer.Domain.Test.Todo.Create
 {
     public class CreateTodoServiceShould
     {
-        private int MoreThanMaximumNumberOfCharacters = CreateTodoService.MaximumNumberOfCharacters + 1;
+        private int MoreThanMaximumNumberOfCharacters = Validator.MaximumNumberOfCharacters + 1;
         private ICreateTodoService service;
         private Mock<ISaveTodoRepository> repository;
         
         public CreateTodoServiceShould()
         {
             repository = new Mock<ISaveTodoRepository>();
-            service = new CreateTodoService(repository.Object);
+            service = new CreateTodoService(repository.Object, new Validator());
         }
 
         [Fact]

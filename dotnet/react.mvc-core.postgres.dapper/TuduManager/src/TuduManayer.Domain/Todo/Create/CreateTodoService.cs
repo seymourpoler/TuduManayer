@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using TuduManayer.Domain.Todo.Validation;
 
 namespace TuduManayer.Domain.Todo.Create
 {
@@ -10,27 +9,19 @@ namespace TuduManayer.Domain.Todo.Create
 
     public class CreateTodoService : ICreateTodoService
     {
-        public static int MaximumNumberOfCharacters = 255;
-
+        private readonly Validator validator;
         private readonly ISaveTodoRepository repository;
         
-        public CreateTodoService(ISaveTodoRepository saveTodoRepository)
+        public CreateTodoService(ISaveTodoRepository saveTodoRepository, Validator validator)
         {
             repository = saveTodoRepository;
+            this.validator = validator;
         }
 
         public ServiceExecutionResult Create(TodoCreationArgs todoCreationArgs)
         {
-            var errors = new List<Error>();
-            if (string.IsNullOrWhiteSpace(todoCreationArgs.Title))
-            {
-                errors.Add(Error.With(nameof(todoCreationArgs.Title), ErrorCodes.Required));
-            }
-            else if (todoCreationArgs.Title.Length > MaximumNumberOfCharacters)
-                errors.Add(Error.With(nameof(todoCreationArgs.Title), ErrorCodes.InvalidLength));
-
-            if (!string.IsNullOrWhiteSpace(todoCreationArgs.Description) && todoCreationArgs.Description.Length > MaximumNumberOfCharacters)
-                errors.Add(Error.With(nameof(todoCreationArgs.Description), ErrorCodes.InvalidLength));
+            var validationArgs = new ValidationArgs(todoCreationArgs.Title, todoCreationArgs.Description);
+            var errors = validator.Validate(validationArgs);
 
             if (errors.IsNotEmpty()){
                 return ServiceExecutionResult.WithErrors(errors);

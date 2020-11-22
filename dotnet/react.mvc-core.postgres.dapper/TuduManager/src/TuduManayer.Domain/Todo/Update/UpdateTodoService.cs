@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TuduManayer.Domain.Todo.Delete;
+using TuduManayer.Domain.Todo.Validation;
 
 namespace TuduManayer.Domain.Todo.Update
 {
@@ -11,33 +12,20 @@ namespace TuduManayer.Domain.Todo.Update
 
     public class UpdateTodoService : IUpdateTodoService
     {
-        public static int MaximumNumberOfCharacters = 255;
-        
         private readonly IExistTodoRepository existTodoRepository;
+        private readonly Validator validator;
         
-        public UpdateTodoService(IExistTodoRepository existTodoRepository)
+        public UpdateTodoService(IExistTodoRepository existTodoRepository, Validator validator)
         {
             this.existTodoRepository = existTodoRepository;
+            this.validator = validator;
         }
 
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
         {
-            var errors = new List<Error>();
-            if (string.IsNullOrWhiteSpace(todoUpdatingArgs.Title))
-                errors.Add(
-                    Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.Required));
-            else if (todoUpdatingArgs.Title.Length > MaximumNumberOfCharacters)
-            {
-                errors.Add(
-                    Error.With(nameof(todoUpdatingArgs.Title), ErrorCodes.InvalidLength));
-            }
+            var validationArgs = new ValidationArgs(todoUpdatingArgs.Title, todoUpdatingArgs.Description);
+            var errors = validator.Validate(validationArgs);
             
-            if (!string.IsNullOrEmpty(todoUpdatingArgs.Description) && todoUpdatingArgs.Description.Length > MaximumNumberOfCharacters)
-            {
-                errors.Add(
-                    Error.With(nameof(todoUpdatingArgs.Description), ErrorCodes.InvalidLength));
-            }
-
             if (errors.IsNotEmpty())
             {
                 return ServiceExecutionResult.WithErrors(errors);

@@ -2,9 +2,9 @@
 using Moq;
 using Shouldly;
 using TuduManayer.Domain.Test.Todo.Create;
-using TuduManayer.Domain.Todo;
 using TuduManayer.Domain.Todo.Delete;
 using TuduManayer.Domain.Todo.Update;
+using TuduManayer.Domain.Todo.Validation;
 using Xunit;
 
 namespace TuduManayer.Domain.Test.Todo.Update
@@ -17,7 +17,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         public UpdateTodoShould()
         {
             existTodoRepository = new Mock<IExistTodoRepository>();
-            service = new UpdateTodoService(existTodoRepository.Object);
+            service = new UpdateTodoService(existTodoRepository.Object, new Validator());
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_title_has_more_characters_than_the_maximum_allowed()
         {
-            var title = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
+            var title = StringGenerator.Generate(Validator.MaximumNumberOfCharacters + 1);
             var args = new TodoUpdatingArgs(id:1, title: title, description: null);
 
             var result = service.Update(args);
@@ -72,7 +72,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact]
         public void return_error_when_description_has_more_characters_than_the_maximum_allowed()
         {
-            var description = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
+            var description = StringGenerator.Generate(Validator.MaximumNumberOfCharacters + 1);
             var args = new TodoUpdatingArgs(id:1, title: "a title", description: description);
 
             var result = service.Update(args);
@@ -85,7 +85,7 @@ namespace TuduManayer.Domain.Test.Todo.Update
         [Fact] 
         public void return_error_when_title_is_string_empty_and_description_has_more_characters_than_the_maximum_allowed()
         {
-            var description = StringGenerator.Generate(UpdateTodoService.MaximumNumberOfCharacters + 1);
+            var description = StringGenerator.Generate(Validator.MaximumNumberOfCharacters + 1);
             var args = new TodoUpdatingArgs(id:1, title: string.Empty, description: description);
 
             var result = service.Update(args);
