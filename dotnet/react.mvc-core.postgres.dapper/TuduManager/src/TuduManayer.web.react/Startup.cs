@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -48,6 +49,8 @@ namespace TuduManayer.web.react
             services.AddTransient<IUpdateTodoService, UpdateTodoService>();
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
+
+            services.BuildServiceProvider().GetService<IMigrator>().Migrate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
