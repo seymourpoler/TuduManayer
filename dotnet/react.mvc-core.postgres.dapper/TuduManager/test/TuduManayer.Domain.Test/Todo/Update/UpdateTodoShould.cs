@@ -13,11 +13,19 @@ namespace TuduManayer.Domain.Test.Todo.Update
     {
         private Mock<IExistTodoRepository> existTodoRepository; 
         private IUpdateTodoService service;
+        private Mock<IFindTodoRepository> findTodoRepository;
+        private Mock<IUpdateTodoRepository> updateTodoRepository;
         
         public UpdateTodoShould()
         {
             existTodoRepository = new Mock<IExistTodoRepository>();
-            service = new UpdateTodoService(existTodoRepository.Object, new Validator());
+            findTodoRepository = new Mock<IFindTodoRepository>();
+            updateTodoRepository = new Mock<IUpdateTodoRepository>();
+            service = new UpdateTodoService(
+                existTodoRepository.Object,
+                new Validator(),
+                findTodoRepository.Object,
+                updateTodoRepository.Object);
         }
 
         [Fact]
@@ -111,6 +119,27 @@ namespace TuduManayer.Domain.Test.Todo.Update
             result.IsOk.ShouldBeFalse();
             result.Errors.First().FieldId.ShouldBe(nameof(args.Id));
             result.Errors.First().ErrorCode.ShouldBe(ErrorCodes.NotFound);
+        }
+
+        [Fact]
+        public void update_todo()
+        {
+            const int someTodoId = 3;
+            existTodoRepository
+                .Setup(x => x.Exist(someTodoId))
+                .Returns(true);
+            findTodoRepository
+                .Setup(x => x.FindById(someTodoId))
+                .Returns(new Domain.Todo.Update.Models.Todo(someTodoId, "some title", "a description"));
+            const string updatedTitle = "updated title"; 
+            var args = new TodoUpdatingArgs(id:someTodoId, title: updatedTitle, description: string.Empty);
+
+            var result = service.Update(args);
+            
+            result.IsOk.ShouldBeTrue();
+            updateTodoRepository
+                .Verify(x => x.Update(It.Is<Domain.Todo.Update.Models.Todo>(y => 
+                    y.Title == updatedTitle)));
         }
     }
 }

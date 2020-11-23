@@ -14,11 +14,18 @@ namespace TuduManayer.Domain.Todo.Update
     {
         private readonly IExistTodoRepository existTodoRepository;
         private readonly Validator validator;
-        
-        public UpdateTodoService(IExistTodoRepository existTodoRepository, Validator validator)
+        private readonly IFindTodoRepository findTodoRepository;
+        private readonly IUpdateTodoRepository updateTodoRepository;
+
+        public UpdateTodoService(IExistTodoRepository existTodoRepository,
+            Validator validator,
+            IFindTodoRepository findTodoRepository, 
+            IUpdateTodoRepository updateTodoRepository)
         {
             this.existTodoRepository = existTodoRepository;
             this.validator = validator;
+            this.findTodoRepository = findTodoRepository;
+            this.updateTodoRepository = updateTodoRepository;
         }
 
         public ServiceExecutionResult Update(TodoUpdatingArgs todoUpdatingArgs)
@@ -36,7 +43,11 @@ namespace TuduManayer.Domain.Todo.Update
                 return ServiceExecutionResult.WithErrors(new List<Error> {
                         Error.With(nameof(todoUpdatingArgs.Id), ErrorCodes.NotFound)});
             }
-            throw new NotImplementedException();
+
+            var todo = findTodoRepository.FindById(todoUpdatingArgs.Id);
+            todo.Update(validationArgs.Title, validationArgs.Description);
+            updateTodoRepository.Update(todo);
+            return ServiceExecutionResult.WithSucess();
         }
 
         private bool IsNotExistTodo(int todoId)
