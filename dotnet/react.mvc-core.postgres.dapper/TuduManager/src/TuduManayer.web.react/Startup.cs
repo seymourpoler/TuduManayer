@@ -8,11 +8,13 @@ using TuduManayer.Domain.Todo.Create;
 using TuduManayer.Domain.Todo.Delete;
 using TuduManayer.Domain.Todo.Search;
 using TuduManayer.Domain.Todo.Update;
+using TuduManayer.Domain.Todo.Validation;
 using TuduManayer.Repository.Postgres.EntityFramework;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Delete;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Save;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Search;
+using TuduManayer.Repository.Postgres.EntityFramework.Todo.Update;
 
 namespace TuduManayer.web.react
 {
@@ -35,6 +37,7 @@ namespace TuduManayer.web.react
 
             services.AddTransient<Configuration>();
             services.AddTransient<DataBaseContextFactory>();
+            services.AddTransient<Validator>();
             services.AddTransient<IExistTodoRepository, ExistTodoRepository>();
             services.AddTransient<ISearchTodoService, SearchTodoService>();
             services.AddTransient<ISearchTodoRepository, SearchTodoRepository>();
@@ -42,6 +45,9 @@ namespace TuduManayer.web.react
             services.AddTransient<IDeleteTodoRepository, DeleteTodoRepository>();
             services.AddTransient<ICreateTodoService, CreateTodoService>();
             services.AddTransient<ISaveTodoRepository, SaveTodoRepository>();
+            services.AddTransient<IUpdateTodoService, UpdateTodoService>();
+            services.AddTransient<IFindTodoRepository, FindTodoRepository>();
+            services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

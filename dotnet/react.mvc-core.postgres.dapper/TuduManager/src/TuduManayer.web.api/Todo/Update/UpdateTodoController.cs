@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TuduManayer.Domain;
-using TuduManayer.Domain.Todo;
 using TuduManayer.Domain.Todo.Update;
 
 namespace TuduManayer.web.api.Todo.Update
