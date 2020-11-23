@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TuduManayer.Domain.Todo.Delete;
 using TuduManayer.Domain.Todo.Validation;
 
