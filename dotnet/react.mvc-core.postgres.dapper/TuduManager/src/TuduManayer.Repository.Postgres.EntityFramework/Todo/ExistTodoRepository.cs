@@ -1,6 +1,6 @@
 using TuduManayer.Domain.Todo.Delete;
 
-namespace TuduManayer.Repository.Postgres.EntityFramework
+namespace TuduManayer.Repository.Postgres.EntityFramework.Todo
 {
     public class ExistTodoRepository : IExistTodoRepository
     {

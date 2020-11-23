@@ -7,7 +7,12 @@ using Microsoft.Extensions.Hosting;
 using TuduManayer.Domain.Todo.Create;
 using TuduManayer.Domain.Todo.Delete;
 using TuduManayer.Domain.Todo.Search;
+using TuduManayer.Domain.Todo.Update;
 using TuduManayer.Repository.Postgres.EntityFramework;
+using TuduManayer.Repository.Postgres.EntityFramework.Todo;
+using TuduManayer.Repository.Postgres.EntityFramework.Todo.Delete;
+using TuduManayer.Repository.Postgres.EntityFramework.Todo.Save;
+using TuduManayer.Repository.Postgres.EntityFramework.Todo.Search;
 
 namespace TuduManayer.web.react
 {

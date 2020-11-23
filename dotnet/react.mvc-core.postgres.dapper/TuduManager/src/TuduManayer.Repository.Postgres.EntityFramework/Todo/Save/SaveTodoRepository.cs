@@ -1,6 +1,6 @@
 ﻿using TuduManayer.Domain.Todo.Create;
 
-namespace TuduManayer.Repository.Postgres.EntityFramework
+namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Save
 {
     public class SaveTodoRepository : ISaveTodoRepository
     {
@@ -14,7 +14,7 @@ namespace TuduManayer.Repository.Postgres.EntityFramework
         public void Save(Domain.Todo.Create.Models.Todo todo)
         {
             using var dbContext = contextFactory.Create();
-            var entity = new Todo
+            var entity = new Models.Todo
             {
                 title = todo.Title,
                 description = todo.Description

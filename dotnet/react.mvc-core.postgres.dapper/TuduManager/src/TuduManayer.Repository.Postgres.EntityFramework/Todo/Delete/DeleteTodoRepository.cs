@@ -1,7 +1,7 @@
 using System.Linq;
 using TuduManayer.Domain.Todo.Delete;
 
-namespace TuduManayer.Repository.Postgres.EntityFramework
+namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Delete
 {
     public class DeleteTodoRepository : IDeleteTodoRepository
     {

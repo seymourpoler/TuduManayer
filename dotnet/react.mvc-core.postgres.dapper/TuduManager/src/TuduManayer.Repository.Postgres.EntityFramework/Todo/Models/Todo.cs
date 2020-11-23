@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TuduManayer.Repository.Postgres.EntityFramework
+namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Models
 {
     [Table("todos")]
     public class Todo

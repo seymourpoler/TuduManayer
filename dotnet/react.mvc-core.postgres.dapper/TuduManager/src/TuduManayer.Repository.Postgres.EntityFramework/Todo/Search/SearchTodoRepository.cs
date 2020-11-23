@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TuduManayer.Domain.Todo.Search;
 
-namespace TuduManayer.Repository.Postgres.EntityFramework
+namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Search
 {
     public class SearchTodoRepository : ISearchTodoRepository
     {

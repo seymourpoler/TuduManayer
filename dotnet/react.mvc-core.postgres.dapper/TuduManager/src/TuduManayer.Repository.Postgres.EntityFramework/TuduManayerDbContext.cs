@@ -16,6 +16,6 @@ namespace TuduManayer.Repository.Postgres.EntityFramework
             optionsBuilder.UseNpgsql(connectionString);
         }
         
-        public DbSet<Todo> Todos { get; set; }
+        public DbSet<Todo.Models.Todo> Todos { get; set; }
     }
 }
