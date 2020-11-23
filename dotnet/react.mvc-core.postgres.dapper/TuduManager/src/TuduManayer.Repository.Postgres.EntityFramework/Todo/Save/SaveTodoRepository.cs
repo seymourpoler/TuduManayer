@@ -17,7 +17,8 @@ namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Save
             var entity = new Models.Todo
             {
                 title = todo.Title,
-                description = todo.Description
+                description = todo.Description,
+                creation_date = todo.CreationDate
             };
             dbContext.Todos.Add(entity);
             dbContext.SaveChanges();

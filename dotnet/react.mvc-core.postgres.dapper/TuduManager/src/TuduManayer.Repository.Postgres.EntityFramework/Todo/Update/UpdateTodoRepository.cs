@@ -18,6 +18,8 @@ namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Update
             var entity = dbContext.Todos.First(x => x.id == todo.Id);
             entity.title = todo.Title;
             entity.description = todo.Description;
+            entity.updated_date = todo.UpdationDate;
+
             dbContext.SaveChanges();
         }
     }

@@ -1,10 +1,13 @@
-﻿namespace TuduManayer.Domain.Todo.Update.Models
+﻿using System;
+
+namespace TuduManayer.Domain.Todo.Update.Models
 {
     public class Todo
     {
         public int Id { get; }
         public string Title { get; private set; }
         public string Description { get; private set; }
+        public DateTime UpdationDate { get; private set; }
         
         public Todo(int id, string title, string description)
         {
@@ -17,6 +20,7 @@
         {
             Title = title;
             Description = description;
+            UpdationDate = DateTime.Now;
         }
     }
 }
