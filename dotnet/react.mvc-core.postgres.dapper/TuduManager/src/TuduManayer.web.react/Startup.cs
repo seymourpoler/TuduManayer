@@ -38,6 +38,7 @@ namespace TuduManayer.web.react
 
             services.AddTransient<Configuration>();
             services.AddTransient<DataBaseContextFactory>();
+            services.AddTransient<IMigrator,Migrator>();
             services.AddTransient<Validator>();
             services.AddTransient<IExistTodoRepository, ExistTodoRepository>();
             services.AddTransient<ISearchTodoService, SearchTodoService>();
