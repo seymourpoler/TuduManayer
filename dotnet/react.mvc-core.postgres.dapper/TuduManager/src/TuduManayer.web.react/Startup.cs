@@ -51,7 +51,7 @@ namespace TuduManayer.web.react
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
 
-            services.BuildServiceProvider().GetService<IMigrator>().Migrate();
+            // services.BuildServiceProvider().GetService<IMigrator>().Migrate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
