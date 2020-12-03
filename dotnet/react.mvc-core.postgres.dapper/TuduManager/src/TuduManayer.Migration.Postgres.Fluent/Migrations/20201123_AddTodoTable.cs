@@ -8,10 +8,10 @@ namespace TuduManayer.Migration.Postgres.Fluent.Migrations
         public override void Up()
         {
             Create.Table("Todos")
-                .WithColumn("id").AsInt32().NotNullable()
+                .WithColumn("id").AsInt32().Identity()
                 .WithColumn("title").AsString(255)
                 .WithColumn("description").AsString(255)
-                .WithColumn("created_date").AsDateTime().NotNullable()
+                .WithColumn("creation_date").AsDateTime().NotNullable()
                 .WithColumn("updated_date").AsDateTime().Nullable();
         }
 
