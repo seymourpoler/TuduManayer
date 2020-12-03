@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Models
 {
-    [Table("todos")]
+    [Table("Todos")]
     public class Todo
     {
         [Key]
@@ -12,14 +12,18 @@ namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Models
         
         [Required]
         [StringLength(255)]
+        [Column("title")]
         public string title { get; set; }
 
         [StringLength(255)]
+        [Column("description")]
         public string description { get; set; }
         
         [Required]
+        [Column("creation_date")]
         public DateTime creation_date { get; set; }
         
+        [Column("updated_date")]
         public DateTime? updated_date { get; set; }
     }
 }

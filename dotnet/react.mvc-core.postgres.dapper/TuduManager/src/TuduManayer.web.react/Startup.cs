@@ -38,7 +38,6 @@ namespace TuduManayer.web.react
 
             services.AddTransient<Configuration>();
             services.AddTransient<DataBaseContextFactory>();
-            services.AddTransient<IMigrator,Migrator>();
             services.AddTransient<Validator>();
             services.AddTransient<IExistTodoRepository, ExistTodoRepository>();
             services.AddTransient<ISearchTodoService, SearchTodoService>();
@@ -50,8 +49,6 @@ namespace TuduManayer.web.react
             services.AddTransient<IUpdateTodoService, UpdateTodoService>();
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
-
-            // services.BuildServiceProvider().GetService<IMigrator>().Migrate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,7 +4,8 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
-import {ManageTodoView} from "./todo/manage/ManageTodoView";
+import { ManageTodoView } from "./todo/manage/ManageTodoView";
+import { CreateTodoView } from "./todo/create/CreateTodoView";
 
 import './custom.css'
 
@@ -17,7 +18,9 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
-          <Route path='/manage' component={ManageTodoView} />
+        <Route path='/manage' component={ManageTodoView} />
+        <Route path='/create' component={CreateTodoView} />
+          
       </Layout>
     );
   }

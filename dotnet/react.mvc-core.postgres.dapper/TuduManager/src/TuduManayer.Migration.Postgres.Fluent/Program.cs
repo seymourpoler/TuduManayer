@@ -22,8 +22,8 @@ namespace TuduManayer.Migration.Postgres.Fluent
                 .ConfigureRunner(rb => rb
                     .AddPostgres()
                     .WithGlobalConnectionString(Configuration.ConnectionString)
-                    // .ScanIn(typeof(Program).Assembly).For.Migrations())
-                    .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations())
+                    .ScanIn(typeof(Program).Assembly).For.Migrations())
+                    // .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider(false);
         }
