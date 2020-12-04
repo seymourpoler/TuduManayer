@@ -64,7 +64,7 @@ namespace TuduManayer.web.api.Test.Todo
                 .ShouldMap(request => request
                     .WithMethod(HttpMethod.Get)
                     .WithLocation("/api/todos/1"))
-                .To<FindTodoController>(x => x.Find(1));
+                .To<FindByTodoIdController>(x => x.Find(1));
         }
     }
 }
