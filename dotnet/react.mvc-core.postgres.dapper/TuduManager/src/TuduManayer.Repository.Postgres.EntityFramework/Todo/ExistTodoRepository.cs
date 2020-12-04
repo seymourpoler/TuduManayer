@@ -1,13 +1,21 @@
+using System.Linq;
 using TuduManayer.Domain.Todo;
-using TuduManayer.Domain.Todo.Delete;
 
 namespace TuduManayer.Repository.Postgres.EntityFramework.Todo
 {
     public class ExistTodoRepository : IExistTodoRepository
     {
+        private readonly DataBaseContextFactory dataBaseContextFactory;
+
+        public ExistTodoRepository(DataBaseContextFactory dataBaseContextFactory)
+        {
+            this.dataBaseContextFactory = dataBaseContextFactory;
+        }
+
         public bool Exist(int todoId)
         {
-            throw new System.NotImplementedException();
+            using var dbContext = dataBaseContextFactory.Create();
+            return dbContext.Todos.Any(x => x.id == todoId);
         }
     }
 }
