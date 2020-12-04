@@ -1,4 +1,4 @@
-namespace TuduManayer.Domain.Todo.Delete
+namespace TuduManayer.Domain.Todo
 {
     public interface IExistTodoRepository
     {
