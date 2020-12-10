@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using TuduManayer.Domain.Todo;
 using TuduManayer.Domain.Todo.Create;
 using TuduManayer.Domain.Todo.Delete;
+using TuduManayer.Domain.Todo.FindById;
 using TuduManayer.Domain.Todo.Search;
 using TuduManayer.Domain.Todo.Update;
 using TuduManayer.Domain.Todo.Validation;
@@ -48,6 +49,7 @@ namespace TuduManayer.web.react
             services.AddTransient<ICreateTodoService, CreateTodoService>();
             services.AddTransient<ISaveTodoRepository, SaveTodoRepository>();
             services.AddTransient<IUpdateTodoService, UpdateTodoService>();
+            services.AddTransient<IFindByTodoIdService, FindByTodoIdService>();
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
         }

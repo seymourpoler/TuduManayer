@@ -8,7 +8,7 @@ using Xunit;
 
 namespace TuduManayer.web.api.Test.Todo.Update
 {
-    public class FindtodoControllerShould
+    public class FindTodoControllerShould
     {
         [Fact]
         public void return_not_found_when_is_not_found()
