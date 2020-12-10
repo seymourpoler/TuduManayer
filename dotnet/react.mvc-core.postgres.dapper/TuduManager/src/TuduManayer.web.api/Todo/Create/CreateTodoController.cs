@@ -14,7 +14,7 @@ namespace TuduManayer.web.api.Todo.Create
         }
         
         [HttpPost("/api/todos")]
-        public IActionResult Create(TodoCreationRequest todoCreationRequest)
+        public IActionResult Create([FromBody]TodoCreationRequest todoCreationRequest)
         {
             var args = new TodoCreationArgs(todoCreationRequest.Title, todoCreationRequest.Description);
             var response = createTodoService.Create(args);

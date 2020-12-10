@@ -55,5 +55,16 @@ namespace TuduManayer.web.api.Test.Todo
                     .WithLocation("/api/todos"))
                 .To<UpdateTodoController>(x => x.Update(With.Any<TodoUpdatingRequest>()));
         }
+
+        [Fact]
+        public void MapToFindTodoById()
+        {
+            MyMvc
+                .Routing()
+                .ShouldMap(request => request
+                    .WithMethod(HttpMethod.Get)
+                    .WithLocation("/api/todos/1"))
+                .To<FindByTodoIdController>(x => x.Find(1));
+        }
     }
 }
