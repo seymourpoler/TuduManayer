@@ -16,7 +16,12 @@ namespace TuduManayer.web.api.Todo.Update
         [HttpGet("/api/todos/{todoId}")]
         public IActionResult Find(int todoId)
         {
-            throw new NotImplementedException();
+            var serviceExecutionResult = findByTodoIdService.Find(todoId);
+            if (serviceExecutionResult.IsOk)
+            {
+                throw new NotImplementedException();
+            }
+            return new NotFoundResult();
         }
     }
 }
