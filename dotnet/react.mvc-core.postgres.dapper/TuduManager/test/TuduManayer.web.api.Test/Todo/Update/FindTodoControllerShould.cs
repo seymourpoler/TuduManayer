@@ -25,5 +25,22 @@ namespace TuduManayer.web.api.Test.Todo.Update
             
             response.StatusCode.ShouldBe((int)HttpStatusCode.NotFound);
         }
+        
+        [Fact]
+        public void return_todo()
+        {
+            const int someTodoId = 2;
+            var service = new Mock<IFindByTodoIdService>();
+            var todo = new TuduManayer.Domain.Todo.FindById.Models.Todo(someTodoId, "title", "description");
+            service
+                .Setup(x => x.Find(someTodoId))
+                .Returns(ServiceExecutionResultWithModel<TuduManayer.Domain.Todo.FindById.Models.Todo>.With(todo));
+            var controller = new FindByTodoIdController(service.Object);
+            
+            var response = controller.Find(someTodoId) as OkObjectResult;
+            
+            response.StatusCode.ShouldBe((int)HttpStatusCode.OK);
+            response.Value.ShouldBe(todo);
+        }
     }
 }
