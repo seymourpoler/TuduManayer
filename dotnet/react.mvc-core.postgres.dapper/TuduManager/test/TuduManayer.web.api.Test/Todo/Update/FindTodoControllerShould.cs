@@ -15,7 +15,7 @@ namespace TuduManayer.web.api.Test.Todo.Update
         public void return_not_found_when_is_not_found()
         {
             const int someTodoId = 2;
-            Mock<IFindByTodoIdService> service = new Mock<IFindByTodoIdService>();
+            var service = new Mock<IFindByTodoIdService>();
             service
                 .Setup(x => x.Find(someTodoId))
                 .Returns(ServiceExecutionResultWithModel<TuduManayer.Domain.Todo.FindById.Models.Todo>.WitError());
@@ -24,6 +24,6 @@ namespace TuduManayer.web.api.Test.Todo.Update
             var response = controller.Find(someTodoId) as NotFoundResult;
             
             response.StatusCode.ShouldBe((int)HttpStatusCode.NotFound);
-        } 
+        }
     }
 }
