@@ -22,5 +22,20 @@ namespace TuduManayer.Domain.Test.Todo.FindById
             
             result.IsOk.ShouldBeFalse();
         }
+        
+        [Fact]
+        public void return_found_todo()
+        {
+            const int someTodoId = 3;
+            Mock<IExistTodoRepository> existRepository = new Mock<IExistTodoRepository>();
+            existRepository
+                .Setup(x => x.Exist(someTodoId))
+                .Returns(true);
+            var service = new FindByTodoIdService(existRepository.Object);
+
+            var result = service.Find(someTodoId);
+            
+            result.IsOk.ShouldBeTrue();
+        }
     }
 }
