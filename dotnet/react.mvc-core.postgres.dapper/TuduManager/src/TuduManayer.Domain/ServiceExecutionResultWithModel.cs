@@ -13,6 +13,7 @@ namespace TuduManayer.Domain
         private  ServiceExecutionResultWithModel(T model)
         {
             Model = model;
+            IsOk = true;
         }
 
         public static ServiceExecutionResultWithModel<T> WitError()

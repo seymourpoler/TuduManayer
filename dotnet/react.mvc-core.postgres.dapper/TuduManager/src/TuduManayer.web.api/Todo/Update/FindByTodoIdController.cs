@@ -19,7 +19,8 @@ namespace TuduManayer.web.api.Todo.Update
             var serviceExecutionResult = findByTodoIdService.Find(todoId);
             if (serviceExecutionResult.IsOk)
             {
-                throw new NotImplementedException();
+                var todo = findByTodoIdService.Find(todoId);
+                return Ok(todo.Model);
             }
             return new NotFoundResult();
         }
