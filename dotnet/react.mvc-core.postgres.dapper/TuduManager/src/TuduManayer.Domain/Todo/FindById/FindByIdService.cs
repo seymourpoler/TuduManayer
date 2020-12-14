@@ -8,16 +8,22 @@ namespace TuduManayer.Domain.Todo.FindById
     public class FindByTodoIdService : IFindByTodoIdService
     {
         private readonly IExistTodoRepository existTodoRepository;
+        private readonly IFindByTodoIdRepository findByTodoIdRepository;
 
-        public FindByTodoIdService(IExistTodoRepository existTodoRepository)
+        public FindByTodoIdService(
+            IExistTodoRepository existTodoRepository,
+            IFindByTodoIdRepository findByTodoIdRepository)
         {
             this.existTodoRepository = existTodoRepository;
+            this.findByTodoIdRepository = findByTodoIdRepository;
         }
 
         public ServiceExecutionResultWithModel<Models.Todo> Find(int id)
         {
             if(!existTodoRepository.Exist(id)) return ServiceExecutionResultWithModel<Models.Todo>.WitError();
-            throw new System.NotImplementedException();
+
+            var todo = findByTodoIdRepository.Find(id);
+            return ServiceExecutionResultWithModel<Models.Todo>.With(todo);
         }
     }
 }

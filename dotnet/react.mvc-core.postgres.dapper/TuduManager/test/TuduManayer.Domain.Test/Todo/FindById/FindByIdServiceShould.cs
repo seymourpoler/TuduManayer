@@ -8,6 +8,20 @@ namespace TuduManayer.Domain.Test.Todo.FindById
 {
     public class FindByIdServiceShould
     {
+        Mock<IExistTodoRepository> existRepository;
+        Mock<IFindByTodoIdRepository> findRepository;
+
+        private IFindByTodoIdService findService;
+        
+        public FindByIdServiceShould()
+        {
+            existRepository = new Mock<IExistTodoRepository>();
+            findRepository = new Mock<IFindByTodoIdRepository>();
+            findService = new FindByTodoIdService(
+                existRepository.Object,
+                findRepository.Object);
+        }
+        
         [Fact]
         public void return_not_found_when_is_not_found()
         {
@@ -16,9 +30,8 @@ namespace TuduManayer.Domain.Test.Todo.FindById
             existRepository
                 .Setup(x => x.Exist(someTodoId))
                 .Returns(false);
-            var service = new FindByTodoIdService(existRepository.Object);
 
-            var result = service.Find(someTodoId);
+            var result = findService.Find(someTodoId);
             
             result.IsOk.ShouldBeFalse();
         }
@@ -27,15 +40,19 @@ namespace TuduManayer.Domain.Test.Todo.FindById
         public void return_found_todo()
         {
             const int someTodoId = 3;
-            Mock<IExistTodoRepository> existRepository = new Mock<IExistTodoRepository>();
+            const string title = "some title";
             existRepository
                 .Setup(x => x.Exist(someTodoId))
                 .Returns(true);
-            var service = new FindByTodoIdService(existRepository.Object);
+            findRepository
+                .Setup(x => x.Find(someTodoId))
+                .Returns(new Domain.Todo.FindById.Models.Todo(someTodoId, title, "Description"));
 
-            var result = service.Find(someTodoId);
+            var result = findService.Find(someTodoId);
             
             result.IsOk.ShouldBeTrue();
+            result.Model.Id.ShouldBe(someTodoId);
+            result.Model.Title.ShouldBe(title);
         }
     }
 }

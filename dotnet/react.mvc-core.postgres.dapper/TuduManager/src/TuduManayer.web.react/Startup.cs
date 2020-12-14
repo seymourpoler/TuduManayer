@@ -49,6 +49,7 @@ namespace TuduManayer.web.react
             services.AddTransient<ICreateTodoService, CreateTodoService>();
             services.AddTransient<ISaveTodoRepository, SaveTodoRepository>();
             services.AddTransient<IUpdateTodoService, UpdateTodoService>();
+            services.AddTransient<IFindByTodoIdRepository, FindByTodoIdRepository>();
             services.AddTransient<IFindByTodoIdService, FindByTodoIdService>();
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
