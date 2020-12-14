@@ -1,6 +1,6 @@
 ﻿using TuduManayer.Domain.Todo.FindById;
 
-namespace TuduManayer.Repository.Postgres.EntityFramework.Todo
+namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.FindByTodoId
 {
     public class FindByTodoIdRepository : IFindByTodoIdRepository
     {
