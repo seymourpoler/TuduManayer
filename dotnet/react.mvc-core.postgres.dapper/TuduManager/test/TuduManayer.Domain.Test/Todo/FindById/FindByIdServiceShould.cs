@@ -12,6 +12,7 @@ namespace TuduManayer.Domain.Test.Todo.FindById
         Mock<IFindByTodoIdRepository> findRepository;
 
         private IFindByTodoIdService findService;
+        const int someTodoId = 3;
         
         public FindByIdServiceShould()
         {
@@ -25,7 +26,6 @@ namespace TuduManayer.Domain.Test.Todo.FindById
         [Fact]
         public void return_not_found_when_is_not_found()
         {
-            const int someTodoId = 3;
             Mock<IExistTodoRepository> existRepository = new Mock<IExistTodoRepository>();
             existRepository
                 .Setup(x => x.Exist(someTodoId))
@@ -39,7 +39,6 @@ namespace TuduManayer.Domain.Test.Todo.FindById
         [Fact]
         public void return_found_todo()
         {
-            const int someTodoId = 3;
             const string title = "some title";
             existRepository
                 .Setup(x => x.Exist(someTodoId))
