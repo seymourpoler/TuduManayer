@@ -1,8 +1,7 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using TuduManayer.Domain.Todo.FindById;
 
-namespace TuduManayer.web.api.Todo.Update
+namespace TuduManayer.web.api.Todo.FindByTodoId
 {
     public class FindByTodoIdController : Controller
     {

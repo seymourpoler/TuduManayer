@@ -4,7 +4,7 @@ using Moq;
 using Shouldly;
 using TuduManayer.Domain;
 using TuduManayer.Domain.Todo.FindById;
-using TuduManayer.web.api.Todo.Update;
+using TuduManayer.web.api.Todo.FindByTodoId;
 using Xunit;
 
 namespace TuduManayer.web.api.Test.Todo.Update
