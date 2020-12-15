@@ -1,6 +1,6 @@
 export function Http(){
     let self = this;
-	
+
 	self.get = async (url) => {
 		const response = await fetch(url);
         return buildResultFrom(response);
