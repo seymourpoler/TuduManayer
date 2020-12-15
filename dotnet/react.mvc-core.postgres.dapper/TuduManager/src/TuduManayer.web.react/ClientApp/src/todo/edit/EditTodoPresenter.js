@@ -23,6 +23,7 @@ export function EditTodoPresenter(view, service){
     self.update = async function(todo) {
         view.cleanMessages();
         view.showSpinner();
+        todo.id = parseInt(todo.id);
         const response = await service.update(todo);
         view.hideSpinner();
         if(response.statusCode === HttpStatusCode.internalServerError){

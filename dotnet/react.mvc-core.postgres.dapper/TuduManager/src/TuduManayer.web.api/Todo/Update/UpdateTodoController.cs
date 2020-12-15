@@ -14,7 +14,7 @@ namespace TuduManayer.web.api.Todo.Update
         }
 
         [HttpPut("/api/todos")]
-        public IActionResult Update(TodoUpdatingRequest todoUpdatingRequest)
+        public IActionResult Update([FromBody]TodoUpdatingRequest todoUpdatingRequest)
         {
             var updateResult = UpdateTodo(todoUpdatingRequest);
             if (updateResult.IsOk) return Ok();
