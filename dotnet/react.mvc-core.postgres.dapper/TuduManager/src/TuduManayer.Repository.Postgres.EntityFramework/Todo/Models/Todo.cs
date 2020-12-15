@@ -8,6 +8,7 @@ namespace TuduManayer.Repository.Postgres.EntityFramework.Todo.Models
     public class Todo
     {
         [Key]
+        [Column("id")]
         public int id { get; set; }
         
         [Required]
