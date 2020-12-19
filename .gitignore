@@ -206,5 +206,5 @@ $RECYCLE.BIN/
 \java\TuduManager\.idea\
 /java/TuduManager/.idea/
 
-\java\TuduManager\src\web.react\node_modules\
-/java/TuduManager/src/web.react/node_modules/
+\java\TuduManager\web.react\node_modules\
+/java/TuduManager/web.react/node_modules/
