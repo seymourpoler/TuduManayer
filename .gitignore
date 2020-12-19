@@ -203,4 +203,8 @@ $RECYCLE.BIN/
 
 /dotnet/react.mvc-core.postgres.dapper/TuduManager/TuduManager.sln.DotSettings.user
 
+\java\TuduManager\.idea\
+/java/TuduManager/.idea/
 
+\java\TuduManager\src\web.react\node_modules\
+/java/TuduManager/src/web.react/node_modules/
