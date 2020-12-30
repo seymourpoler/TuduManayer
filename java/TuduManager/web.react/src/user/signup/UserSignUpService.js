@@ -10,6 +10,9 @@ export function UserSignUpService(http){
         if(response.statusCode === HttpStatusCode.internalServerError) {
             return { statusCode: HttpStatusCode.internalServerError };
         }
+        if(response.statusCode === HttpStatusCode.badRequest) {
+            return { statusCode: HttpStatusCode.badRequest, errors: response.body };
+        }
         throw 'not implemented';
     }
 }

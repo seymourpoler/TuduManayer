@@ -14,6 +14,10 @@ export class UserSignUpView extends React.Component {
     showInternalServerError = () => {
         throw 'not implemented';
     }
+
+    showErrors = (errors) => {
+        throw 'not implemented';
+    }
 }
 
 export function createUserSignUpView(){

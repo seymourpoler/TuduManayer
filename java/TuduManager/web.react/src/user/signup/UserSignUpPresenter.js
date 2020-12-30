@@ -9,6 +9,10 @@ export function UserSignUpPresenter(view, service){
             view.showInternalServerError();
             return;
         }
+        if(response.statusCode === HttpStatusCode.badRequest){
+            view.showErrors(response.errors);
+            return;
+        }
         throw 'not implemented';
     }
 }
