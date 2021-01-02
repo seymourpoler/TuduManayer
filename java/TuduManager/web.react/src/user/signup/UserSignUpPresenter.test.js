@@ -43,5 +43,19 @@ describe('User SignUp Presenter', () =>{
 
             expect(view.showErrors).toHaveBeenCalledWith(errors);
         });
+
+        it('return user signed up', async () =>{
+            const userSigningUpRequest = {email: 'e@mail.com', password: 'password'};
+            http.post = () => {
+                expect(view.cleanMessages).toHaveBeenCalled();
+                expect(view.showSpinner).toHaveBeenCalled();
+                return { statusCode: HttpStatusCode.ok };
+            };
+
+            await presenter.signUp(userSigningUpRequest);
+
+            expect(view.hideSpinner).toHaveBeenCalled();
+            expect(view.showUserSignedUp).toHaveBeenCalled();
+        });
     });
 });

@@ -13,7 +13,7 @@ export function UserSignUpService(http){
         if(response.statusCode === HttpStatusCode.badRequest) {
             return { statusCode: HttpStatusCode.badRequest, errors: response.body };
         }
-        throw 'not implemented';
+        return { statusCode: response.statusCode };
     }
 }
 
