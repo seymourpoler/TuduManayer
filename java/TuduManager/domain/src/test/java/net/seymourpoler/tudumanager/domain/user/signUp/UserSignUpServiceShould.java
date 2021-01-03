@@ -26,7 +26,7 @@ public class UserSignUpServiceShould {
     }
 
     @Test
-    public void return_error_when_email_is_string_empty(){
+    public void return_error_when_email_is_empty(){
         var signUpArgs = new UserSigningUpArgs("", "password");
 
         var result = service.signUp(signUpArgs);
