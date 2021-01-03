@@ -103,5 +103,4 @@ public class UserSignUpServiceShould {
         assertThat(result.errors().get(0).fieldId).isEqualTo(fieldId);
         assertThat(result.errors().get(0).errorCode).isEqualTo(errorCode);
     }
-
 }
