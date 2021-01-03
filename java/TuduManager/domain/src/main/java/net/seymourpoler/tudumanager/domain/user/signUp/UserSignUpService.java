@@ -13,7 +13,7 @@ public class UserSignUpService implements IUserSignUpService {
 
     @Override
     public ServiceExecutionResult signUp(UserSigningUpArgs args){
-        if(args.email == null || args.email == "" | args.email.trim().isEmpty()){
+        if(args.email == null || args.email == "" || args.email.trim().isEmpty()){
             return ServiceExecutionResult.of(
                 List.of(new Error("email", ErrorCodes.Required)));
         }
@@ -25,7 +25,7 @@ public class UserSignUpService implements IUserSignUpService {
             return ServiceExecutionResult.of(
                     List.of(new Error("email", ErrorCodes.InvalidFormat)));
         }
-        if(args.password == null || args.password == ""){
+        if(args.password == null || args.password == "" || args.password.trim().isEmpty()){
             return ServiceExecutionResult.of(
                     List.of(new Error("password", ErrorCodes.Required)));
         }
