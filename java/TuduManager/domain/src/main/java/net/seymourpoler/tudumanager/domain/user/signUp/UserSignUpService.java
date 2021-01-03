@@ -25,6 +25,10 @@ public class UserSignUpService implements IUserSignUpService {
             return ServiceExecutionResult.of(
                     List.of(new Error("email", ErrorCodes.InvalidFormat)));
         }
+        if(args.password == null){
+            return ServiceExecutionResult.of(
+                    List.of(new Error("password", ErrorCodes.Required)));
+        }
 
         throw new RuntimeException();
     }
