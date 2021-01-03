@@ -22,7 +22,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "email", ErrorCodes.Required);
+        assertThatIsFalseWithError(result, "email", ErrorCodes.Required);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class UserSignUpServiceShould {
         var signUpArgs = new UserSigningUpArgs("", "password");
 
         var result = service.signUp(signUpArgs);
-        assertThatIsFalse(result, "email", ErrorCodes.Required);
+        assertThatIsFalseWithError(result, "email", ErrorCodes.Required);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "email", ErrorCodes.Required);
+        assertThatIsFalseWithError(result, "email", ErrorCodes.Required);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "email", ErrorCodes.InvalidFormat);
+        assertThatIsFalseWithError(result, "email", ErrorCodes.InvalidFormat);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "email", ErrorCodes.InvalidLength);
+        assertThatIsFalseWithError(result, "email", ErrorCodes.InvalidLength);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "password", ErrorCodes.Required);
+        assertThatIsFalseWithError(result, "password", ErrorCodes.Required);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "password", ErrorCodes.Required);
+        assertThatIsFalseWithError(result, "password", ErrorCodes.Required);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "password", ErrorCodes.Required);
+        assertThatIsFalseWithError(result, "password", ErrorCodes.Required);
     }
 
     @Test
@@ -95,10 +95,10 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThatIsFalse(result, "password", ErrorCodes.InvalidLength);
+        assertThatIsFalseWithError(result, "password", ErrorCodes.InvalidLength);
     }
 
-    private void assertThatIsFalse(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
+    private void assertThatIsFalseWithError(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
         assertThat(result.isOk()).isFalse();
         assertThat(result.errors().get(0).fieldId).isEqualTo(fieldId);
         assertThat(result.errors().get(0).errorCode).isEqualTo(errorCode);
