@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 public class UserSignUpService implements IUserSignUpService {
-    public static final Integer MaximumNumberOfCharactersForEmail = 255;
+    public static final Integer MaximumNumberOfCharacters = 255;
 
     @Override
     public ServiceExecutionResult signUp(UserSigningUpArgs args){
@@ -17,7 +17,7 @@ public class UserSignUpService implements IUserSignUpService {
             return ServiceExecutionResult.of(
                 List.of(new Error("email", ErrorCodes.Required)));
         }
-        if(args.email.length() > MaximumNumberOfCharactersForEmail){
+        if(args.email.length() > MaximumNumberOfCharacters){
             return ServiceExecutionResult.of(
                     List.of(new Error("email", ErrorCodes.InvalidLength)));
         }
@@ -29,7 +29,10 @@ public class UserSignUpService implements IUserSignUpService {
             return ServiceExecutionResult.of(
                     List.of(new Error("password", ErrorCodes.Required)));
         }
-
+        if(args.password.length() > MaximumNumberOfCharacters){
+            return ServiceExecutionResult.of(
+                    List.of(new Error("password", ErrorCodes.InvalidLength)));
+        }
         throw new RuntimeException();
     }
 

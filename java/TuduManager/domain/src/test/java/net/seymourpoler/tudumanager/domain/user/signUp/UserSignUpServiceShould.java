@@ -53,7 +53,7 @@ public class UserSignUpServiceShould {
 
     @Test
     public void return_error_when_email_is_longer_than_maximum_number_of_characters(){
-        final String email = StringGenerator.generate(service.MaximumNumberOfCharactersForEmail + 1);
+        final String email = StringGenerator.generate(service.MaximumNumberOfCharacters + 1);
         var signUpArgs = new UserSigningUpArgs(email, "password");
 
         var result = service.signUp(signUpArgs);
@@ -87,7 +87,17 @@ public class UserSignUpServiceShould {
 
         assertThatIsFalse(result, "password", ErrorCodes.Required);
     }
-    
+
+    @Test
+    public void return_error_when_password_is_longer_than_maximum_number_of_characters(){
+        final String password = StringGenerator.generate(service.MaximumNumberOfCharacters + 1);
+        var signUpArgs = new UserSigningUpArgs("e@mail.com", password);
+
+        var result = service.signUp(signUpArgs);
+
+        assertThatIsFalse(result, "password", ErrorCodes.InvalidLength);
+    }
+
     private void assertThatIsFalse(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
         assertThat(result.isOk()).isFalse();
         assertThat(result.errors().get(0).fieldId).isEqualTo(fieldId);
