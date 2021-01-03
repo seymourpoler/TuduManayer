@@ -69,6 +69,15 @@ public class UserSignUpServiceShould {
 
         assertThatIsFalse(result, "password", ErrorCodes.Required);
     }
+
+    @Test
+    public void return_error_when_password_is_empty(){
+        var signUpArgs = new UserSigningUpArgs("e@mail.com", "");
+
+        var result = service.signUp(signUpArgs);
+
+        assertThatIsFalse(result, "password", ErrorCodes.Required);
+    }
     
     private void assertThatIsFalse(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
         assertThat(result.isOk()).isFalse();
