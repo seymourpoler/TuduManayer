@@ -1,6 +1,7 @@
 package net.seymourpoler.tudumanager.domain.user.signUp;
 
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
+import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
 import net.seymourpoler.tudumanager.domain.StringGenerator;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +22,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThat(result.isOk()).isFalse();
-        assertThat(result.errors().get(0).fieldId).isEqualTo("email");
-        assertThat(result.errors().get(0).errorCode).isEqualTo(ErrorCodes.Required);
+        assertThatIsFalse(result, "email", ErrorCodes.Required);
     }
 
     @Test
@@ -31,10 +30,7 @@ public class UserSignUpServiceShould {
         var signUpArgs = new UserSigningUpArgs("", "password");
 
         var result = service.signUp(signUpArgs);
-
-        assertThat(result.isOk()).isFalse();
-        assertThat(result.errors().get(0).fieldId).isEqualTo("email");
-        assertThat(result.errors().get(0).errorCode).isEqualTo(ErrorCodes.Required);
+        assertThatIsFalse(result, "email", ErrorCodes.Required);
     }
 
     @Test
@@ -43,9 +39,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThat(result.isOk()).isFalse();
-        assertThat(result.errors().get(0).fieldId).isEqualTo("email");
-        assertThat(result.errors().get(0).errorCode).isEqualTo(ErrorCodes.Required);
+        assertThatIsFalse(result, "email", ErrorCodes.Required);
     }
 
     @Test
@@ -54,9 +48,7 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThat(result.isOk()).isFalse();
-        assertThat(result.errors().get(0).fieldId).isEqualTo("email");
-        assertThat(result.errors().get(0).errorCode).isEqualTo(ErrorCodes.InvalidFormat);
+        assertThatIsFalse(result, "email", ErrorCodes.InvalidFormat);
     }
 
     @Test
@@ -66,10 +58,14 @@ public class UserSignUpServiceShould {
 
         var result = service.signUp(signUpArgs);
 
-        assertThat(result.isOk()).isFalse();
-        assertThat(result.errors().get(0).fieldId).isEqualTo("email");
-        assertThat(result.errors().get(0).errorCode).isEqualTo(ErrorCodes.InvalidLength);
+        assertThatIsFalse(result, "email", ErrorCodes.InvalidLength);
     }
 
+
+    private void assertThatIsFalse(ServiceExecutionResult result, String fieldlId, ErrorCodes errorCode){
+        assertThat(result.isOk()).isFalse();
+        assertThat(result.errors().get(0).fieldId).isEqualTo(fieldlId);
+        assertThat(result.errors().get(0).errorCode).isEqualTo(errorCode);
+    }
 
 }
