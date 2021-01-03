@@ -3,14 +3,20 @@ package net.seymourpoler.tudumanager.domain.user.signUp;
 import net.seymourpoler.tudumanager.domain.Error;
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
+import net.seymourpoler.tudumanager.domain.user.signUp.Models.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class UserSignUpService implements IUserSignUpService {
     public static final Integer MaximumNumberOfCharacters = 255;
+
+    private final ISaveUserRepository repository;
+
+    public UserSignUpService(ISaveUserRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public ServiceExecutionResult signUp(UserSigningUpArgs args){
@@ -31,7 +37,9 @@ public class UserSignUpService implements IUserSignUpService {
             errors.add(new Error("password", ErrorCodes.InvalidLength));
         }
         if(errors.isEmpty()){
-            throw new RuntimeException();
+            var user = new User(args.email, args.password);
+            repository.save(user);
+            return ServiceExecutionResult.ok();
         }
         return ServiceExecutionResult.of(errors);
     }

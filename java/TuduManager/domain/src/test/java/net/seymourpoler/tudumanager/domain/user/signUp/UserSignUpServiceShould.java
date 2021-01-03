@@ -3,17 +3,23 @@ package net.seymourpoler.tudumanager.domain.user.signUp;
 import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
 import net.seymourpoler.tudumanager.domain.StringGenerator;
+import net.seymourpoler.tudumanager.domain.user.signUp.Models.User;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class UserSignUpServiceShould {
     UserSignUpService service;
+    ISaveUserRepository repository;
 
     @Before
     public void setUp(){
-        service = new UserSignUpService();
+        repository = mock(ISaveUserRepository.class);
+        service = new UserSignUpService(repository);
     }
 
     @Test
@@ -108,6 +114,19 @@ public class UserSignUpServiceShould {
         assertThat(result.errors().size()).isEqualTo(2);
         assertThat(result.errors().get(0).fieldId).isEqualTo("email");
         assertThat(result.errors().get(1).errorCode).isEqualTo(ErrorCodes.Required);
+    }
+
+    @Test
+    public void sign_up_user(){
+        var captor = ArgumentCaptor.forClass(User.class);
+        final String email = "e@mail.com";
+        var signUpArgs = new UserSigningUpArgs(email, "password");
+
+        var result = service.signUp(signUpArgs);
+
+        verify(repository).save(captor.capture());
+        assertThat(captor.getValue().email).isEqualTo(email);
+        assertThat(result.isOk()).isTrue();
     }
 
     private void assertThatIsFalseWithError(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
