@@ -98,6 +98,18 @@ public class UserSignUpServiceShould {
         assertThatIsFalseWithError(result, "password", ErrorCodes.InvalidLength);
     }
 
+    @Test
+    public void return_errors_when_there_are_some_errors(){
+        var signUpArgs = new UserSigningUpArgs(null, null);
+
+        var result = service.signUp(signUpArgs);
+
+        assertThat(result.isOk()).isFalse();
+        assertThat(result.errors().size()).isEqualTo(2);
+        assertThat(result.errors().get(0).fieldId).isEqualTo("email");
+        assertThat(result.errors().get(1).errorCode).isEqualTo(ErrorCodes.Required);
+    }
+
     private void assertThatIsFalseWithError(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
         assertThat(result.isOk()).isFalse();
         assertThat(result.errors().get(0).fieldId).isEqualTo(fieldId);

@@ -5,6 +5,7 @@ import net.seymourpoler.tudumanager.domain.ErrorCodes;
 import net.seymourpoler.tudumanager.domain.ServiceExecutionResult;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -13,27 +14,26 @@ public class UserSignUpService implements IUserSignUpService {
 
     @Override
     public ServiceExecutionResult signUp(UserSigningUpArgs args){
+        var errors = new ArrayList<Error>();
         if(args.email == null || args.email == "" || args.email.trim().isEmpty()){
-            return ServiceExecutionResult.of(
-                List.of(new Error("email", ErrorCodes.Required)));
+            errors.add(new Error("email", ErrorCodes.Required));
         }
-        if(args.email.length() > MaximumNumberOfCharacters){
-            return ServiceExecutionResult.of(
-                    List.of(new Error("email", ErrorCodes.InvalidLength)));
+        else if(args.email.length() > MaximumNumberOfCharacters){
+            errors.add(new Error("email", ErrorCodes.InvalidLength));
         }
-        if(isNotValidFormat(args.email)){
-            return ServiceExecutionResult.of(
-                    List.of(new Error("email", ErrorCodes.InvalidFormat)));
+        else if(isNotValidFormat(args.email)){
+            errors.add(new Error("email", ErrorCodes.InvalidFormat));
         }
         if(args.password == null || args.password == "" || args.password.trim().isEmpty()){
-            return ServiceExecutionResult.of(
-                    List.of(new Error("password", ErrorCodes.Required)));
+            errors.add(new Error("password", ErrorCodes.Required));
         }
-        if(args.password.length() > MaximumNumberOfCharacters){
-            return ServiceExecutionResult.of(
-                    List.of(new Error("password", ErrorCodes.InvalidLength)));
+        else if(args.password.length() > MaximumNumberOfCharacters){
+            errors.add(new Error("password", ErrorCodes.InvalidLength));
         }
-        throw new RuntimeException();
+        if(errors.isEmpty()){
+            throw new RuntimeException();
+        }
+        return ServiceExecutionResult.of(errors);
     }
 
     private Boolean isNotValidFormat(String email){
