@@ -203,4 +203,32 @@ $RECYCLE.BIN/
 
 /dotnet/react.mvc-core.postgres.dapper/TuduManager/TuduManager.sln.DotSettings.user
 
+\java\TuduManager\.idea\
+/java/TuduManager/.idea/
 
+\java\TuduManager\TuduManager.iml
+/java/TuduManager/TuduManager.iml
+
+\java\TuduManager\web.react\node_modules\
+/java/TuduManager/web.react/node_modules/
+
+/java/TuduManager/web.react/web.react.iml
+\java\TuduManager\web.react\web.react.iml
+
+/java/TuduManager/web.api.spring.boot/targer/
+\java\TuduManager\web.api.spring.boot\targer\
+
+\java\TuduManager\web.api.spring.boot\web.api.spring.boot.iml
+/java/TuduManager/web.api.spring.boot/web.api.spring.boot.iml
+
+/java/TuduManager/domain/targer/
+\java\TuduManager\domain\targer\
+
+\java\TuduManager\domain\domain.iml
+/java/TuduManager/domain/domain.iml
+
+/java/TuduManager/repository.postgres.sql2o/targer/
+\java\TuduManager\repository.postgres.sql2o\targer\
+
+\java\TuduManager\repository.postgres.sql2o\repository.postgres.sql2o.iml
+/java/TuduManager/repository.postgres.sql2o/repository.postgres.sql2o.iml

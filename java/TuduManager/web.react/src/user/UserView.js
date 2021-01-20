@@ -14,8 +14,6 @@ export class UserView extends React.Component  {
 
     presenter = createUserPresenter(this);
 
-    
-
     componentDidMount = async () => {
         const users = await this.presenter.find();
         this.setState({ users });
