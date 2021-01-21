@@ -15,7 +15,7 @@ namespace TuduManayer.web.api.Test.User
                 .ShouldMap(request => request
                     .WithMethod(HttpMethod.Post)
                     .WithLocation("/api/users"))
-                .To<SignUpUserController>(x => 
+                .To<SignUpUserController>(x =>
                     x.SignUp(It.IsAny<SignUpUserRequest>()));
         }
     }
