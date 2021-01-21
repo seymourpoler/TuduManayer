@@ -1,9 +1,11 @@
+using Moq;
 using MyTested.AspNetCore.Mvc;
 using TuduManayer.web.api.Todo.Create;
 using TuduManayer.web.api.Todo.Delete;
 using TuduManayer.web.api.Todo.FindByTodoId;
 using TuduManayer.web.api.Todo.Search;
 using TuduManayer.web.api.Todo.Update;
+using TuduManayer.web.api.User.SignUp;
 using Xunit;
 
 namespace TuduManayer.web.api.Test.Todo
@@ -66,6 +68,18 @@ namespace TuduManayer.web.api.Test.Todo
                     .WithMethod(HttpMethod.Get)
                     .WithLocation("/api/todos/1"))
                 .To<FindByTodoIdController>(x => x.Find(1));
+        }
+
+        [Fact]
+        public void MapToSignUpUser()
+        {
+            MyMvc
+                .Routing()
+                .ShouldMap(request => request
+                    .WithMethod(HttpMethod.Post)
+                    .WithLocation("/api/users"))
+                .To<SignUpUserController>(x => 
+                    x.SignUp(It.IsAny<SignUpUserRequest>()));
         }
     }
 }
