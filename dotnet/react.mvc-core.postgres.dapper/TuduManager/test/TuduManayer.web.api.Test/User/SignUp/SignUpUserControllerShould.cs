@@ -43,7 +43,6 @@ namespace TuduManayer.web.api.Test.User.SignUp
             service.Setup(x => x.SignUp(It.Is<SignUpUserArgs>(y => y.Email == email)))
                 .Returns(ServiceExecutionResult.WithSucess());
             var request = new SignUpUserRequest {Email = email, Password = "password"};
-
             var response = controller.SignUp(request) as OkResult;
             
             response.StatusCode.ShouldBe((int)HttpStatusCode.OK);
