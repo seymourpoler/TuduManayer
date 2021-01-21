@@ -28,5 +28,20 @@ namespace TuduManayer.web.api.Test.User.SignUp
             ((IReadOnlyList<Error>)response.Value)[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Password));
             ((IReadOnlyList<Error>)response.Value)[0].ErrorCode.ShouldBe(ErrorCodes.Required);
         }
+
+        [Fact]
+        public void return_ok_when_is_signed_up()
+        {
+            const string email = "a@mail.com";
+            var service = new Mock<ISignUpUserService>();
+            service.Setup(x => x.SignUp(It.Is<SignUpUserArgs>(y => y.Email == email)))
+                .Returns(ServiceExecutionResult.WithSucess());
+            var request = new SignUpUserRequest {Email = email, Password = "password"};
+            var controller = new SignUpUserController(service.Object);
+
+            var response = controller.SignUp(request) as OkResult;
+            
+            response.StatusCode.ShouldBe((int)HttpStatusCode.OK);
+        }
     }
 }

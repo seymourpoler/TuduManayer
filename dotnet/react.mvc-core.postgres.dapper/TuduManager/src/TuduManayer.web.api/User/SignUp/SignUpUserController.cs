@@ -19,7 +19,7 @@ namespace TuduManayer.web.api.User.SignUp
             var executionResult = signUpUserService.SignUp(new SignUpUserArgs(request.Email, request.Password));
             if(executionResult.IsOk)
             {
-                throw new NotImplementedException();
+                return Ok();
             }
 
             return BadRequest(executionResult.Errors);
