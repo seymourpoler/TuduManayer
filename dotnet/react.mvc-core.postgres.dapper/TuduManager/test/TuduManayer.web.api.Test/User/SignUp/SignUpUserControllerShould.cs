@@ -12,15 +12,22 @@ namespace TuduManayer.web.api.Test.User.SignUp
 {
     public class SignUpUserControllerShould
     {
+        private Mock<ISignUpUserService> service;
+        private SignUpUserController controller;
+        
+        public SignUpUserControllerShould()
+        {
+             service = new Mock<ISignUpUserService>();
+             controller = new SignUpUserController(service.Object);
+        }
+
         [Fact]
         public void return_bad_request_when_there_is_an_error()
         {
             const string email = "a@mail.com";
-            var service = new Mock<ISignUpUserService>();
             service.Setup(x => x.SignUp(It.Is<SignUpUserArgs>(y => y.Email == email)))
                 .Returns(ServiceExecutionResult.WithErrors(new List<Error>{Error.With(nameof(SignUpUserArgs.Password), ErrorCodes.Required)}));
             var request = new SignUpUserRequest {Email = email};
-            var controller = new SignUpUserController(service.Object);
 
             var response = controller.SignUp(request) as BadRequestObjectResult;
             
@@ -33,11 +40,9 @@ namespace TuduManayer.web.api.Test.User.SignUp
         public void return_ok_when_is_signed_up()
         {
             const string email = "a@mail.com";
-            var service = new Mock<ISignUpUserService>();
             service.Setup(x => x.SignUp(It.Is<SignUpUserArgs>(y => y.Email == email)))
                 .Returns(ServiceExecutionResult.WithSucess());
             var request = new SignUpUserRequest {Email = email, Password = "password"};
-            var controller = new SignUpUserController(service.Object);
 
             var response = controller.SignUp(request) as OkResult;
             
