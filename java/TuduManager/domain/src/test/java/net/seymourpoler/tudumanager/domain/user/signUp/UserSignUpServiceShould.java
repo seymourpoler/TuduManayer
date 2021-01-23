@@ -104,6 +104,12 @@ public class UserSignUpServiceShould {
         assertThatIsFalseWithError(result, "password", ErrorCodes.InvalidLength);
     }
 
+    private void assertThatIsFalseWithError(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
+        assertThat(result.isOk()).isFalse();
+        assertThat(result.errors().get(0).fieldId).isEqualTo(fieldId);
+        assertThat(result.errors().get(0).errorCode).isEqualTo(errorCode);
+    }
+
     @Test
     public void return_errors_when_there_are_some_errors(){
         var signUpArgs = new UserSigningUpArgs(null, null);
@@ -127,11 +133,5 @@ public class UserSignUpServiceShould {
         verify(repository).save(captor.capture());
         assertThat(captor.getValue().email).isEqualTo(email);
         assertThat(result.isOk()).isTrue();
-    }
-
-    private void assertThatIsFalseWithError(ServiceExecutionResult result, String fieldId, ErrorCodes errorCode){
-        assertThat(result.isOk()).isFalse();
-        assertThat(result.errors().get(0).fieldId).isEqualTo(fieldId);
-        assertThat(result.errors().get(0).errorCode).isEqualTo(errorCode);
     }
 }
