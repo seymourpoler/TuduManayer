@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TuduManayer.Domain.User.SignUp;
 
 namespace TuduManayer.web.api.User.SignUp
 {
-    public partial class SignUpUserController : Controller
+    public class SignUpUserController : Controller
     {
         private readonly ISignUpUserService signUpUserService;
 
