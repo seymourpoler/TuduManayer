@@ -20,7 +20,7 @@ describe('SignUp Presenter', function (){
     
     describe('when signing up is requested', function(){
         it('shows an error if there is an internal server error', function(){
-            http.post = () => {httpStatusCode: HttpStatusCode.internalServerError};
+            http.post = () => { httpStatusCode: HttpStatusCode.internalServerError };
             const request = {};
             
             presenter.signUp(request);
