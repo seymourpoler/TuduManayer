@@ -93,7 +93,7 @@ describe('EditTodoPresenter', () => {
             http.put = () => {
                 return { statusCode: HttpStatusCode.internalServerError };
             }
-            await presenter.update();
+            await presenter.update({id: '2'});
 
             expect(view.hideSpinner).toHaveBeenCalled();
         });
@@ -121,7 +121,7 @@ describe('EditTodoPresenter', () => {
             expect(view.showErrors).toHaveBeenCalledWith(errors);
         });
 
-        it('shows updated todo message', async() => {
+        it('shows updated todo message', async () => {
             http.put = () => {
                 return { statusCode: HttpStatusCode.ok };
             }
