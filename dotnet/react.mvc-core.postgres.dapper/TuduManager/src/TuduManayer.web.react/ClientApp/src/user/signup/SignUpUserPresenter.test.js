@@ -3,7 +3,7 @@ import { createSignUpUserView } from './SignUpUserView';
 import { spyAllMethodsOf } from '../../Testing';
 import { createSignUpUserService } from './SignUpUserService';
 import { createHttp } from "../../Http";
-import {HttpStatusCode} from "../../HttpStatusCode";
+import { HttpStatusCode } from "../../HttpStatusCode";
 
 describe('SignUp Presenter', function (){
     let view, presenter, service, http;
@@ -15,7 +15,7 @@ describe('SignUp Presenter', function (){
         spyAllMethodsOf(http);
         service = createSignUpUserService(http);
         spyAllMethodsOf(service);
-        presenter = new SignUpUserPresenter(view, service);        
+        presenter = new SignUpUserPresenter(view, service);
     });
     
     describe('when signing up is requested', function(){
