@@ -36,6 +36,7 @@ public class UserSignUpServiceShould {
         var signUpArgs = new UserSigningUpArgs("", "password");
 
         var result = service.signUp(signUpArgs);
+
         assertThatIsFalseWithError(result, "email", ErrorCodes.Required);
     }
 

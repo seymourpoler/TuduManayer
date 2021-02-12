@@ -21,9 +21,9 @@ public class SaveTodoRepository implements ISaveTodoRepository {
         var dbModel = buildFrom(todo);
         try (var connection = dataBaseConnectionFactory.create()) {
             connection
-                    .createQuery(sql)
-                    .bind(dbModel)
-                    .executeUpdate();
+                .createQuery(sql)
+                .bind(dbModel)
+                .executeUpdate();
         }
     }
 
