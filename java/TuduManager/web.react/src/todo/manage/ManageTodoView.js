@@ -34,8 +34,7 @@ export class ManageTodoView extends React.Component {
     }
 
     render(){
-        return (
-                <div>
+        return (<div>
                     <Spinner show={this.state.showSpinner}/>
                     <button onClick={this.onNewTodoClickedHandler}> new </button>
                     <input type='text' onChange={this.onSearchTextChangedHandler}/><button onClick={this.onSearchClickedHandler}> search </button>

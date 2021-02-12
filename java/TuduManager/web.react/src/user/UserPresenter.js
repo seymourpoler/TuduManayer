@@ -1,4 +1,5 @@
 import {createUserService} from './UserService';
+import {HttpStatusCode} from "../HttpStatusCode";
 
 export class UserPresenter{
 
@@ -12,7 +13,7 @@ export class UserPresenter{
         this.view.cleanErrors();
         const result = this.service.find();
         this.view.hideSpinner();
-        if(result.statusCode === 500){
+        if(result.statusCode === HttpStatusCode.internalServerError){
             this.view.showInternalServerError();
             return;
         }

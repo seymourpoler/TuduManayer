@@ -83,11 +83,11 @@ export class UserSignUpView extends React.Component {
     }
 
     onCancelClickedHandler = (event) => {
-        throw 'not implemented';
+        this.props.history.push('/');
     }
 
     showUserSignedUp = () => {
-        throw 'not implemented';
+        this.setState({message: 'user signed up.'});
     }
 }
 
