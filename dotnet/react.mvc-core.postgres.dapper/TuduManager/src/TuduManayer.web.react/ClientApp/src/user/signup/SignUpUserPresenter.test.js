@@ -1,9 +1,9 @@
-﻿import { SignUpUserPresenter } from './SignUpUserPresenter';
-import { createSignUpUserView } from './SignUpUserView';
+﻿import { createSignUpUserView } from './SignUpUserView';
 import { spyAllMethodsOf } from '../../Testing';
-import { createSignUpUserService } from './SignUpUserService';
+import {createSignUpUserService, SignUpUserService} from './SignUpUserService';
 import { createHttp } from "../../Http";
 import { HttpStatusCode } from "../../HttpStatusCode";
+import { SignUpUserPresenter } from "./SignUpUserPresenter";
 
 describe('SignUp Presenter', function (){
     let view, presenter, service, http;
@@ -13,17 +13,16 @@ describe('SignUp Presenter', function (){
         spyAllMethodsOf(view);
         http = createHttp();
         spyAllMethodsOf(http);
-        service = createSignUpUserService(http);
-        spyAllMethodsOf(service);
+        service = new SignUpUserService(http);
         presenter = new SignUpUserPresenter(view, service);
     });
     
     describe('when signing up is requested', function(){
-        it('shows an error if there is an internal server error', function(){
-            http.post = () => { httpStatusCode: HttpStatusCode.internalServerError };
+        it('shows an error if there is an internal server error', async function(){
+            http.post = () => {return { statusCode: HttpStatusCode.internalServerError }};
             const request = {};
             
-            presenter.signUp(request);
+            await presenter.signUp(request);
             
             expect(view.showInternalServerError).toHaveBeenCalled();
         });
