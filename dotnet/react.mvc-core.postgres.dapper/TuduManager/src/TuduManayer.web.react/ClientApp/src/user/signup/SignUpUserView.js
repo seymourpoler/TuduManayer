@@ -42,6 +42,8 @@ export class SignUpUserView extends React.Component {
         this.setState({errorMessage: 'There is an internal server error.'})
     }
 
+    showErrors = (errors) => {throw 'not implemented';}
+
     onSignUpClickedHandler = (event) => {
         this.presenter.signUp({
             email: this.state.email,

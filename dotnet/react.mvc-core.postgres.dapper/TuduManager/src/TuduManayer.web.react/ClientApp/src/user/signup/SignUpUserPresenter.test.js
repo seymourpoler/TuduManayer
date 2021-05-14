@@ -26,5 +26,14 @@ describe('SignUp Presenter', function (){
             
             expect(view.showInternalServerError).toHaveBeenCalled();
         });
+        it('shows an error if there is an error', async function(){
+            const errors = [];
+            http.post = () => {return { statusCode: HttpStatusCode.badRequest, body: errors }};
+            const request = {};
+
+            await presenter.signUp(request);
+
+            expect(view.showErrors).toHaveBeenCalledWith(errors);
+        });
     });
 });
