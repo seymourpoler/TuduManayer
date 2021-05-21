@@ -1,6 +1,6 @@
 ﻿import React from "react";
-import { createEditTodoPresenter } from "../../todo/edit/EditTodoPresenter";
 import {Spinner} from "../../Spinner";
+import {createSignUpUserPresenter} from "./SignUpUserPresenter";
 
 export class SignUpUserView extends React.Component {
     constructor(props){
@@ -15,7 +15,7 @@ export class SignUpUserView extends React.Component {
         }
     }
 
-    presenter = createEditTodoPresenter(this);
+    presenter = createSignUpUserPresenter(this);
 
     render(){
         return (<div>
@@ -43,6 +43,8 @@ export class SignUpUserView extends React.Component {
     }
 
     showErrors = (errors) => {throw 'not implemented';}
+
+    showMessageUserIsSignedUp = ()=> { throw 'not implemented';}
 
     onSignUpClickedHandler = (event) => {
         this.presenter.signUp({

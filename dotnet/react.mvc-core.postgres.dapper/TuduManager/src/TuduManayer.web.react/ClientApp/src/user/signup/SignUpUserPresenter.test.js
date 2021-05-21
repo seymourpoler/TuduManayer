@@ -35,5 +35,13 @@ describe('SignUp Presenter', function (){
 
             expect(view.showErrors).toHaveBeenCalledWith(errors);
         });
+        it('shows message if user is signed up', async function(){
+            http.post = () => {return { statusCode: HttpStatusCode.ok }};
+            const request = {};
+
+            await presenter.signUp(request);
+
+            expect(view.showMessageUserIsSignedUp).toHaveBeenCalled();
+        });
     });
 });

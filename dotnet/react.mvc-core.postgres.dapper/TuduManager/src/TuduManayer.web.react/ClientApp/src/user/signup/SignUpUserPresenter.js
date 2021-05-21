@@ -1,4 +1,5 @@
 ﻿import { HttpStatusCode } from "../../HttpStatusCode";
+import {createSignUpUserService} from "./SignUpUserService";
 
 export function SignUpUserPresenter(view, service){
     let self = this;
@@ -6,13 +7,19 @@ export function SignUpUserPresenter(view, service){
     self.signUp = async function(signUpUserRequest){
         const response = await service.signUp(signUpUserRequest);
         if(response.statusCode === HttpStatusCode.internalServerError){
-            view.showInternalServerError();
-            return;
+            return view.showInternalServerError();
         }
         if(response.statusCode === HttpStatusCode.badRequest){
-            view.showErrors(response.errors);
-            return;
+            return view.showErrors(response.errors);
         }
-        throw 'not implemented';
+        if(response.statusCode === HttpStatusCode.ok){
+            return view.showMessageUserIsSignedUp();
+            
+        }
     }
+}
+
+export function createSignUpUserPresenter(view){
+    const service = createSignUpUserService();
+    return new SignUpUserPresenter(view, service);
 }
