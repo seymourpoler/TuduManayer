@@ -11,6 +11,11 @@ namespace TuduManayer.Domain.User.SignUp
                 return ServiceExecutionResult.WithErrors(
                     new List<Error> { Error.With(nameof(args.Email), ErrorCodes.Required)});
             }
+            if (string.IsNullOrEmpty(args.Password))
+            {
+                return ServiceExecutionResult.WithErrors(
+                    new List<Error> { Error.With(nameof(args.Password), ErrorCodes.Required)});
+            }
             throw new System.NotImplementedException();
         }
     }
