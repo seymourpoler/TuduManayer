@@ -37,6 +37,19 @@ namespace TuduManayer.Domain.Test.User.SignUp
             result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.Required);
         }
         
+        
+        [Fact]
+        public void should_return_error_when_email_is_not_valid()
+        {
+            var args = new SignUpUserArgs("invalid-email", "password");
+            
+            var result = service.SignUp(args);
+            
+            result.IsOk.ShouldBeFalse();
+            result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Email));
+            result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.InvalidFormat);
+        }
+        
         [Fact]
         public void should_return_error_when_password_is_empty()
         {

@@ -4,6 +4,7 @@ namespace TuduManayer.Domain
     {
         Required, 
         NotFound,
-        InvalidLength
+        InvalidLength,
+        InvalidFormat
     }
 }
