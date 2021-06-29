@@ -37,7 +37,6 @@ namespace TuduManayer.Domain.Test.User.SignUp
             result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.Required);
         }
         
-        
         [Fact]
         public void should_return_error_when_email_is_not_valid()
         {
@@ -48,6 +47,20 @@ namespace TuduManayer.Domain.Test.User.SignUp
             result.IsOk.ShouldBeFalse();
             result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Email));
             result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.InvalidFormat);
+        }
+        
+        [Fact]
+        public void should_return_error_when_email_has_more_than_maximum_characters()
+        {
+            var  moreThanMaximumNumberOfCharacters = SignUpUserService.MaximumNumberOfCharacters + 1;
+            var email = StringGenerator.Generate(moreThanMaximumNumberOfCharacters);
+            var args = new SignUpUserArgs(email, "password");
+            
+            var result = service.SignUp(args);
+            
+            result.IsOk.ShouldBeFalse();
+            result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Email));
+            result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
         }
         
         [Fact]
