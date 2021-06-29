@@ -100,5 +100,19 @@ namespace TuduManayer.Domain.Test.User.SignUp
             result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Password));
             result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
         }
+        
+        [Fact]
+        public void should_return_errors_when_both_are_null()
+        {
+            var args = new SignUpUserArgs(null, null);
+            
+            var result = service.SignUp(args);
+            
+            result.IsOk.ShouldBeFalse();
+            result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Email));
+            result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.Required);
+            result.Errors[1].FieldId.ShouldBe(nameof(SignUpUserArgs.Password));
+            result.Errors[1].ErrorCode.ShouldBe(ErrorCodes.Required);
+        }
     }
 }

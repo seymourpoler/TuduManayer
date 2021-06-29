@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TuduManayer.Domain.User.SignUp
@@ -9,40 +10,39 @@ namespace TuduManayer.Domain.User.SignUp
         
         public ServiceExecutionResult SignUp(SignUpUserArgs args)
         {
+            var errors = new List<Error>();
             if (string.IsNullOrEmpty(args.Email))
             {
-                return ServiceExecutionResult.WithErrors(
-                    new List<Error> { Error.With(nameof(args.Email), ErrorCodes.Required)});
+                errors.Add(Error.With(nameof(args.Email), ErrorCodes.Required));
             }
             else if (args.Email.Length > MaximumNumberOfCharacters)
             {
-                return ServiceExecutionResult.WithErrors(
-                    new List<Error> { Error.With(nameof(args.Email), ErrorCodes.InvalidLength)});
+                errors.Add(Error.With(nameof(args.Email), ErrorCodes.InvalidLength));
             }
-            
-            if (IsNotValidEmail(args.Email))
+            else if (IsNotValidEmail(args.Email))
             {
-                return ServiceExecutionResult.WithErrors(
-                    new List<Error> { Error.With(nameof(args.Email), ErrorCodes.InvalidFormat)});
+                errors.Add(Error.With(nameof(args.Email), ErrorCodes.InvalidFormat));
             }
-            
-            
-            
             if (string.IsNullOrEmpty(args.Password))
             {
-                return ServiceExecutionResult.WithErrors(
-                    new List<Error> { Error.With(nameof(args.Password), ErrorCodes.Required)});
+                errors.Add(Error.With(nameof(args.Password), ErrorCodes.Required));
             }
             else if (args.Password.Length > MaximumNumberOfCharacters)
             {
-                return ServiceExecutionResult.WithErrors(
-                    new List<Error> { Error.With(nameof(args.Password), ErrorCodes.InvalidLength)});
+                errors.Add( Error.With(nameof(args.Password), ErrorCodes.InvalidLength));
+            }
+
+            if (errors.Any())
+            {
+                return ServiceExecutionResult.WithErrors(errors);
             }
             throw new System.NotImplementedException();
         }
-        
-        public static bool IsNotValidEmail( string email)
+
+        private static bool IsNotValidEmail(string email)
         {
+            if (string.IsNullOrWhiteSpace(email)) return true;
+            
             var pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";    
             var regex = new Regex(pattern, RegexOptions.IgnoreCase);    
             return !regex.IsMatch(email);
