@@ -86,5 +86,19 @@ namespace TuduManayer.Domain.Test.User.SignUp
             result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Password));
             result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.Required);
         }
+        
+        [Fact]
+        public void should_return_error_when_password_has_more_than_maximum_characters()
+        {
+            var  moreThanMaximumNumberOfCharacters = SignUpUserService.MaximumNumberOfCharacters + 1;
+            var veryLongPassword = StringGenerator.Generate(moreThanMaximumNumberOfCharacters);
+            var args = new SignUpUserArgs("a@ema.il", veryLongPassword);
+            
+            var result = service.SignUp(args);
+            
+            result.IsOk.ShouldBeFalse();
+            result.Errors[0].FieldId.ShouldBe(nameof(SignUpUserArgs.Password));
+            result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.InvalidLength);
+        }
     }
 }

@@ -33,6 +33,11 @@ namespace TuduManayer.Domain.User.SignUp
                 return ServiceExecutionResult.WithErrors(
                     new List<Error> { Error.With(nameof(args.Password), ErrorCodes.Required)});
             }
+            else if (args.Password.Length > MaximumNumberOfCharacters)
+            {
+                return ServiceExecutionResult.WithErrors(
+                    new List<Error> { Error.With(nameof(args.Password), ErrorCodes.InvalidLength)});
+            }
             throw new System.NotImplementedException();
         }
         
