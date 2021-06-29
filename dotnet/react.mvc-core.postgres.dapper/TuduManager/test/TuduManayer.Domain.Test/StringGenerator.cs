@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace TuduManayer.Domain.Test.Todo.Create
+namespace TuduManayer.Domain.Test
 {
     public static class StringGenerator
     {
