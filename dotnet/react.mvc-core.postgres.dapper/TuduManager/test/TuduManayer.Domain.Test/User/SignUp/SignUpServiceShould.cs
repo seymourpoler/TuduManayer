@@ -11,7 +11,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
 
         public SignUpServiceShould()
         {
-            service = new SignUpUserService();
+            service = new SignUpUserService(new Validator());
         }
 
         [Fact]

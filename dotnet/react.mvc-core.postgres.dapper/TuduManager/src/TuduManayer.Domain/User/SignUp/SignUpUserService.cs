@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TuduManayer.Domain.User.SignUp
@@ -7,30 +6,16 @@ namespace TuduManayer.Domain.User.SignUp
     public class SignUpUserService : ISignUpUserService
     {
         public static readonly int MaximumNumberOfCharacters = 255;
-        
+        private readonly Validator validator;
+
+        public SignUpUserService(Validator validator)
+        {
+            this.validator = validator;
+        }
+
         public ServiceExecutionResult SignUp(SignUpUserArgs args)
         {
-            var errors = new List<Error>();
-            if (string.IsNullOrEmpty(args.Email))
-            {
-                errors.Add(Error.With(nameof(args.Email), ErrorCodes.Required));
-            }
-            else if (args.Email.Length > MaximumNumberOfCharacters)
-            {
-                errors.Add(Error.With(nameof(args.Email), ErrorCodes.InvalidLength));
-            }
-            else if (IsNotValidEmail(args.Email))
-            {
-                errors.Add(Error.With(nameof(args.Email), ErrorCodes.InvalidFormat));
-            }
-            if (string.IsNullOrEmpty(args.Password))
-            {
-                errors.Add(Error.With(nameof(args.Password), ErrorCodes.Required));
-            }
-            else if (args.Password.Length > MaximumNumberOfCharacters)
-            {
-                errors.Add( Error.With(nameof(args.Password), ErrorCodes.InvalidLength));
-            }
+            var errors = validator.Validate(args);
 
             if (errors.Any())
             {
