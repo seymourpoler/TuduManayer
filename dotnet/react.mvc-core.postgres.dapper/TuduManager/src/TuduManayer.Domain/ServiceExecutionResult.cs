@@ -5,6 +5,10 @@ namespace TuduManayer.Domain
 {
     public class ServiceExecutionResult
     {
+        public bool IsOk => !errors.Any();
+        
+        public IReadOnlyList<Error> Errors => errors.AsReadOnly();
+        
         private List<Error> errors;
 
         private ServiceExecutionResult()
@@ -16,9 +20,6 @@ namespace TuduManayer.Domain
         {
             this.errors = errors;
         }
-
-        public bool IsOk => !errors.Any();
-        public IReadOnlyList<Error> Errors => errors.AsReadOnly();
 
         public static ServiceExecutionResult WithErrors(List<Error> errors)
         {

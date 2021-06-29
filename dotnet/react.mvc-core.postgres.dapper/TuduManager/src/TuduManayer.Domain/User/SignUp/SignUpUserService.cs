@@ -36,7 +36,7 @@ namespace TuduManayer.Domain.User.SignUp
             {
                 return ServiceExecutionResult.WithErrors(errors);
             }
-            throw new System.NotImplementedException();
+            return ServiceExecutionResult.WithSucess();
         }
 
         private static bool IsNotValidEmail(string email)

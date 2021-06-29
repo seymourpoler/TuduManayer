@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using Castle.Core.Internal;
+using Shouldly;
 using TuduManayer.Domain.User.SignUp;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
 
         [Fact]
-        public void should_return_error_when_email_is_empty()
+        public void return_error_when_email_is_empty()
         {
             var args = new SignUpUserArgs(string.Empty, "password");
             
@@ -26,7 +27,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_error_when_email_is_null()
+        public void return_error_when_email_is_null()
         {
             var args = new SignUpUserArgs(null, "password");
             
@@ -38,7 +39,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_error_when_email_is_not_valid()
+        public void return_error_when_email_is_not_valid()
         {
             var args = new SignUpUserArgs("invalid-email", "password");
             
@@ -50,7 +51,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_error_when_email_has_more_than_maximum_characters()
+        public void return_error_when_email_has_more_than_maximum_characters()
         {
             var  moreThanMaximumNumberOfCharacters = SignUpUserService.MaximumNumberOfCharacters + 1;
             var email = StringGenerator.Generate(moreThanMaximumNumberOfCharacters);
@@ -64,7 +65,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_error_when_password_is_empty()
+        public void return_error_when_password_is_empty()
         {
             var args = new SignUpUserArgs("e@ma.il", string.Empty);
             
@@ -76,7 +77,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_error_when_password_is_null()
+        public void return_error_when_password_is_null()
         {
             var args = new SignUpUserArgs("e@ma.il", null);
             
@@ -88,7 +89,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_error_when_password_has_more_than_maximum_characters()
+        public void return_error_when_password_has_more_than_maximum_characters()
         {
             var  moreThanMaximumNumberOfCharacters = SignUpUserService.MaximumNumberOfCharacters + 1;
             var veryLongPassword = StringGenerator.Generate(moreThanMaximumNumberOfCharacters);
@@ -102,7 +103,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
         
         [Fact]
-        public void should_return_errors_when_both_are_null()
+        public void return_errors_when_both_are_null()
         {
             var args = new SignUpUserArgs(null, null);
             
@@ -113,6 +114,17 @@ namespace TuduManayer.Domain.Test.User.SignUp
             result.Errors[0].ErrorCode.ShouldBe(ErrorCodes.Required);
             result.Errors[1].FieldId.ShouldBe(nameof(SignUpUserArgs.Password));
             result.Errors[1].ErrorCode.ShouldBe(ErrorCodes.Required);
+        }
+
+        [Fact]
+        public void signedUp()
+        {
+            var args = new SignUpUserArgs("e@ma.il", "password");
+            
+            var result = service.SignUp(args);
+            
+            result.IsOk.ShouldBeTrue();
+            result.Errors.ShouldBeEmpty();
         }
     }
 }
