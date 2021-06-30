@@ -12,6 +12,7 @@ using TuduManayer.Domain.Todo.FindById;
 using TuduManayer.Domain.Todo.Search;
 using TuduManayer.Domain.Todo.Update;
 using TuduManayer.Domain.Todo.Validation;
+using TuduManayer.Domain.User.SignUp;
 using TuduManayer.Repository.Postgres.EntityFramework;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Delete;
@@ -41,7 +42,7 @@ namespace TuduManayer.web.react
 
             services.AddTransient<Configuration>();
             services.AddTransient<DataBaseContextFactory>();
-            services.AddTransient<Validator>();
+            services.AddTransient<TuduManayer.Domain.Todo.Validation.Validator>();
             services.AddTransient<IExistTodoRepository, ExistTodoRepository>();
             services.AddTransient<ISearchTodoService, SearchTodoService>();
             services.AddTransient<ISearchTodoRepository, SearchTodoRepository>();
@@ -54,6 +55,9 @@ namespace TuduManayer.web.react
             services.AddTransient<IFindByTodoIdService, FindByTodoIdService>();
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
+            
+            services.AddTransient<TuduManayer.Domain.User.SignUp.Validator>();
+            services.AddTransient<ISignUpUserService, SignUpUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
