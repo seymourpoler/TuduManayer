@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using Moq;
+using Shouldly;
 using TuduManayer.Domain.User.SignUp;
 using Xunit;
 
@@ -7,10 +8,12 @@ namespace TuduManayer.Domain.Test.User.SignUp
     public class SignUpServiceShould
     {
         private ISignUpUserService service;
+        private Mock<ISaveUserRepository> repository;
 
         public SignUpServiceShould()
         {
-            service = new SignUpUserService(new Validator());
+            repository = new Mock<ISaveUserRepository>();
+            service = new SignUpUserService(new Validator(), repository.Object);
         }
 
         [Fact]
@@ -116,14 +119,17 @@ namespace TuduManayer.Domain.Test.User.SignUp
         }
 
         [Fact]
-        public void signedUp()
+        public void signed_up()
         {
-            var args = new SignUpUserArgs("e@ma.il", "password");
+            const string email = "e@ma.il";
+            const string password = "password";
+            var args = new SignUpUserArgs(email, password);
             
             var result = service.SignUp(args);
             
             result.IsOk.ShouldBeTrue();
             result.Errors.ShouldBeEmpty();
+            repository.Verify(x => x.Save(It.Is<Domain.User.User>(y => y.Email == email && y.Password == password))); 
         }
     }
 }
