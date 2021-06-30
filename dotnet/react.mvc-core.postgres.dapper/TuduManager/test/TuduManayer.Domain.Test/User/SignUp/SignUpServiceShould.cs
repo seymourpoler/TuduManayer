@@ -1,5 +1,4 @@
-﻿using Castle.Core.Internal;
-using Shouldly;
+﻿using Shouldly;
 using TuduManayer.Domain.User.SignUp;
 using Xunit;
 
