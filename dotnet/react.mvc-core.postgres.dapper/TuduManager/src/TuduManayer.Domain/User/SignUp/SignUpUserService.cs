@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace TuduManayer.Domain.User.SignUp
 {
@@ -21,16 +20,8 @@ namespace TuduManayer.Domain.User.SignUp
             {
                 return ServiceExecutionResult.WithErrors(errors);
             }
-            return ServiceExecutionResult.WithSucess();
-        }
-
-        private static bool IsNotValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email)) return true;
             
-            var pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";    
-            var regex = new Regex(pattern, RegexOptions.IgnoreCase);    
-            return !regex.IsMatch(email);
+            return ServiceExecutionResult.WithSucess();
         }
     }
 }
