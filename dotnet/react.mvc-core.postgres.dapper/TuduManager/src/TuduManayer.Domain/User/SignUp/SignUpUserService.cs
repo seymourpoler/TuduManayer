@@ -6,10 +6,12 @@ namespace TuduManayer.Domain.User.SignUp
     {
         public static readonly int MaximumNumberOfCharacters = 255;
         private readonly Validator validator;
+        private readonly ISaveUserRepository saveUserRepository;
 
         public SignUpUserService(Validator validator, ISaveUserRepository saveUserRepository)
         {
             this.validator = validator;
+            this.saveUserRepository = saveUserRepository;
         }
 
         public ServiceExecutionResult SignUp(SignUpUserArgs args)
@@ -20,6 +22,9 @@ namespace TuduManayer.Domain.User.SignUp
             {
                 return ServiceExecutionResult.WithErrors(errors);
             }
+
+            var user = new User(args.Email, args.Password);
+            saveUserRepository.Save(user);
             
             return ServiceExecutionResult.WithSucess();
         }
