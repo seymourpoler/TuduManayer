@@ -5,7 +5,7 @@ import { createHttp } from "../../Http";
 import { HttpStatusCode } from "../../HttpStatusCode";
 import { SignUpUserPresenter } from "./SignUpUserPresenter";
 
-describe('SignUp Presenter', function (){
+describe('SignUp Presenter', async function (){
     let view, presenter, service, http;
     
     beforeEach(function(){
@@ -17,7 +17,7 @@ describe('SignUp Presenter', function (){
         presenter = new SignUpUserPresenter(view, service);
     });
     
-    describe('when signing up is requested', function(){
+    describe('when signing up is requested', async function(){
         it('shows an error if there is an internal server error', async function(){
             http.post = () => {return { statusCode: HttpStatusCode.internalServerError }};
             const request = {};
