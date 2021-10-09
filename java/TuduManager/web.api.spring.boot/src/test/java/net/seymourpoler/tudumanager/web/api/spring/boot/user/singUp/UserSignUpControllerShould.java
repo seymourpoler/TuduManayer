@@ -47,7 +47,9 @@ public class UserSignUpControllerShould {
         var serviceExecutionResult = ServiceExecutionResult.ok();
         when(service.signUp(any())).thenReturn(serviceExecutionResult);
         final String email = "e@mail.com";
-        var request = new HttpUserSignUpRequest();request.email = email; request.password = "password";
+        var request = new HttpUserSignUpRequest();
+        request.email = email;
+        request.password = "password";
 
         var response = controller.signUp(request);
 
