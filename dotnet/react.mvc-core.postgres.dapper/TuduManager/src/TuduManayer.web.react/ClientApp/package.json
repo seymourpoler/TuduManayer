@@ -34,7 +34,7 @@
     "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --verbose --watchAll=false --env=jsdom",
-    "test:coverage":"react-scripts test -- --coverage",
+    "test:coverage": "react-scripts test --coverage",
     "test:watch": "react-scripts test --runInBand --verbose --env=node",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"
