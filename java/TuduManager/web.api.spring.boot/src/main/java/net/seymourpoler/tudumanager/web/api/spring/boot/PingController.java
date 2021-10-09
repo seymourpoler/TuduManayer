@@ -9,6 +9,7 @@ public class PingController {
 
     @GetMapping("/api/ping")
     public ResponseEntity ping(){
+
         return ResponseEntity.ok("PONG");
     }
 }
