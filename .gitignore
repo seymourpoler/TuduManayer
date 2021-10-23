@@ -232,3 +232,4 @@ $RECYCLE.BIN/
 
 \java\TuduManager\repository.postgres.sql2o\repository.postgres.sql2o.iml
 /java/TuduManager/repository.postgres.sql2o/repository.postgres.sql2o.iml
+*.class
