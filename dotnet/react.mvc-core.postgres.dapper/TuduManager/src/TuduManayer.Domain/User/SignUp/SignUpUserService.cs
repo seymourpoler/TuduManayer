@@ -4,7 +4,6 @@ namespace TuduManayer.Domain.User.SignUp
 {
     public class SignUpUserService : ISignUpUserService
     {
-        public static readonly int MaximumNumberOfCharacters = 255;
         private readonly Validator validator;
         private readonly ISaveUserRepository saveUserRepository;
 

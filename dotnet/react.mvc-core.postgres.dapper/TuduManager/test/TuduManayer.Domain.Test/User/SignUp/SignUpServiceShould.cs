@@ -55,7 +55,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         [Fact]
         public void return_error_when_email_has_more_than_maximum_characters()
         {
-            var  moreThanMaximumNumberOfCharacters = SignUpUserService.MaximumNumberOfCharacters + 1;
+            var  moreThanMaximumNumberOfCharacters = Validator.MaximumNumberOfCharacters + 1;
             var email = StringGenerator.Generate(moreThanMaximumNumberOfCharacters);
             var args = new SignUpUserArgs(email, "password");
             
@@ -93,7 +93,7 @@ namespace TuduManayer.Domain.Test.User.SignUp
         [Fact]
         public void return_error_when_password_has_more_than_maximum_characters()
         {
-            var  moreThanMaximumNumberOfCharacters = SignUpUserService.MaximumNumberOfCharacters + 1;
+            var  moreThanMaximumNumberOfCharacters = Validator.MaximumNumberOfCharacters + 1;
             var veryLongPassword = StringGenerator.Generate(moreThanMaximumNumberOfCharacters);
             var args = new SignUpUserArgs("a@ema.il", veryLongPassword);
             
