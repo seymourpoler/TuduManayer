@@ -25,7 +25,7 @@ public class UserSignUpControllerShould {
 
     @Before
     public void setUp(){
-        service= mock(IUserSignUpService.class);
+        service = mock(IUserSignUpService.class);
         controller = new UserSignUpController(service);
     }
 
