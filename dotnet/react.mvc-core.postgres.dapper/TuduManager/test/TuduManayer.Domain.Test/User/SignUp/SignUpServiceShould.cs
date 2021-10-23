@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Shouldly;
 using TuduManayer.Domain.User.SignUp;
+using TuduManayer.Domain.User.SignUp.Validation;
 using Xunit;
 
 namespace TuduManayer.Domain.Test.User.SignUp

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TuduManayer.Domain.User.SignUp.Validation;
 
 namespace TuduManayer.Domain.User.SignUp
 {

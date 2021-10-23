@@ -20,6 +20,7 @@ using TuduManayer.Repository.Postgres.EntityFramework.Todo.FindByTodoId;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Save;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Search;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Update;
+using Validator = TuduManayer.Domain.User.SignUp.Validation.Validator;
 
 namespace TuduManayer.web.react
 {
@@ -56,7 +57,7 @@ namespace TuduManayer.web.react
             services.AddTransient<IFindTodoRepository, FindTodoRepository>();
             services.AddTransient<IUpdateTodoRepository, UpdateTodoRepository>();
             
-            services.AddTransient<TuduManayer.Domain.User.SignUp.Validator>();
+            services.AddTransient<Validator>();
             services.AddTransient<ISignUpUserService, SignUpUserService>();
         }
 
