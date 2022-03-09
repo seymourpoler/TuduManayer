@@ -35,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --verbose --watchAll=false --env=jsdom --maxWorkers=50%",
     "test:coverage": "react-scripts test --coverage",
-    "test:watch": "react-scripts test --verbose --env=node --maxWorkers=25%",
+    "test:watch": "react-scripts test --verbose --watchAll=true --env=node --maxWorkers=25%",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"
   },
