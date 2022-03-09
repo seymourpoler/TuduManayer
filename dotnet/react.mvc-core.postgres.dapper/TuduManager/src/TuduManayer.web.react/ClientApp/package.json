@@ -33,9 +33,9 @@
   "scripts": {
     "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build",
-    "test": "cross-env CI=true react-scripts test --verbose --watchAll=false --env=jsdom",
+    "test": "react-scripts test --verbose --watchAll=false --env=jsdom --maxWorkers=50%",
     "test:coverage": "react-scripts test --coverage",
-    "test:watch": "react-scripts test --runInBand --verbose --env=node",
+    "test:watch": "react-scripts test --verbose --env=node --maxWorkers=25%",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"
   },
