@@ -1,6 +1,6 @@
 ﻿import { createSignUpUserView } from './SignUpUserView';
 import { spyAllMethodsOf } from '../../Testing';
-import {SignUpUserService} from './SignUpUserService';
+import { SignUpUserService } from './SignUpUserService';
 import { createHttp } from "../../Http";
 import { HttpStatusCode } from "../../HttpStatusCode";
 import { SignUpUserPresenter } from "./SignUpUserPresenter";
