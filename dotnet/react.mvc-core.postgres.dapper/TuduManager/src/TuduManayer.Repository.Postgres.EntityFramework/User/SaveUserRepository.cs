@@ -1,4 +1,3 @@
-using System;
 using TuduManayer.Domain.User.SignUp;
 
 namespace TuduManayer.Repository.Postgres.EntityFramework.User
