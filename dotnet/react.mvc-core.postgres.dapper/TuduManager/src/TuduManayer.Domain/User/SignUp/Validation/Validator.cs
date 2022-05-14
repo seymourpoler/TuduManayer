@@ -3,6 +3,11 @@ using System.Linq;
 
 namespace TuduManayer.Domain.User.SignUp.Validation
 {
+    public interface IValidator
+    {
+        List<Error> Validate(SignUpUserArgs args);
+    }
+    
     public class Validator
     {
         public static readonly int MaximumNumberOfCharacters = 255;
