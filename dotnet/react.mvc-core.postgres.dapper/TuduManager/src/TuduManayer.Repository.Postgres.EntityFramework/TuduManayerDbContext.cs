@@ -17,5 +17,6 @@ namespace TuduManayer.Repository.Postgres.EntityFramework
         }
         
         public DbSet<Todo.Models.Todo> Todos { get; set; }
+        public DbSet<User.Models.User> Users { get; set; }
     }
 }

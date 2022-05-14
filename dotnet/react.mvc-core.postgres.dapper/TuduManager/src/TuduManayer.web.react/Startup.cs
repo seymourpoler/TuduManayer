@@ -20,6 +20,7 @@ using TuduManayer.Repository.Postgres.EntityFramework.Todo.FindByTodoId;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Save;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Search;
 using TuduManayer.Repository.Postgres.EntityFramework.Todo.Update;
+using TuduManayer.Repository.Postgres.EntityFramework.User;
 using Validator = TuduManayer.Domain.User.SignUp.Validation.Validator;
 
 namespace TuduManayer.web.react
@@ -59,6 +60,7 @@ namespace TuduManayer.web.react
             
             services.AddTransient<Validator>();
             services.AddTransient<ISignUpUserService, SignUpUserService>();
+            services.AddTransient<ISaveUserRepository, SaveUserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
