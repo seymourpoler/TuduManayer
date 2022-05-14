@@ -8,8 +8,8 @@ import { ManageTodoView } from "./todo/manage/ManageTodoView";
 import { CreateTodoView } from "./todo/create/CreateTodoView";
 
 import './custom.css'
-import {EditTodoView} from "./todo/edit/EditTodoView";
-import {SignUpUserView} from "./user/signup/SignUpUserView";
+import { EditTodoView } from "./todo/edit/EditTodoView";
+import { SignUpUserView } from "./user/signup/SignUpUserView";
 
 export default class App extends Component {
   static displayName = App.name;
