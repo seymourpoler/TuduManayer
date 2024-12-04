@@ -12,7 +12,7 @@
     <artifactId>domain</artifactId>
 
     <properties>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <assertj.version>3.16.1</assertj.version>
         <mockito.version>3.3.3</mockito.version>
     </properties>
