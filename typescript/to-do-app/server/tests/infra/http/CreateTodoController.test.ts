@@ -32,7 +32,7 @@ describe('SaveTodoController', () => {
             expect(anyResponse.send).toHaveBeenCalled();
         });
 
-        it('should return 400 when description is not provided', async () => {
+        it('should return 400 when there is no description ', async () => {
             service.setup(x => x.create(TypeMoq.It.isAny())).returns(async () => Promise.resolve(Either.left(new Error('description', 'Description is required'))));
             const anyRequest: MockRequest<Request> = createRequest({ body: { completed: false } });
             const anyResponse: MockResponse<Response> = createResponse();
@@ -45,7 +45,7 @@ describe('SaveTodoController', () => {
             expect(anyResponse.send).toHaveBeenCalledWith(new Error('description', 'Description is required'));
         });
 
-        it('should return 400 when completed is not provided', async () => {
+        it('should return 400 when there is no completed', async () => {
             service.setup(x => x.create(TypeMoq.It.isAny())).returns(async () => Promise.resolve(Either.left(new Error('completed', 'Completed is required'))));
             const anyRequest: MockRequest<Request> = createRequest({ body: { Description: 'a description' } });
             const anyResponse: MockResponse<Response> = createResponse();
