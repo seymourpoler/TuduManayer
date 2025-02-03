@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { SaveTodoService } from '../../application/SaveTodoService';
-import { SaveTodoArg } from '../../application/SaveTodoArgs';
+import { CreateTodoService } from '../../application/CreateTodoService';
+import { CreateTodoArg } from '../../application/CreateTodoArgs';
 
-export class SaveTodoController {
-    constructor(private readonly service: SaveTodoService) {}
+export class CreateTodoController {
+    constructor(private readonly service: CreateTodoService) {}
     
-    public async save(request: Request, response: Response): Promise<void> {
+    public async create(request: Request, response: Response): Promise<void> {
         const { description, completed } = request.body;
 
-        const result = await this.service.save(new SaveTodoArg(description, completed));
+        const result = await this.service.create(new CreateTodoArg(description, completed));
         
         result.match(
             () => {

@@ -2,12 +2,12 @@ import { Either} from '@leanmind/monads';
 import { Error } from '../domain/Error';
 import { Todo } from '../domain/Todo';
 import { PostgresSaveTodoRepository } from '../infra/database/PostgresSaveTodoRepository';
-import { SaveTodoArg } from './SaveTodoArgs';
+import { CreateTodoArg } from './CreateTodoArgs';
 
-export class SaveTodoService {
+export class CreateTodoService {
     constructor(private readonly repository: PostgresSaveTodoRepository) {}
 
-    public async save(arg: SaveTodoArg): Promise<Either<Error, null>> {
+    public async create(arg: CreateTodoArg): Promise<Either<Error, null>> {
         
         if(!arg.description) {
             return Either.left(new Error('description', 'Description is required')); 

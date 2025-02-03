@@ -1,61 +1,61 @@
 import { describe, beforeEach,  it, expect } from "vitest";
 import * as TypeMoq from "typemoq";
 import { Either } from "@leanmind/monads";
-import { SaveTodoService } from "../../src/application/SaveTodoService";
+import { CreateTodoService } from "../../src/application/CreateTodoService";
 import { PostgresSaveTodoRepository } from "../../src/infra/database/PostgresSaveTodoRepository";
 import { Error } from "../../src/domain/Error";
-import { SaveTodoArg } from "../../src/application/SaveTodoArgs";
+import { CreateTodoArg } from "../../src/application/CreateTodoArgs";
 
 describe('SaveTodoService', () => {
     let repository: TypeMoq.IMock<PostgresSaveTodoRepository>;
-    let service: SaveTodoService;
+    let service: CreateTodoService;
 
     beforeEach(() => {
         repository = TypeMoq.Mock.ofType<PostgresSaveTodoRepository>();
-        service = new SaveTodoService(repository.object);
+        service = new CreateTodoService(repository.object);
     });
 
     describe('When saving a to-do is requested', () => {
         it('should return 400 when description is null', async () => {
-            const args = new SaveTodoArg(null, false);
+            const args = new CreateTodoArg(null, false);
             
-            const result = await service.save(args);
+            const result = await service.create(args);
 
             repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
             expect(result).toEqual(Either.left(new Error('description', 'Description is required')));
         });
 
         it('should return 400 when description is undefined', async () => {
-            const args = new SaveTodoArg(undefined, false);
+            const args = new CreateTodoArg(undefined, false);
             
-            const result = await service.save(args);
+            const result = await service.create(args);
 
             repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
             expect(result).toEqual(Either.left(new Error('description', 'Description is required')));
         });
 
         it('should return 400 when completed is null', async () => {
-            const args = new SaveTodoArg('description', null);
+            const args = new CreateTodoArg('description', null);
             
-            const result = await service.save(args);
+            const result = await service.create(args);
 
             repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
             expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
         });
 
         it('should return 400 when completed is undefined', async () => {
-            const args = new SaveTodoArg('description', undefined);
+            const args = new CreateTodoArg('description', undefined);
             
-            const result = await service.save(args);
+            const result = await service.create(args);
 
             repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
             expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
         });
 
         it('should save a user', async () => {
-            const args = new SaveTodoArg('description', false);
+            const args = new CreateTodoArg('description', false);
             
-            const result = await service.save(args);
+            const result = await service.create(args);
 
             repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.once());
             expect(result).toEqual(Either.right(null));
