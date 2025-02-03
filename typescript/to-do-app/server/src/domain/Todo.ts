@@ -27,6 +27,10 @@ export class Todo{
             return Either.left(new Error('description', 'Description is required'));
         }
 
-       throw new NotImplementedException();
+        if(completed == null || completed == undefined) {
+            return Either.left(new Error('completed', 'Completed is required'));
+        }
+
+        return Either.right(new Todo(null, description, completed, new Date()));
     }
 }
