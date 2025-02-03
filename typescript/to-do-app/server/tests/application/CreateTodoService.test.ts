@@ -15,53 +15,51 @@ describe('Create Todo Service should', () => {
         service = new CreateTodoService(repository.object);
     });
 
-    describe('When saving a to-do is requested', () => {
-        it('should return 400 when description is null', async () => {
-            const args = new CreateTodoArg(null, false);
-            
-            const result = await service.create(args);
+    it('should return error when description is null', async () => {
+        const args = new CreateTodoArg(null, false);
 
-            repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
-            expect(result).toEqual(Either.left(new Error('description', 'Description is required')));
-        });
+        const result = await service.create(args);
 
-        it('should return 400 when description is undefined', async () => {
-            const args = new CreateTodoArg(undefined, false);
-            
-            const result = await service.create(args);
+        repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
+        expect(result).toEqual(Either.left(new Error('description', 'Description is required')));
+    });
 
-            repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
-            expect(result).toEqual(Either.left(new Error('description', 'Description is required')));
-        });
+    it('should return error when description is undefined', async () => {
+        const args = new CreateTodoArg(undefined, false);
 
-        it('should return 400 when completed is null', async () => {
-            const args = new CreateTodoArg('description', null);
-            
-            const result = await service.create(args);
+        const result = await service.create(args);
 
-            repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
-            expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
-        });
+        repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
+        expect(result).toEqual(Either.left(new Error('description', 'Description is required')));
+    });
 
-        it('should return 400 when completed is undefined', async () => {
-            const args = new CreateTodoArg('description', undefined);
-            
-            const result = await service.create(args);
+    it('should return error when completed is null', async () => {
+        const args = new CreateTodoArg('description', null);
 
-            repository.verify(x => x.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
-            expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
-        });
+        const result = await service.create(args);
 
-        it('should create a user', async () => {
-            const args = new CreateTodoArg('description', false);
-            
-            const result = await service.create(args);
+        repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
+        expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
+    });
 
-            repository.verify(x => x.save(TypeMoq.It.isAny()), TypeMoq.Times.once());
-            result.match(
-                todo => expect(todo).toBeNull(),
-                error => expect(error).toBeNull()
-            );
-        });
+    it('should return error when completed is undefined', async () => {
+        const args = new CreateTodoArg('description', undefined);
+
+        const result = await service.create(args);
+
+        repository.verify(x => x.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
+        expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
+    });
+
+    it('should create a user', async () => {
+        const args = new CreateTodoArg('description', false);
+
+        const result = await service.create(args);
+
+        repository.verify(x => x.save(TypeMoq.It.isAny()), TypeMoq.Times.once());
+        result.match(
+            todo => expect(todo).toBeNull(),
+            error => expect(error).toBeNull()
+        );
     });
 });
