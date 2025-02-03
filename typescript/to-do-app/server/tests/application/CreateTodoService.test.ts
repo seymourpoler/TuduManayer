@@ -6,7 +6,7 @@ import { PostgresSaveTodoRepository } from "../../src/infra/database/PostgresSav
 import { Error } from "../../src/domain/Error";
 import { CreateTodoArg } from "../../src/application/CreateTodoArgs";
 
-describe('SaveTodoService', () => {
+describe('Create Todo Service should', () => {
     let repository: TypeMoq.IMock<PostgresSaveTodoRepository>;
     let service: CreateTodoService;
 
@@ -48,17 +48,20 @@ describe('SaveTodoService', () => {
             
             const result = await service.create(args);
 
-            repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
+            repository.verify(x => x.save(TypeMoq.It.isAny()), TypeMoq.Times.never());
             expect(result).toEqual(Either.left(new Error('completed', 'Completed is required')));
         });
 
-        it('should save a user', async () => {
+        it('should create a user', async () => {
             const args = new CreateTodoArg('description', false);
             
             const result = await service.create(args);
 
-            repository.verify(r => r.save(TypeMoq.It.isAny()), TypeMoq.Times.once());
-            expect(result).toEqual(Either.right(null));
+            repository.verify(x => x.save(TypeMoq.It.isAny()), TypeMoq.Times.once());
+            result.match(
+                todo => expect(todo).toBeNull(),
+                error => expect(error).toBeNull()
+            );
         });
     });
 });
