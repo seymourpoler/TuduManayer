@@ -6,7 +6,7 @@ import { PostgresSaveTodoRepository } from '../infra/database/PostgresSaveTodoRe
 import { FindTodosController } from '../infra/http/FindTodosController';
 import { SaveTodoController } from './http/SaveTodoController';
 import { DeleteTodoController } from './http/DeleteTodoController';
-import { SaveTodoService } from '../domain/services/SaveTodoService';
+import { SaveTodoService } from '../application/SaveTodoService';
 import { PostgresDeleteTodoRepository } from './database/PostgresDeleteTodoRepository';
 
 const connectionFactory = new ConnectionFactory(new Configuration);

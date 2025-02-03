@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { SaveTodoService } from '../../domain/services/SaveTodoService';
-import { SaveTodoArg } from '../../domain/services/SaveTodoArgs';
+import { SaveTodoService } from '../../application/SaveTodoService';
+import { SaveTodoArg } from '../../application/SaveTodoArgs';
 
 export class SaveTodoController {
     constructor(private readonly service: SaveTodoService) {}

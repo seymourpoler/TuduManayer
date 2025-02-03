@@ -1,10 +1,10 @@
 import { describe, beforeEach,  it, expect } from "vitest";
 import * as TypeMoq from "typemoq";
 import { Either } from "@leanmind/monads";
-import { SaveTodoService } from "../../src/domain/services/SaveTodoService";
+import { SaveTodoService } from "../../src/application/SaveTodoService";
 import { PostgresSaveTodoRepository } from "../../src/infra/database/PostgresSaveTodoRepository";
 import { Error } from "../../src/domain/models/Error";
-import { SaveTodoArg } from "../../src/domain/services/SaveTodoArgs";
+import { SaveTodoArg } from "../../src/application/SaveTodoArgs";
 
 describe('SaveTodoService', () => {
     let repository: TypeMoq.IMock<PostgresSaveTodoRepository>;

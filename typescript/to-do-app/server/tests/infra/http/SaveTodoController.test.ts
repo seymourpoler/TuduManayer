@@ -4,8 +4,8 @@ import { Request, Response } from 'express';
 import { Either } from "@leanmind/monads";
 import { createRequest, createResponse, MockRequest, MockResponse } from 'node-mocks-http';
 import { SaveTodoController } from "../../../src/infra/http/SaveTodoController";
-import { SaveTodoService } from "../../../src/domain/services/SaveTodoService";
-import { SaveTodoArg } from "../../../src/domain/services/SaveTodoArgs";
+import { SaveTodoService } from "../../../src/application/SaveTodoService";
+import { SaveTodoArg } from "../../../src/application/SaveTodoArgs";
 import { Error } from "../../../src/domain/models/Error";
 
 describe('SaveTodoController', () => {
