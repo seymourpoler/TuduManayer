@@ -17,8 +17,8 @@ describe('SaveTodoController', () => {
         controller = new CreateTodoController(service.object);
     });
 
-    describe('When saving a todo is requested', () => {
-        it('should save a todo', async () => {
+    describe('When creating a todo is requested', () => {
+        it('should create a todo', async () => {
             service.setup(x => x.create(TypeMoq.It.isAny())).returns(async () => Promise.resolve(Either.right(null)));
             const anyRequest: MockRequest<Request> = createRequest({ body: { description: 'todo', completed: false } });
             const anyResponse: MockResponse<Response> = createResponse();
