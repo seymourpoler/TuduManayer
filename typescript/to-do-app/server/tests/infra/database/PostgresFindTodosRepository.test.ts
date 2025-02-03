@@ -1,7 +1,7 @@
 import { describe, beforeEach, afterEach, it, expect } from "vitest";
 import { ConnectionFactory } from "../../../src/infra/database/ConnectionFactory";
 import { Configuration } from "../../../src/infra/database/Configuration";
-import { Todo } from "../../../src/domain/models/Todo";
+import { Todo } from "../../../src/domain/Todo";
 import { PostgresFindTodosRepository } from "../../../src/infra/database/PostgresFindTodosRepository";
 import { PostgresSaveTodoRepository } from "../../../src/infra/database/PostgresSaveTodoRepository";
 import { DataBase } from "./DataBase";

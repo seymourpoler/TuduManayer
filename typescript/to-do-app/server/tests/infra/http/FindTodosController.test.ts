@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { createRequest, createResponse, MockRequest, MockResponse } from 'node-mocks-http';
 import { FindTodosController } from "../../../src/infra/http/FindTodosController";
 import { PostgresFindTodosRepository } from "../../../src/infra/database/PostgresFindTodosRepository";
-import { Todo } from "../../../src/domain/models/Todo";
+import { Todo } from "../../../src/domain/Todo";
 
 describe("FindTodosController", () => {
     let controller: FindTodosController;

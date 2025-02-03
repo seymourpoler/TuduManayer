@@ -1,4 +1,4 @@
-import { Todo } from "../../domain/models/Todo";
+import { Todo } from "../../domain/Todo";
 import { ConnectionFactory } from "./ConnectionFactory";
 
 export class PostgresSaveTodoRepository {

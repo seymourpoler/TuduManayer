@@ -5,7 +5,7 @@ import app from '../../src/infra/app';
 import { ConnectionFactory } from '../../src/infra/database/ConnectionFactory';
 import { Configuration } from '../../src/infra/database/Configuration';
 import { PostgresSaveTodoRepository } from '../../src/infra/database/PostgresSaveTodoRepository';
-import { Todo } from '../../src/domain/models/Todo';
+import { Todo } from '../../src/domain/Todo';
 import { DataBase } from './database/DataBase';
 
 describe('app',() => {

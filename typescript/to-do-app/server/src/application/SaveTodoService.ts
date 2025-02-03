@@ -1,6 +1,6 @@
 import { Either} from '@leanmind/monads';
-import { Error } from '../domain/models/Error';
-import { Todo } from '../domain/models/Todo';
+import { Error } from '../domain/Error';
+import { Todo } from '../domain/Todo';
 import { PostgresSaveTodoRepository } from '../infra/database/PostgresSaveTodoRepository';
 import { SaveTodoArg } from './SaveTodoArgs';
 

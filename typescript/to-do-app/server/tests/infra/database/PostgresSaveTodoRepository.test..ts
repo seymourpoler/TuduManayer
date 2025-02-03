@@ -4,7 +4,7 @@ import { PostgresSaveTodoRepository } from "../../../src/infra/database/Postgres
 import { ConnectionFactory } from "../../../src/infra/database/ConnectionFactory";
 import { Configuration } from "../../../src/infra/database/Configuration";
 import { DataBase } from "./DataBase";
-import { Todo } from "../../../src/domain/models/Todo";
+import { Todo } from "../../../src/domain/Todo";
 
 describe("PostgresSaveTodosRepository", () => {
     let connectionFactory: ConnectionFactory;

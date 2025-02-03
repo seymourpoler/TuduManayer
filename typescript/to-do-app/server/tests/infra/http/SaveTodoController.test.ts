@@ -6,7 +6,7 @@ import { createRequest, createResponse, MockRequest, MockResponse } from 'node-m
 import { SaveTodoController } from "../../../src/infra/http/SaveTodoController";
 import { SaveTodoService } from "../../../src/application/SaveTodoService";
 import { SaveTodoArg } from "../../../src/application/SaveTodoArgs";
-import { Error } from "../../../src/domain/models/Error";
+import { Error } from "../../../src/domain/Error";
 
 describe('SaveTodoController', () => {
     let service: TypeMoq.IMock<SaveTodoService>;

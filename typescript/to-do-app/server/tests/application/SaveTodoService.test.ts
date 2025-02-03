@@ -3,7 +3,7 @@ import * as TypeMoq from "typemoq";
 import { Either } from "@leanmind/monads";
 import { SaveTodoService } from "../../src/application/SaveTodoService";
 import { PostgresSaveTodoRepository } from "../../src/infra/database/PostgresSaveTodoRepository";
-import { Error } from "../../src/domain/models/Error";
+import { Error } from "../../src/domain/Error";
 import { SaveTodoArg } from "../../src/application/SaveTodoArgs";
 
 describe('SaveTodoService', () => {
