@@ -3,18 +3,18 @@ import * as TypeMoq from "typemoq";
 import { Request, Response } from 'express';
 import { Either } from "@leanmind/monads";
 import { createRequest, createResponse, MockRequest, MockResponse } from 'node-mocks-http';
-import { SaveTodoController } from "../../../src/infra/http/SaveTodoController";
+import { CreateTodoController } from "../../../src/infra/http/CreateTodoController";
 import { CreateTodoService } from "../../../src/application/CreateTodoService";
 import { CreateTodoArg } from "../../../src/application/CreateTodoArgs";
 import { Error } from "../../../src/domain/Error";
 
 describe('SaveTodoController', () => {
     let service: TypeMoq.IMock<CreateTodoService>;
-    let controller: SaveTodoController;
+    let controller: CreateTodoController;
 
     beforeEach(() => {
         service = TypeMoq.Mock.ofType<CreateTodoService>();
-        controller = new SaveTodoController(service.object);
+        controller = new CreateTodoController(service.object);
     });
 
     describe('When saving a todo is requested', () => {
@@ -25,7 +25,7 @@ describe('SaveTodoController', () => {
             anyResponse.status = vi.fn().mockReturnValue(anyResponse);
             anyResponse.send = vi.fn();
     
-            await controller.save(anyRequest, anyResponse);
+            await controller.create(anyRequest, anyResponse);
     
             service.verify(x => x.create(TypeMoq.It.is<CreateTodoArg>(x => x.completed == false && x.description == 'todo')), TypeMoq.Times.once());
             expect(anyResponse.status).toHaveBeenCalledWith(201);
@@ -39,7 +39,7 @@ describe('SaveTodoController', () => {
             anyResponse.status = vi.fn().mockReturnValue(anyResponse);
             anyResponse.send = vi.fn();
     
-            await controller.save(anyRequest, anyResponse);
+            await controller.create(anyRequest, anyResponse);
     
             expect(anyResponse.status).toHaveBeenCalledWith(400);
             expect(anyResponse.send).toHaveBeenCalledWith(new Error('description', 'Description is required'));
@@ -52,7 +52,7 @@ describe('SaveTodoController', () => {
             anyResponse.status = vi.fn().mockReturnValue(anyResponse);
             anyResponse.send = vi.fn();
     
-            await controller.save(anyRequest, anyResponse);
+            await controller.create(anyRequest, anyResponse);
     
             expect(anyResponse.status).toHaveBeenCalledWith(400);
             expect(anyResponse.send).toHaveBeenCalledWith(new Error('completed', 'Completed is required'));
