@@ -4,7 +4,6 @@ import { Http } from "../src/Http";
 import { TodoService } from "../src/TodoService";
 import { Todo } from "../src/Todo";
 
-
 describe("TodoService", () => {
     let http: TypeMoq.IMock<Http>;
     let service: TodoService;
